@@ -1,0 +1,15 @@
+[
+  {"id":"mandatory-serve-shape","section":"mandatory","text":"Serve–receive shape: your serve_middle most often drew lifts/cross‑lifts; the best third‑touch windows appeared when you took the exchange to net.","frameAnchors":["12953-12984","15083-15106","26247-26279","35947-35981","40440-40471"]},
+  {"id":"mandatory-totals","section":"mandatory","text":"Finish vs errors: you 25 winners vs 29 errors; finishes clustered on forehand_smash_cross and overhead_drop_cross; errors on overhead_drop_cross, overhead_smash, backhand_defense.","frameAnchors":["G1-R5-F14680","G1-R30-F39180","G2-R19-F66364","G1-R32-F41773","G1-R23-F31971"]},
+  {"id":"mandatory-zones","section":"mandatory","text":"Court geography: winning hotspot at front_right; losing hotspot at back_left; most effective in middle_center (flat_game), most ineffective at middle_left (backhand_defense).","frameAnchors":["G1-R13-F20779","G1-R34-F43842","G2-R2-F51077","G1-R1-F11791","G2-R11-F59443"]},
+  {"id":"worked-serve-return-dribble","section":"worked","text":"First reply vs opponent serve: forehand_dribble stabilized starts and set a net‑front tempo.","frameAnchors":["16857-16887","20632-20662","22210-22240","57110-57138","69555-69582"]},
+  {"id":"worked-championship-control","section":"worked","text":"Championship control: Net Battle into timely depth and net closes held late passages.","frameAnchors":["34604-34690","40440-40693","41444-41773"]},
+  {"id":"worked-height-conversion","section":"worked","text":"Height conversion: when rallies produced height, forehand_smash/forehand_smash_cross finished cleanly.","frameAnchors":["G1-R5-F14680","G1-R30-F39180","G2-R19-F66364"]},
+  {"id":"didnt-middle-left","section":"didnt_work","text":"Middle_left scrambles: backhand_defense lanes ceded initiative and preceded opponent pressure chains.","frameAnchors":["G1-R2-F12244","G1-R9-F17118","G1-R35-F44307","G2-R11-F59443"]},
+  {"id":"didnt-back-left-finals","section":"didnt_work","text":"Back_left finals: pressured overhead endings bled points in decisive moments.","frameAnchors":["G1-R1-F11791","G1-R21-F29911","G2-R36-F85983","G2-R38-F88748"]},
+  {"id":"didnt-early-lift-cross","section":"didnt_work","text":"Early forehand_lift_cross in open rallies invited opponent smash/drive chains.","frameAnchors":["16857-17118","57110-57187","86958-87041"]},
+  {"id":"better-serve-third-net","section":"could_be_better","text":"On your serve: sequences swung your way when the third touch reached a clean net hold after their lift/cross‑lift.","frameAnchors":["12953-12984","15083-15106","26247-26279","40440-40471"]},
+  {"id":"better-return-dribble","section":"could_be_better","text":"On their serve: returns starting with forehand_dribble more often kept the rally in your net‑front window.","frameAnchors":["16857-16887","22210-22240","57110-57138"]},
+  {"id":"better-end-phase-choice","section":"could_be_better","text":"End‑phase shot selection: late overhead_drop_cross outcomes skewed negative compared to net finishes and smash conversion.","frameAnchors":["G1-R23-F31971","G2-R13-F61609","G2-R36-F85983","G1-R34-F43842","G2-R19-F66364"]}
+]
+

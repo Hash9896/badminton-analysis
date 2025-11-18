@@ -1,0 +1,410 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Response classification rules for badminton shot effectiveness analysis",
+    "author": "Harshit Agarwal",
+    "date": "2025",
+    "instructions": {
+      "pressure_level": "Options: 'forced' (opponent under pressure), 'neutral' (balanced exchange), 'counter' (opponent gains advantage)",
+      "quality_score": "Range: 0.0-1.0 (0=poor shot, 1=excellent shot based on opponent's response)",
+      "tactical_meaning": "Brief description of what this exchange means tactically",
+      "notes": "Optional field for additional context or conditions"
+    }
+  },
+  
+  "shot_categories": {
+    "attacking_shots": ["forehand_smash", "overhead_smash", "backhand_smash", "forehand_halfsmash", "overhead_halfsmash"],
+    "defensive_shots": ["forehand_defense", "backhand_defense", "forehand_defense_cross", "backhand_defense_cross"],
+    "net_shots": ["forehand_netkeep", "backhand_netkeep", "forehand_dribble", "backhand_dribble", "forehand_nettap", "backhand_nettap", "forehand_netkeep_cross", "backhand_netkeep_cross"],
+    "placement_shots": ["overhead_drop", "forehand_drop", "backhand_drop", "overhead_drop_cross", "forehand_drop_cross", "backhand_drop_cross"],
+    "reset_shots": ["forehand_lift", "backhand_lift", "forehand_clear", "overhead_clear", "backhand_clear", "forehand_pulldrop", "backhand_pulldrop", "forehand_pulldrop_cross", "backhand_pulldrop_cross"],
+    "pressure_shots": ["forehand_drive", "backhand_drive", "flat_game", "forehand_push", "backhand_push", "forehand_drive_cross", "backhand_drive_cross", "forehand_push_cross", "backhand_push_cross"]
+  },
+  
+  "response_classifications": {
+    "smash_responses": [
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_defense", 
+        "pressure_level": "forced",
+        "quality_score": 0.85,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Standard good smash forcing defensive return"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive_repositioning",
+        "notes": "Good smash but opponent manages crosscourt return"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Decent smash but opponent in better position"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Decent smash but opponent in better position"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.60,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Weak smash - opponent had time to lift comfortably"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.40,
+        "tactical_meaning": "failed_attack",
+        "notes": "Poor smash - opponent counterattacks"
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "forced",
+        "quality_score": 0.90,
+        "tactical_meaning": "attack_success",
+        "notes": "Excellent smash forcing weak net return"
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.88,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Strong overhead smash"
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Smash lacked power or placement"
+      }
+    ],
+    
+    "drop_responses": [
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "tactical_reset",
+        "notes": "Standard drop-lift exchange"
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "net_control",
+        "notes": "Good drop keeping play at net"
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "failed_deception",
+        "notes": "Poor drop - opponent attacks"
+      },
+      {
+        "attack_shot": "overhead_drop_cross",
+        "response_shot": "backhand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.70,
+        "tactical_meaning": "positional_advantage",
+        "notes": "Good cross drop forcing difficult lift"
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.60,
+        "tactical_meaning": "net_exchange",
+        "notes": "Deceptive pulldrop creates net play"
+      }
+    ],
+    
+    "clear_responses": [
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "baseline_exchange",
+        "notes": "Neutral clear exchange"
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "positioning_error",
+        "notes": "Poor clear - opponent attacks"
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "tactical_variation",
+        "notes": "Clear allows opponent options"
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "baseline_rally",
+        "notes": "Building rally from back"
+      }
+    ],
+    
+    "net_shot_responses": [
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "net_win",
+        "notes": "Good net shot forcing lift"
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "net_exchange",
+        "notes": "Neutral net exchange"
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "net_loss",
+        "notes": "Poor net shot - opponent kills"
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.95,
+        "tactical_meaning": "point_winner_setup",
+        "notes": "Excellent tight net shot"
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.95,
+        "tactical_meaning": "point_winner_setup",
+        "notes": "Excellent tight net shot"
+      }
+    ],
+    
+    "drive_responses": [
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.70,
+        "tactical_meaning": "drive_pressure",
+        "notes": "Good drive creating pressure"
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "flat_game",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "flat_exchange",
+        "notes": "Entering flat rally"
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "drive_rally",
+        "notes": "Drive exchange"
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "flat_game",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "flat_rally",
+        "notes": "Fast flat exchanges"
+      }
+    ],
+    
+    "serve_responses": [
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "flick_neutralized",
+        "notes": "Flick serve handled well"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      }
+    ]
+  },
+  
+  "fallback_rules": {
+    "category_matrix": [
+      {
+        "attack_category": "attack",
+        "response_category": "defense",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "notes": "Generic attack forcing defense"
+      },
+      {
+        "attack_category": "attack",
+        "response_category": "reset",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "notes": "Attack neutralized by lift/clear"
+      },
+      {
+        "attack_category": "attack",
+        "response_category": "kill",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "notes": "Poor attack - opponent kills"
+      },
+      {
+        "attack_category": "placement",
+        "response_category": "reset",
+        "pressure_level": "forced",
+        "quality_score": 0.65,
+        "notes": "Good placement forcing reset"
+      },
+      {
+        "attack_category": "placement",
+        "response_category": "placement",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "notes": "Placement exchange"
+      },
+      {
+        "attack_category": "pressure",
+        "response_category": "defense",
+        "pressure_level": "forced",
+        "quality_score": 0.65,
+        "notes": "Drive/push creating pressure"
+      },
+      {
+        "attack_category": "neutral",
+        "response_category": "attack",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "notes": "Neutral shot gets attacked"
+      }
+    ],
+    
+    "default_response": {
+      "pressure_level": "neutral",
+      "quality_score": 0.50,
+      "tactical_meaning": "undefined",
+      "notes": "No specific rule found - using default"
+    }
+  },
+  
+  "special_patterns": {
+    "description": "Multi-shot sequences that override individual shot scoring",
+    "patterns": [
+      {
+        "sequence": ["forehand_smash", "backhand_defense", "forehand_netkeep", "backhand_lift"],
+        "pattern_name": "smash_and_follow",
+        "quality_bonus": 0.15,
+        "notes": "Classic attack pattern with net follow-up"
+      },
+      {
+        "sequence": ["overhead_drop", "forehand_lift", "overhead_smash", "backhand_defense"],
+        "pattern_name": "drop_lift_smash",
+        "quality_bonus": 0.10,
+        "notes": "Setting up attack with drop shot"
+      },
+      {
+        "sequence": ["forehand_netkeep", "backhand_netkeep", "forehand_dribble"],
+        "pattern_name": "net_domination",
+        "quality_bonus": 0.20,
+        "notes": "Winning net exchange"
+      }
+    ]
+  },
+  
+  "time_pressure_modifiers": {
+    "description": "Adjust quality based on time between shots (in frames)",
+    "thresholds": [
+      {
+        "max_frames": 15,
+        "modifier": 1.2,
+        "description": "Very fast - high pressure"
+      },
+      {
+        "max_frames": 25,
+        "modifier": 1.0,
+        "description": "Normal speed"
+      },
+      {
+        "max_frames": 35,
+        "modifier": 0.9,
+        "description": "Slow - low pressure"
+      },
+      {
+        "max_frames": 999,
+        "modifier": 0.8,
+        "description": "Very slow - no pressure"
+      }
+    ]
+  }
+}

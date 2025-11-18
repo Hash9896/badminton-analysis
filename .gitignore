@@ -1,0 +1,54 @@
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Python
+backend/venv/
+.venv/
+venv/
+**/__pycache__/
+
+# OS/editor
+.DS_Store
+
+# Vercel local link state
+.vercel/
+
+# Video files (too large for Git)
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.MP4
+*.MOV
+*.MKV
+*.AVI
+*.WEBM
+
+# Large data files
+*.lance
+*.manifest
+*.txn
+
+# Player/match data folders (input data, not source code)
+adeep/
+Aikya/
+Akira_vs_Mithra_Semis_1/
+Ayush/
+bharat/
+f2b_academy/
+harshan/
+kiran/
+Selenite/
+Shashank/
+shreyas/
+Siddhanth/
+Siddharth_mishra/
+srikar/
+Tanya/
+Thejasvi/
+tara/
+Varshan/
+refined_outputs/
+analysis/

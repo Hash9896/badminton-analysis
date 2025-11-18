@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "type": "triple_category_rules_simple",
+    "description": "Category-only triple: first_category (player's current shot) -> second_category (player's next own shot), independent of opponent response",
+    "normalization": { "strip_cross_suffix": true }
+  },
+  "triple_category_rules": [
+    { "first_category": "attacking_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Kept initiative" },
+    { "first_category": "attacking_shots", "second_category": "defensive_shots", "q_end": 0.40, "notes": "Lost initiative" },
+    { "first_category": "attacking_shots", "second_category": "net_shots", "q_end": 0.80, "notes": "Converted to net" },
+    { "first_category": "attacking_shots", "second_category": "net_kill", "q_end": 0.95, "notes": "Perfect finish" },
+    { "first_category": "attacking_shots", "second_category": "placement_shots", "q_end": 0.60, "notes": "Tactical placement" },
+    { "first_category": "attacking_shots", "second_category": "reset_shots", "q_end": 0.55, "notes": "Pressure eased" },
+    { "first_category": "attacking_shots", "second_category": "pressure_shots", "q_end": 0.70, "notes": "Maintained pressure" },
+
+    { "first_category": "defensive_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Counter-attack" },
+    { "first_category": "defensive_shots", "second_category": "defensive_shots", "q_end": 0.45, "notes": "Extended defense" },
+    { "first_category": "defensive_shots", "second_category": "net_shots", "q_end": 0.70, "notes": "To net play" },
+    { "first_category": "defensive_shots", "second_category": "net_kill", "q_end": 0.90, "notes": "Defensive winner" },
+    { "first_category": "defensive_shots", "second_category": "placement_shots", "q_end": 0.70, "notes": "Defensive placement" },
+    { "first_category": "defensive_shots", "second_category": "reset_shots", "q_end": 0.55, "notes": "Successfully reset" },
+    { "first_category": "defensive_shots", "second_category": "pressure_shots", "q_end": 0.75, "notes": "Built pressure" },
+
+    { "first_category": "net_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Created attack" },
+    { "first_category": "net_shots", "second_category": "defensive_shots", "q_end": 0.40, "notes": "Lost net battle" },
+    { "first_category": "net_shots", "second_category": "net_shots", "q_end": 0.70, "notes": "Neutral exchange" },
+    { "first_category": "net_shots", "second_category": "net_kill", "q_end": 0.90, "notes": "Excellent finish" },
+    { "first_category": "net_shots", "second_category": "placement_shots", "q_end": 0.70, "notes": "Net placement" },
+    { "first_category": "net_shots", "second_category": "reset_shots", "q_end": 0.50, "notes": "Forced lift" },
+    { "first_category": "net_shots", "second_category": "pressure_shots", "q_end": 0.80, "notes": "Maintained pressure" },
+
+    { "first_category": "defensive_placement", "second_category": "attacking_shots", "q_end": 0.80, "notes": "Defensive placement created attack" },
+    { "first_category": "defensive_placement", "second_category": "defensive_shots", "q_end": 0.40, "notes": "Stayed defensive" },
+    { "first_category": "defensive_placement", "second_category": "net_shots", "q_end": 0.80, "notes": "Shift to net" },
+    { "first_category": "defensive_placement", "second_category": "net_kill", "q_end": 0.90, "notes": "Perfect finish from defense" },
+    { "first_category": "defensive_placement", "second_category": "reset_shots", "q_end": 0.50, "notes": "Reset from defense" },
+    { "first_category": "defensive_placement", "second_category": "placement_shots", "q_end": 0.70, "notes": "Tactical placement continuation" },
+    { "first_category": "defensive_placement", "second_category": "pressure_shots", "q_end": 0.80, "notes": "Built pressure from defense" },
+
+    { "first_category": "attacking_shots", "second_category": "defensive_placement", "q_end": 0.30, "notes": "Tactical defensive placement" },
+    { "first_category": "defensive_shots", "second_category": "defensive_placement", "q_end": 0.40, "notes": "Defensive placement" },
+    { "first_category": "net_shots", "second_category": "defensive_placement", "q_end": 0.30, "notes": "Net to defensive placement" },
+    { "first_category": "net_kill", "second_category": "defensive_placement", "q_end": 0.10, "notes": "Recovered to defensive placement" },
+    { "first_category": "placement_shots", "second_category": "defensive_placement", "q_end": 0.40, "notes": "Shifted to defensive placement" },
+    { "first_category": "reset_shots", "second_category": "defensive_placement", "q_end": 0.50, "notes": "Reset to defensive placement" },
+    { "first_category": "pressure_shots", "second_category": "defensive_placement", "q_end": 0.20, "notes": "Tactical fallback" },
+    { "first_category": "defensive_placement", "second_category": "defensive_placement", "q_end": 0.30, "notes": "Sustained defensive placement" },
+
+    { "first_category": "net_kill", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Failed attempt" },
+    { "first_category": "net_kill", "second_category": "defensive_shots", "q_end": 0.25, "notes": "Poor attempt" },
+    { "first_category": "net_kill", "second_category": "net_shots", "q_end": 0.70, "notes": "Countered" },
+    { "first_category": "net_kill", "second_category": "net_kill", "q_end": 0.95, "notes": "Both attempting" },
+    { "first_category": "net_kill", "second_category": "placement_shots", "q_end": 0.50, "notes": "Neutralized" },
+    { "first_category": "net_kill", "second_category": "reset_shots", "q_end": 0.40, "notes": "Completely failed" },
+    { "first_category": "net_kill", "second_category": "pressure_shots", "q_end": 0.80, "notes": "Blocked" },
+
+    { "first_category": "placement_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Created attack" },
+    { "first_category": "placement_shots", "second_category": "defensive_shots", "q_end": 0.55, "notes": "Defended" },
+    { "first_category": "placement_shots", "second_category": "net_shots", "q_end": 0.80, "notes": "Led to net" },
+    { "first_category": "placement_shots", "second_category": "net_kill", "q_end": 0.95, "notes": "Set up finish" },
+    { "first_category": "placement_shots", "second_category": "placement_shots", "q_end": 0.65, "notes": "Tactical rally" },
+    { "first_category": "placement_shots", "second_category": "reset_shots", "q_end": 0.60, "notes": "Forced reset" },
+    { "first_category": "placement_shots", "second_category": "pressure_shots", "q_end": 0.80, "notes": "Built pressure" },
+
+    { "first_category": "reset_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Enabled attack" },
+    { "first_category": "reset_shots", "second_category": "defensive_shots", "q_end": 0.40, "notes": "Poor reset" },
+    { "first_category": "reset_shots", "second_category": "net_shots", "q_end": 0.80, "notes": "To net play" },
+    { "first_category": "reset_shots", "second_category": "net_kill", "q_end": 0.95, "notes": "Weak punished" },
+    { "first_category": "reset_shots", "second_category": "placement_shots", "q_end": 0.70, "notes": "To placement" },
+    { "first_category": "reset_shots", "second_category": "reset_shots", "q_end": 0.50, "notes": "Baseline rally" },
+    { "first_category": "reset_shots", "second_category": "pressure_shots", "q_end": 0.85, "notes": "Under pressure" },
+
+    { "first_category": "pressure_shots", "second_category": "attacking_shots", "q_end": 0.90, "notes": "Created attack" },
+    { "first_category": "pressure_shots", "second_category": "defensive_shots", "q_end": 0.40, "notes": "Defended" },
+    { "first_category": "pressure_shots", "second_category": "net_shots", "q_end": 0.80, "notes": "To net" },
+    { "first_category": "pressure_shots", "second_category": "net_kill", "q_end": 0.90, "notes": "Finished at net" },
+    { "first_category": "pressure_shots", "second_category": "placement_shots", "q_end": 0.70, "notes": "Tactical" },
+    { "first_category": "pressure_shots", "second_category": "reset_shots", "q_end": 0.55, "notes": "Neutralized" },
+    { "first_category": "pressure_shots", "second_category": "pressure_shots", "q_end": 0.80, "notes": "Extended pressure" }
+  ]
+}
+
+
+

@@ -1,0 +1,996 @@
+{
+  "version": 2,
+  "summaries": [
+    {
+      "id": "summary_1",
+      "sections": [
+        {
+          "title": "Your Top effective shots — list all 3",
+          "items": [
+            {
+              "heading": "forehand_smash",
+              "text": "avg effectiveness 84.70 across 10",
+              "anchors": [
+                { "type": "frame_range", "value": "13364-13364" },
+                { "type": "frame_range", "value": "18954-18954" },
+                { "type": "frame_range", "value": "21042-21042" },
+                { "type": "frame_range", "value": "24306-24306" },
+                { "type": "frame_range", "value": "40038-40038" },
+                { "type": "frame_range", "value": "47372-47372" },
+                { "type": "frame_range", "value": "49082-49082" },
+                { "type": "frame_range", "value": "58659-58659" },
+                { "type": "frame_range", "value": "60235-60235" },
+                { "type": "frame_range", "value": "61073-61073" }
+              ]
+            },
+            {
+              "heading": "overhead_smash_cross",
+              "text": "avg effectiveness 93.20 across 5",
+              "anchors": [
+                { "type": "frame_range", "value": "12635-12635" },
+                { "type": "frame_range", "value": "16312-16312" },
+                { "type": "frame_range", "value": "25869-25869" },
+                { "type": "frame_range", "value": "38669-38669" },
+                { "type": "frame_range", "value": "44306-44306" }
+              ]
+            },
+            {
+              "heading": "overhead_smash",
+              "text": "avg effectiveness 91.80 across 5",
+              "anchors": [
+                { "type": "frame_range", "value": "14256-14256" },
+                { "type": "frame_range", "value": "27123-27123" },
+                { "type": "frame_range", "value": "29544-29544" },
+                { "type": "frame_range", "value": "38293-38293" },
+                { "type": "frame_range", "value": "55809-55809" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent Top effective shots — list all 3",
+          "items": [
+            {
+              "heading": "forehand_smash",
+              "text": "avg effectiveness 97.20 across 10",
+              "anchors": [
+                { "type": "frame_range", "value": "14034-14034" },
+                { "type": "frame_range", "value": "18458-18458" },
+                { "type": "frame_range", "value": "28129-28129" },
+                { "type": "frame_range", "value": "30397-30397" },
+                { "type": "frame_range", "value": "33962-33962" },
+                { "type": "frame_range", "value": "42348-42348" },
+                { "type": "frame_range", "value": "52374-52374" },
+                { "type": "frame_range", "value": "55958-55958" },
+                { "type": "frame_range", "value": "56034-56034" },
+                { "type": "frame_range", "value": "56890-56890" }
+              ]
+            },
+            {
+              "heading": "overhead_smash_cross",
+              "text": "avg effectiveness 97.60 across 5",
+              "anchors": [
+                { "type": "frame_range", "value": "24160-24160" },
+                { "type": "frame_range", "value": "25970-25970" },
+                { "type": "frame_range", "value": "45572-45572" },
+                { "type": "frame_range", "value": "61531-61531" },
+                { "type": "frame_range", "value": "63401-63401" }
+              ]
+            },
+            {
+              "heading": "flat_game_cross",
+              "text": "avg effectiveness 100.00 across 2",
+              "anchors": [
+                { "type": "frame_range", "value": "18968-18968" },
+                { "type": "frame_range", "value": "45425-45425" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Your most ineffective shots — list all 3",
+          "items": [
+            {
+              "heading": "flat_game",
+              "text": "avg effectiveness 12.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "45411-45411" }
+              ]
+            },
+            {
+              "heading": "backhand_drop_cross",
+              "text": "avg effectiveness 19.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "58685-58685" }
+              ]
+            },
+            {
+              "heading": "backhand_pulldrop",
+              "text": "avg effectiveness 34.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "15417-15417" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent’s most ineffective shots — list all 3",
+          "items": [
+            {
+              "heading": "backhand_clear_cross",
+              "text": "avg effectiveness 2.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "14217-14217" }
+              ]
+            },
+            {
+              "heading": "backhand_drop",
+              "text": "avg effectiveness 5.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "59039-59039" }
+              ]
+            },
+            {
+              "heading": "backhand_drive",
+              "text": "avg effectiveness 7.00 across 1",
+              "anchors": [
+                { "type": "frame_range", "value": "14259-14259" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Rally position effectiveness — you",
+          "items": [
+            {
+              "heading": "rear_right",
+              "text": "avg effectiveness 75.29 over 41",
+              "anchors": [
+                { "type": "frame_range", "value": "13183-13183" },
+                { "type": "frame_range", "value": "13244-13244" },
+                { "type": "frame_range", "value": "13307-13307" },
+                { "type": "frame_range", "value": "13364-13364" },
+                { "type": "frame_range", "value": "13818-13818" }
+              ]
+            },
+            {
+              "heading": "mid_left",
+              "text": "avg effectiveness 65.87 over 23",
+              "anchors": [
+                { "type": "frame_range", "value": "21905-21905" },
+                { "type": "frame_range", "value": "22223-22223" },
+                { "type": "frame_range", "value": "22665-22665" }
+              ]
+            },
+            {
+              "heading": "rear_left",
+              "text": "avg effectiveness 61.67 over 27",
+              "anchors": [
+                { "type": "frame_range", "value": "13878-13878" },
+                { "type": "frame_range", "value": "13942-13942" },
+                { "type": "frame_range", "value": "14001-14001" }
+              ]
+            },
+            {
+              "heading": "front_left",
+              "text": "avg effectiveness 58.52 over 20",
+              "anchors": [
+                { "type": "frame_range", "value": "17252-17252" },
+                { "type": "frame_range", "value": "17305-17305" },
+                { "type": "frame_range", "value": "17370-17370" }
+              ]
+            },
+            {
+              "heading": "front_right",
+              "text": "avg effectiveness 57.31 over 21",
+              "anchors": [
+                { "type": "frame_range", "value": "17683-17683" },
+                { "type": "frame_range", "value": "17746-17746" },
+                { "type": "frame_range", "value": "17812-17812" }
+              ]
+            },
+            {
+              "heading": "mid_right",
+              "text": "avg effectiveness 53.39 over 30",
+              "anchors": [
+                { "type": "frame_range", "value": "21445-21445" },
+                { "type": "frame_range", "value": "21519-21519" },
+                { "type": "frame_range", "value": "21586-21586" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Rally position effectiveness — opponent",
+          "items": [
+            {
+              "heading": "rear_right",
+              "text": "avg effectiveness 69.64 over 40",
+              "anchors": [
+                { "type": "frame_range", "value": "13151-13151" },
+                { "type": "frame_range", "value": "13207-13207" },
+                { "type": "frame_range", "value": "13267-13267" },
+                { "type": "frame_range", "value": "13336-13336" },
+                { "type": "frame_range", "value": "13382-13382" }
+              ]
+            },
+            {
+              "heading": "rear_left",
+              "text": "avg effectiveness 63.86 over 29",
+              "anchors": [
+                { "type": "frame_range", "value": "13841-13841" },
+                { "type": "frame_range", "value": "13894-13894" },
+                { "type": "frame_range", "value": "13957-13957" }
+              ]
+            },
+            {
+              "heading": "mid_right",
+              "text": "avg effectiveness 53.21 over 26",
+              "anchors": [
+                { "type": "frame_range", "value": "21418-21418" },
+                { "type": "frame_range", "value": "21482-21482" },
+                { "type": "frame_range", "value": "21555-21555" }
+              ]
+            },
+            {
+              "heading": "front_right",
+              "text": "avg effectiveness 52.37 over 20",
+              "anchors": [
+                { "type": "frame_range", "value": "17651-17651" },
+                { "type": "frame_range", "value": "17711-17711" },
+                { "type": "frame_range", "value": "17779-17779" }
+              ]
+            },
+            {
+              "heading": "front_left",
+              "text": "avg effectiveness 50.44 over 22",
+              "anchors": [
+                { "type": "frame_range", "value": "17220-17220" },
+                { "type": "frame_range", "value": "17279-17279" },
+                { "type": "frame_range", "value": "17340-17340" }
+              ]
+            },
+            {
+              "heading": "mid_left",
+              "text": "avg effectiveness 48.91 over 27",
+              "anchors": [
+                { "type": "frame_range", "value": "21877-21877" },
+                { "type": "frame_range", "value": "22196-22196" },
+                { "type": "frame_range", "value": "22637-22637" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Serve → return patterns — you (top by rank)",
+          "items": [
+            {
+              "heading": "short_serve → forehand_nettap",
+              "text": "return effectiveness 91.00, frequency 3",
+              "anchors": [
+                { "type": "pair", "value": "First14050-Target14078" },
+                { "type": "pair", "value": "First14110-Target14138" },
+                { "type": "pair", "value": "First15410-Target15432" }
+              ]
+            },
+            {
+              "heading": "short_serve → backhand_netkeep_cross",
+              "text": "return effectiveness 88.00, frequency 2",
+              "anchors": [
+                { "type": "pair", "value": "First27590-Target27651" },
+                { "type": "pair", "value": "First62400-Target62417" }
+              ]
+            },
+            {
+              "heading": "short_serve → backhand_netkeep",
+              "text": "return effectiveness 86.00, frequency 2",
+              "anchors": [
+                { "type": "pair", "value": "First37840-Target37899" },
+                { "type": "pair", "value": "First39500-Target39549" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Serve → return patterns — opponent (top by rank)",
+          "items": [
+            {
+              "heading": "short_serve → forehand_nettap",
+              "text": "return effectiveness 92.00, frequency 2",
+              "anchors": [
+                { "type": "pair", "value": "First18950-Target19013" },
+                { "type": "pair", "value": "First18990-Target18968" }
+              ]
+            },
+            {
+              "heading": "short_serve → forehand_netkeep",
+              "text": "return effectiveness 85.00, frequency 2",
+              "anchors": [
+                { "type": "pair", "value": "First31650-Target31697" },
+                { "type": "pair", "value": "First55350-Target55399" }
+              ]
+            },
+            {
+              "heading": "short_serve → backhand_netkeep",
+              "text": "return effectiveness 83.00, frequency 2",
+              "anchors": [
+                { "type": "pair", "value": "First51510-Target51555" },
+                { "type": "pair", "value": "First13400-Target13409" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Risk–reward top 3 — you",
+          "items": [
+            {
+              "heading": "overhead_smash_cross",
+              "text": "avg effectiveness 93.20, frequency 5, risk score 11.28",
+              "anchors": [
+                { "type": "frame_range", "value": "12635-12635" },
+                { "type": "frame_range", "value": "16312-16312" },
+                { "type": "frame_range", "value": "25869-25869" },
+                { "type": "frame_range", "value": "38669-38669" },
+                { "type": "frame_range", "value": "44306-44306" }
+              ]
+            },
+            {
+              "heading": "forehand_smash_cross",
+              "text": "avg effectiveness 91.50, frequency 4, risk score 7.37",
+              "anchors": [
+                { "type": "frame_range", "value": "16449-16449" },
+                { "type": "frame_range", "value": "24003-24003" },
+                { "type": "frame_range", "value": "42420-42420" },
+                { "type": "frame_range", "value": "42983-42983" }
+              ]
+            },
+            {
+              "heading": "overhead_smash",
+              "text": "avg effectiveness 91.80, frequency 5, risk score 11.88",
+              "anchors": [
+                { "type": "frame_range", "value": "14256-14256" },
+                { "type": "frame_range", "value": "27123-27123" },
+                { "type": "frame_range", "value": "29544-29544" },
+                { "type": "frame_range", "value": "38293-38293" },
+                { "type": "frame_range", "value": "55809-55809" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Risk–reward top 3 — opponent",
+          "items": [
+            {
+              "heading": "overhead_smash_cross",
+              "text": "avg effectiveness 97.60, frequency 5, risk score 3.29",
+              "anchors": [
+                { "type": "frame_range", "value": "24160-24160" },
+                { "type": "frame_range", "value": "25970-25970" },
+                { "type": "frame_range", "value": "45572-45572" },
+                { "type": "frame_range", "value": "61531-61531" },
+                { "type": "frame_range", "value": "63401-63401" }
+              ]
+            },
+            {
+              "heading": "forehand_smash",
+              "text": "avg effectiveness 97.20, frequency 10, risk score 4.64",
+              "anchors": [
+                { "type": "frame_range", "value": "14034-14034" },
+                { "type": "frame_range", "value": "18458-18458" },
+                { "type": "frame_range", "value": "28129-28129" },
+                { "type": "frame_range", "value": "30397-30397" },
+                { "type": "frame_range", "value": "33962-33962" },
+                { "type": "frame_range", "value": "42348-42348" },
+                { "type": "frame_range", "value": "52374-52374" },
+                { "type": "frame_range", "value": "55958-55958" },
+                { "type": "frame_range", "value": "56034-56034" },
+                { "type": "frame_range", "value": "56890-56890" }
+              ]
+            },
+            {
+              "heading": "forehand_nettap",
+              "text": "avg effectiveness 91.75, frequency 4, risk score 9.60",
+              "anchors": [
+                { "type": "frame_range", "value": "14078-14078" },
+                { "type": "frame_range", "value": "14138-14138" },
+                { "type": "frame_range", "value": "15432-15432" },
+                { "type": "frame_range", "value": "19013-19013" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Errors — you",
+          "items": [
+            {
+              "heading": "forehand_netkeep (unforced)",
+              "text": "count 3",
+              "anchors": [
+                { "type": "frame_range", "value": "31697-31697" },
+                { "type": "frame_range", "value": "49128-49128" },
+                { "type": "frame_range", "value": "55399-55399" }
+              ]
+            },
+            {
+              "heading": "backhand_netkeep (unforced)",
+              "text": "count 2",
+              "anchors": [
+                { "type": "frame_range", "value": "37899-37899" },
+                { "type": "frame_range", "value": "39549-39549" }
+              ]
+            },
+            {
+              "heading": "forehand_netkeep_cross (unforced)",
+              "text": "count 2",
+              "anchors": [
+                { "type": "frame_range", "value": "13409-13409" },
+                { "type": "frame_range", "value": "27651-27651" }
+              ]
+            },
+            {
+              "heading": "backhand_defense_cross (unforced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "52495-52495" }
+              ]
+            },
+            {
+              "heading": "backhand_lift (forced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "22091-22091" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Errors — opponent",
+          "items": [
+            {
+              "heading": "backhand_lift_cross (unforced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "29620-29620" }
+              ]
+            },
+            {
+              "heading": "backhand_netkeep (unforced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "51555-51555" }
+              ]
+            },
+            {
+              "heading": "backhand_netkeep_cross (unforced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "62417-62417" }
+              ]
+            },
+            {
+              "heading": "forehand_drop (unforced)",
+              "text": "count 1",
+              "anchors": [
+                { "type": "frame_range", "value": "49692-49692" }
+              ]
+            },
+            {
+              "heading": "backhand_defense (forced)",
+              "text": "count 2",
+              "anchors": [
+                { "type": "frame_range", "value": "38694-38694" },
+                { "type": "frame_range", "value": "58966-58966" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Avoid list",
+          "items": [
+            {
+              "heading": "opponent: forehand_defense_cross",
+              "text": "1 errors from 2 attempts (error rate 0.50)",
+              "anchors": [
+                { "type": "frame_range", "value": "14273-14273" },
+                { "type": "frame_range", "value": "29560-29560" },
+                { "type": "frame_range", "value": "14273-14273" }
+              ]
+            },
+            {
+              "heading": "opponent: backhand_defense_cross",
+              "text": "1 errors from 2 attempts (error rate 0.50)",
+              "anchors": [
+                { "type": "frame_range", "value": "24674-24674" },
+                { "type": "frame_range", "value": "58664-58664" },
+                { "type": "frame_range", "value": "24674-24674" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Winning shots — you (top by rank)",
+          "items": [
+            {
+              "heading": "overhead_smash_cross",
+              "text": "winners 2, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "12635-12635" },
+                { "type": "frame_range", "value": "44306-44306" }
+              ]
+            },
+            {
+              "heading": "forehand_push_cross",
+              "text": "winners 1, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "32732-32732" }
+              ]
+            },
+            {
+              "heading": "overhead_drop",
+              "text": "winners 1, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "30498-30498" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Winning shots — opponent (top by rank)",
+          "items": [
+            {
+              "heading": "forehand_smash",
+              "text": "winners 4, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "18458-18458" },
+                { "type": "frame_range", "value": "28129-28129" },
+                { "type": "frame_range", "value": "56034-56034" },
+                { "type": "frame_range", "value": "56890-56890" }
+              ]
+            },
+            {
+              "heading": "forehand_nettap",
+              "text": "winners 2, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "15432-15432" },
+                { "type": "frame_range", "value": "19013-19013" }
+              ]
+            },
+            {
+              "heading": "overhead_smash_cross",
+              "text": "winners 2, avg effectiveness 100.00",
+              "anchors": [
+                { "type": "frame_range", "value": "61531-61531" },
+                { "type": "frame_range", "value": "63401-63401" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pressure performance",
+          "items": [
+            {
+              "heading": "you",
+              "text": "crucial-shot avg 0.00 over 0; normal-shot avg 56.15 over 234; differential -56.15",
+              "anchors": [
+                { "type": "frame_range", "value": "11887-11887" },
+                { "type": "frame_range", "value": "11955-11955" },
+                { "type": "frame_range", "value": "12008-12008" },
+                { "type": "frame_range", "value": "12066-12066" },
+                { "type": "frame_range", "value": "12548-12548" },
+                { "type": "frame_range", "value": "12635-12635" }
+              ]
+            },
+            {
+              "heading": "opponent",
+              "text": "crucial-shot avg 0.00 over 0; normal-shot avg 49.46 over 234; differential -49.46",
+              "anchors": [
+                { "type": "frame_range", "value": "11912-11912" },
+                { "type": "frame_range", "value": "11980-11980" },
+                { "type": "frame_range", "value": "12032-12032" },
+                { "type": "frame_range", "value": "12523-12523" },
+                { "type": "frame_range", "value": "12583-12583" },
+                { "type": "frame_range", "value": "13151-13151" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Endurance",
+          "items": [
+            {
+              "heading": "you short rallies",
+              "text": "avg effectiveness 62.06 over 50",
+              "anchors": [
+                { "type": "frame_range", "value": "11887-11887" },
+                { "type": "frame_range", "value": "11955-11955" },
+                { "type": "frame_range", "value": "12008-12008" },
+                { "type": "frame_range", "value": "12066-12066" },
+                { "type": "frame_range", "value": "12548-12548" }
+              ]
+            },
+            {
+              "heading": "you long rallies",
+              "text": "avg effectiveness 54.54 over 184",
+              "anchors": [
+                { "type": "frame_range", "value": "13183-13183" },
+                { "type": "frame_range", "value": "13244-13244" },
+                { "type": "frame_range", "value": "13307-13307" },
+                { "type": "frame_range", "value": "13364-13364" },
+                { "type": "frame_range", "value": "13818-13818" }
+              ]
+            },
+            {
+              "heading": "you differential",
+              "text": "-7.52",
+              "anchors": []
+            },
+            {
+              "heading": "opponent short rallies",
+              "text": "avg effectiveness 50.77 over 48",
+              "anchors": [
+                { "type": "frame_range", "value": "11912-11912" },
+                { "type": "frame_range", "value": "11980-11980" },
+                { "type": "frame_range", "value": "12032-12032" },
+                { "type": "frame_range", "value": "12523-12523" },
+                { "type": "frame_range", "value": "12583-12583" }
+              ]
+            },
+            {
+              "heading": "opponent long rallies",
+              "text": "avg effectiveness 49.12 over 186",
+              "anchors": [
+                { "type": "frame_range", "value": "13151-13151" },
+                { "type": "frame_range", "value": "13207-13207" },
+                { "type": "frame_range", "value": "13267-13267" },
+                { "type": "frame_range", "value": "13336-13336" },
+                { "type": "frame_range", "value": "13382-13382" }
+              ]
+            },
+            {
+              "heading": "opponent differential",
+              "text": "-1.65",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Risk tolerance",
+          "items": [
+            {
+              "heading": "you",
+              "text": "8 high-risk shots out of 234 (3.42%)",
+              "anchors": [
+                { "type": "frame_range", "value": "12635-12635" },
+                { "type": "frame_range", "value": "14256-14256" },
+                { "type": "frame_range", "value": "16312-16312" },
+                { "type": "frame_range", "value": "16449-16449" },
+                { "type": "frame_range", "value": "24003-24003" },
+                { "type": "frame_range", "value": "38293-38293" },
+                { "type": "frame_range", "value": "44306-44306" },
+                { "type": "frame_range", "value": "55809-55809" }
+              ]
+            },
+            {
+              "heading": "opponent",
+              "text": "11 high-risk shots out of 234 (4.70%)",
+              "anchors": [
+                { "type": "frame_range", "value": "14034-14034" },
+                { "type": "frame_range", "value": "14138-14138" },
+                { "type": "frame_range", "value": "15432-15432" },
+                { "type": "frame_range", "value": "18458-18458" },
+                { "type": "frame_range", "value": "24160-24160" },
+                { "type": "frame_range", "value": "25970-25970" },
+                { "type": "frame_range", "value": "28129-28129" },
+                { "type": "frame_range", "value": "56034-56034" },
+                { "type": "frame_range", "value": "56890-56890" },
+                { "type": "frame_range", "value": "61531-61531" },
+                { "type": "frame_range", "value": "63401-63401" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Crucial conversions",
+          "items": [
+            {
+              "heading": "you",
+              "text": "converted 0 of 0 (0.00%)",
+              "anchors": []
+            },
+            {
+              "heading": "opponent",
+              "text": "converted 0 of 0 (0.00%)",
+              "anchors": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "summary_2",
+      "sections": [
+        {
+          "title": "Your Playing style",
+          "items": [
+            {
+              "heading": "phase mix",
+              "text": "Baseline: 32.0%, Net Battle: 28.1%, Placement: 14.1%, Defensive: [truncated], Attacking: 8.6%, defensive_placement: 3.1%, Pressure: 3.1%",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Opponent playing style",
+          "items": [
+            {
+              "heading": "phase mix",
+              "text": "Baseline: 42.5%, Net Battle: 21.3%, Defensive: 11.8%, Attacking: [truncated], defensive_placement: 3.9%, Net Kill: 3.1%, Pressure: 3.1%",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Overall rally pace",
+          "items": [
+            {
+              "heading": "you",
+              "text": "2.04",
+              "anchors": []
+            },
+            {
+              "heading": "opponent",
+              "text": "2.27",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Your transitions that paid off",
+          "items": [
+            {
+              "heading": "top winning transitions",
+              "text": "Net Battle → [target phase truncated in source] (10 occurrences)",
+              "anchors": [
+                { "type": "frame_range", "value": "20567-21315" },
+                { "type": "frame_range", "value": "20567-21315" },
+                { "type": "frame_range", "value": "20567-21315" },
+                { "type": "frame_range", "value": "23911-24674" },
+                { "type": "frame_range", "value": "32099-32732" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "44087-44306" },
+                { "type": "frame_range", "value": "51141-51555" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Your transitions that cost you",
+          "items": [
+            {
+              "heading": "top losing transitions",
+              "text": "Baseline → [target phase truncated in source] (12 occurrences)",
+              "anchors": [
+                { "type": "frame_range", "value": "22035-22091" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "31069-31697" },
+                { "type": "frame_range", "value": "33732-34040" },
+                { "type": "frame_range", "value": "39427-39549" },
+                { "type": "frame_range", "value": "42240-43310" },
+                { "type": "frame_range", "value": "42240-43310" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent transitions that paid off",
+          "items": [
+            {
+              "heading": "top winning transitions",
+              "text": "Baseline → [target phase truncated in source] (10 occurrences)",
+              "anchors": [
+                { "type": "frame_range", "value": "14896-15432" },
+                { "type": "frame_range", "value": "14896-15432" },
+                { "type": "frame_range", "value": "14896-15432" },
+                { "type": "frame_range", "value": "16196-16705" },
+                { "type": "frame_range", "value": "16196-16705" },
+                { "type": "frame_range", "value": "16196-16705" },
+                { "type": "frame_range", "value": "17192-17415" },
+                { "type": "frame_range", "value": "17192-17415" },
+                { "type": "frame_range", "value": "18201-18458" },
+                { "type": "frame_range", "value": "18201-18458" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent transitions that cost them",
+          "items": [
+            {
+              "heading": "top losing transitions",
+              "text": "Serve → Baseline (10 occurrences)",
+              "anchors": [
+                { "type": "frame_range", "value": "11843-12066" },
+                { "type": "frame_range", "value": "20567-21315" },
+                { "type": "frame_range", "value": "23911-24674" },
+                { "type": "frame_range", "value": "23911-24674" },
+                { "type": "frame_range", "value": "32099-32732" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "41024-41343" },
+                { "type": "frame_range", "value": "41024-41343" },
+                { "type": "frame_range", "value": "44087-44306" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opening phases (excluding serve) — You",
+          "items": [
+            {
+              "heading": "distribution",
+              "text": "Net Battle (18, 37.5%), Baseline (15, 31.2%), Placement (7, 14.6%)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Opening phases (excluding serve) — Opponent",
+          "items": [
+            {
+              "heading": "distribution",
+              "text": "Baseline (26, 56.5%), Net Battle (10, 21.7%), Attacking (4, 8.7%)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Your positive momentum swings",
+          "items": [
+            {
+              "heading": "top causes",
+              "text": "backhand_defense_cross (2x), backhand_lift (2x), backhand_drive (1x)",
+              "anchors": [
+                { "type": "frame_range", "value": "13789-14273" },
+                { "type": "frame_range", "value": "23911-24674" },
+                { "type": "frame_range", "value": "25743-26211" },
+                { "type": "frame_range", "value": "31069-31697" },
+                { "type": "frame_range", "value": "42240-43310" },
+                { "type": "frame_range", "value": "52208-52495" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Your negative momentum swings",
+          "items": [
+            {
+              "heading": "top causes",
+              "text": "forehand_lift_cross (2x), forehand_clear (2x), forehand_defense_straight (1x), forehand_defense_cross (1x), forehand_net (1x)",
+              "anchors": [
+                { "type": "frame_range", "value": "23911-24674" },
+                { "type": "frame_range", "value": "29367-29620" },
+                { "type": "frame_range", "value": "32099-32732" },
+                { "type": "frame_range", "value": "55771-56034" },
+                { "type": "frame_range", "value": "62256-62417" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent positive momentum swings",
+          "items": [
+            {
+              "heading": "top causes",
+              "text": "forehand_clear (2x), forehand_smash (2x), forehand_net (1x)",
+              "anchors": [
+                { "type": "frame_range", "value": "31069-31697" },
+                { "type": "frame_range", "value": "38208-38694" },
+                { "type": "frame_range", "value": "39952-40452" },
+                { "type": "frame_range", "value": "42240-43310" },
+                { "type": "frame_range", "value": "47320-47587" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Opponent negative momentum swings",
+          "items": [
+            {
+              "heading": "top causes",
+              "text": "forehand_clear (2x), forehand_defense_cross (1x), forehand_net (1x), forehand_lift (1x)",
+              "anchors": [
+                { "type": "frame_range", "value": "42240-43310" },
+                { "type": "frame_range", "value": "42240-43310" },
+                { "type": "frame_range", "value": "50225-50620" },
+                { "type": "frame_range", "value": "52208-52495" },
+                { "type": "frame_range", "value": "58552-58966" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Maintain advantage after your +swings",
+          "items": [
+            {
+              "heading": "win rate after +swing",
+              "text": "50.0% (7/14)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Maintain advantage after opponent +swings",
+          "items": [
+            {
+              "heading": "win rate after +swing",
+              "text": "70.6% (12/17)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Crucial phase strategy",
+          "items": [
+            {
+              "heading": "you",
+              "text": "N/A (0x, 0.0%)",
+              "anchors": []
+            },
+            {
+              "heading": "opponent",
+              "text": "N/A (0x, 0.0%)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Phase selection — Top 3",
+          "items": [
+            {
+              "heading": "you",
+              "text": "Baseline (41, 32.0%), Net Battle (36, 28.1%), Placement (18, 14.1%)",
+              "anchors": []
+            },
+            {
+              "heading": "opponent",
+              "text": "Baseline (54, 42.5%), Net Battle (27, 21.3%), Defensive (15, 11.8%)",
+              "anchors": []
+            }
+          ]
+        },
+        {
+          "title": "Failed conversions",
+          "items": [
+            {
+              "heading": "you — total",
+              "text": "8 times",
+              "anchors": []
+            },
+            {
+              "heading": "you — phases",
+              "text": "Baseline: 5x, Net Battle: 4x, Placement: 3x, Attacking: 3x, Pressure: 1x, defensive_placement: 1x",
+              "anchors": []
+            },
+            {
+              "heading": "opponent — total",
+              "text": "6 times",
+              "anchors": []
+            },
+            {
+              "heading": "opponent — phases",
+              "text": "Baseline: 8x, Placement: 4x, Defensive: 1x, defensive_placement: 1x",
+              "anchors": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

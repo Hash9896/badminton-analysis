@@ -1,0 +1,606 @@
+timestamp,player,shot_type,score,band,rally_id,rally_position,is_serve,color,effectiveness,effectiveness_label,reason
+368,P0,flick_serve,0.0,1,1,1,True,gray,,gray,Serve - not analyzed
+452,P1,forehand_drop,0.3,2,1,2,False,yellow,50.0,Neutral,forehand_drop → backhand_lift_cross → overhead_halfsmash_cross
+505,P0,backhand_lift_cross,0.4,3,1,3,False,darkred,18.0,Bad,backhand_lift_cross → overhead_halfsmash_cross → backhand_defense
+554,P1,overhead_halfsmash_cross,0.7,4,1,4,False,green,98.0,Excellent,overhead_halfsmash_cross → backhand_defense → forehand_netkeep
+602,P0,backhand_defense,0.1,1,1,5,False,darkred,18.0,Bad,backhand_defense → forehand_netkeep → backhand_lift_cross
+669,P1,forehand_netkeep,0.7,4,1,6,False,yellow,60.0,Neutral,forehand_netkeep → backhand_lift_cross → overhead_clear
+719,P0,backhand_lift_cross,0.4,3,1,7,False,orange,71.0,Good,backhand_lift_cross → overhead_clear → forehand_smash
+800,P1,overhead_clear,0.45,3,1,8,False,darkred,0.0,Bad,overhead_clear → forehand_smash → backhand_defense
+856,P0,forehand_smash,1.0,5,1,9,False,green,100.0,Excellent,forehand_smash → backhand_defense → forehand_lift
+893,P1,backhand_defense,0.1,1,1,10,False,yellow,50.0,Neutral,backhand_defense → forehand_lift → overhead_smash
+948,P0,forehand_lift,0.4,3,1,11,False,darkred,0.0,Bad,forehand_lift → overhead_smash → forehand_defense_cross
+1007,P1,overhead_smash,1.0,5,1,12,False,gray,,gray,No follow-up shot
+1037,P0,forehand_defense_cross,0.1,1,1,13,False,green,100.0,Excellent,Won the rally
+1392,P1,serve_corner,0.0,1,2,1,True,gray,,gray,Serve - not analyzed
+1458,P0,backhand_lift_cross,0.4,3,2,2,False,green,100.0,Excellent,Won the rally
+1733,P1,serve_middle,0.0,1,3,1,True,gray,,gray,Serve - not analyzed
+1801,P0,backhand_netkeep,0.7,4,3,2,False,orange,74.0,Good,backhand_netkeep → backhand_lift → forehand_smash
+1864,P1,backhand_lift,0.4,3,3,3,False,darkred,2.0,Bad,backhand_lift → forehand_smash → backhand_defense
+1907,P0,forehand_smash,1.0,5,3,4,False,green,98.0,Excellent,forehand_smash → backhand_defense → forehand_clear
+1946,P1,backhand_defense,0.1,1,3,5,False,red,42.0,Poor,backhand_defense → forehand_clear → overhead_halfsmash_cross
+2021,P0,forehand_clear,0.45,3,3,6,False,darkred,8.0,Bad,forehand_clear → overhead_halfsmash_cross → backhand_defense
+2072,P1,overhead_halfsmash_cross,0.7,4,3,7,False,green,100.0,Excellent,overhead_halfsmash_cross → backhand_defense → forehand_lift
+2125,P0,backhand_defense,0.1,1,3,8,False,gray,,gray,No follow-up shot
+2193,P1,forehand_lift,0.4,3,3,9,False,green,100.0,Excellent,Won the rally
+2523,P0,serve_middle,0.0,1,4,1,True,gray,,gray,Serve - not analyzed
+2592,P1,backhand_lift_cross,0.4,3,4,2,False,darkred,18.0,Bad,backhand_lift_cross → overhead_halfsmash → forehand_defense
+2637,P0,overhead_halfsmash,0.7,4,4,3,False,green,98.0,Excellent,overhead_halfsmash → forehand_defense → forehand_netkeep
+2663,P1,forehand_defense,0.1,1,4,4,False,darkred,26.0,Bad,forehand_defense → forehand_netkeep → forehand_netkeep_cross
+2696,P0,forehand_netkeep,0.7,4,4,5,False,yellow,58.0,Neutral,forehand_netkeep → forehand_netkeep_cross → forehand_dribble
+2752,P1,forehand_netkeep_cross,0.7,4,4,6,False,red,40.0,Poor,forehand_netkeep_cross → forehand_dribble → backhand_dribble
+2820,P0,forehand_dribble,1.0,5,4,7,False,darkred,29.0,Bad,forehand_dribble → backhand_dribble → forehand_lift_cross
+2870,P1,backhand_dribble,1.0,5,4,8,False,orange,71.0,Good,backhand_dribble → forehand_lift_cross → forehand_pulldrop_cross
+2945,P0,forehand_lift_cross,0.4,3,4,9,False,yellow,50.0,Neutral,forehand_lift_cross → forehand_pulldrop_cross → forehand_lift
+3007,P1,forehand_pulldrop_cross,0.5,3,4,10,False,red,37.0,Poor,forehand_pulldrop_cross → forehand_lift → overhead_drop
+3057,P0,forehand_lift,0.4,3,4,11,False,green,88.0,Excellent,forehand_lift → overhead_drop → forehand_netkeep_cross
+3117,P1,overhead_drop,0.3,2,4,12,False,darkred,12.0,Bad,overhead_drop → forehand_netkeep_cross → forehand_lift
+3156,P0,forehand_netkeep_cross,0.7,4,4,13,False,green,76.0,Excellent,forehand_netkeep_cross → forehand_lift → overhead_halfsmash
+3226,P1,forehand_lift,0.4,3,4,14,False,darkred,0.0,Bad,forehand_lift → overhead_halfsmash → forehand_defense
+3271,P0,overhead_halfsmash,0.7,4,4,15,False,green,100.0,Excellent,overhead_halfsmash → forehand_defense → backhand_netkeep_cross
+3311,P1,forehand_defense,0.1,1,4,16,False,darkred,0.0,Bad,forehand_defense → backhand_netkeep_cross → backhand_lift
+3360,P0,backhand_netkeep_cross,0.7,4,4,17,False,orange,66.0,Good,backhand_netkeep_cross → backhand_lift → forehand_clear_cross
+3422,P1,backhand_lift,0.4,3,4,18,False,darkred,34.0,Bad,backhand_lift → forehand_clear_cross → forehand_drop_cross
+3513,P0,forehand_clear_cross,0.45,3,4,19,False,green,82.0,Excellent,forehand_clear_cross → forehand_drop_cross → forehand_lift
+3561,P1,forehand_drop_cross,0.3,2,4,20,False,darkred,18.0,Bad,forehand_drop_cross → forehand_lift → overhead_drop
+3630,P0,forehand_lift,0.4,3,4,21,False,green,98.0,Excellent,forehand_lift → overhead_drop → forehand_netkeep
+3689,P1,overhead_drop,0.3,2,4,22,False,darkred,2.0,Bad,overhead_drop → forehand_netkeep → backhand_lift_cross
+3754,P0,forehand_netkeep,0.7,4,4,23,False,yellow,50.0,Neutral,forehand_netkeep → backhand_lift_cross → overhead_drop
+3824,P1,backhand_lift_cross,0.4,3,4,24,False,green,98.0,Excellent,backhand_lift_cross → overhead_drop → forehand_netkeep_cross
+3902,P0,overhead_drop,0.3,2,4,25,False,darkred,18.0,Bad,overhead_drop → forehand_netkeep_cross → forehand_netkeep
+3943,P1,forehand_netkeep_cross,0.7,4,4,26,False,yellow,50.0,Neutral,forehand_netkeep_cross → forehand_netkeep → backhand_netkeep_cross
+4003,P0,forehand_netkeep,0.7,4,4,27,False,orange,66.0,Good,forehand_netkeep → backhand_netkeep_cross → backhand_dribble
+4063,P1,backhand_netkeep_cross,0.7,4,4,28,False,gray,,gray,No follow-up shot
+4123,P0,backhand_dribble,1.0,5,4,29,False,green,100.0,Excellent,Won the rally
+4501,P0,serve_middle,0.0,1,5,1,True,gray,,gray,Serve - not analyzed
+4564,P1,forehand_lift,0.4,3,5,2,False,orange,66.0,Good,forehand_lift → backhand_drop → forehand_lift
+4595,P0,backhand_drop,0.3,2,5,3,False,yellow,58.0,Neutral,backhand_drop → forehand_lift → overhead_smash_cross
+4664,P1,forehand_lift,0.4,3,5,4,False,gray,,gray,No follow-up shot
+4721,P0,overhead_smash_cross,1.0,5,5,5,False,green,100.0,Excellent,Won the rally
+5021,P1,serve_middle,0.0,1,6,1,True,gray,,gray,Serve - not analyzed
+5080,P0,backhand_netkeep_cross,0.7,4,6,2,False,orange,66.0,Good,backhand_netkeep_cross → backhand_lift_cross → overhead_halfsmash
+5141,P1,backhand_lift_cross,0.4,3,6,3,False,darkred,18.0,Bad,backhand_lift_cross → overhead_halfsmash → forehand_defense
+5217,P0,overhead_halfsmash,0.7,4,6,4,False,green,90.0,Excellent,overhead_halfsmash → forehand_defense → backhand_push_cross
+5253,P1,forehand_defense,0.1,1,6,5,False,darkred,18.0,Bad,forehand_defense → backhand_push_cross → backhand_defense_cross
+5309,P0,backhand_push_cross,0.5,3,6,6,False,green,92.0,Excellent,backhand_push_cross → backhand_defense_cross → forehand_clear
+5343,P1,backhand_defense_cross,0.1,1,6,7,False,darkred,29.0,Bad,backhand_defense_cross → forehand_clear → overhead_clear
+5412,P0,forehand_clear,0.45,3,6,8,False,yellow,50.0,Neutral,forehand_clear → overhead_clear → forehand_clear
+5483,P1,overhead_clear,0.45,3,6,9,False,yellow,50.0,Neutral,overhead_clear → forehand_clear → overhead_clear_cross
+5553,P0,forehand_clear,0.45,3,6,10,False,red,37.0,Poor,forehand_clear → overhead_clear_cross → overhead_drop
+5629,P1,overhead_clear_cross,0.45,3,6,11,False,green,76.0,Excellent,overhead_clear_cross → overhead_drop → forehand_lift_cross
+5680,P0,overhead_drop,0.3,2,6,12,False,yellow,50.0,Neutral,overhead_drop → forehand_lift_cross → forehand_drive
+5736,P1,forehand_lift_cross,0.4,3,6,13,False,darkred,0.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense_cross
+5803,P0,forehand_drive,0.6,4,6,14,False,gray,,gray,No follow-up shot
+5848,P1,backhand_defense_cross,0.1,1,6,15,False,green,100.0,Excellent,Won the rally
+6182,P0,serve_middle,0.0,1,7,1,True,gray,,gray,Serve - not analyzed
+6249,P1,backhand_lift_cross,0.4,3,7,2,False,orange,66.0,Good,backhand_lift_cross → overhead_clear_cross → overhead_smash
+6331,P0,overhead_clear_cross,0.45,3,7,3,False,darkred,2.0,Bad,overhead_clear_cross → overhead_smash → forehand_defense
+6382,P1,overhead_smash,1.0,5,7,4,False,green,98.0,Excellent,overhead_smash → forehand_defense → backhand_lift_cross
+6428,P0,forehand_defense,0.1,1,7,5,False,gray,,gray,No follow-up shot
+6470,P1,backhand_lift_cross,0.4,3,7,6,False,green,100.0,Excellent,Won the rally
+6810,P0,flick_serve,0.0,1,8,1,True,gray,,gray,Serve - not analyzed
+6890,P1,forehand_smash_cross,1.0,5,8,2,False,green,90.0,Excellent,forehand_smash_cross → forehand_defense → backhand_drop
+6930,P0,forehand_defense,0.1,1,8,3,False,yellow,58.0,Neutral,forehand_defense → backhand_drop → forehand_netkeep
+6971,P1,backhand_drop,0.3,2,8,4,False,darkred,26.0,Bad,backhand_drop → forehand_netkeep → backhand_lift
+7042,P0,forehand_netkeep,0.7,4,8,5,False,yellow,58.0,Neutral,forehand_netkeep → backhand_lift → forehand_clear_cross
+7095,P1,backhand_lift,0.4,3,8,6,False,red,40.0,Poor,backhand_lift → forehand_clear_cross → forehand_drop_cross
+7172,P0,forehand_clear_cross,0.45,3,8,7,False,orange,71.0,Good,forehand_clear_cross → forehand_drop_cross → forehand_lift
+7224,P1,forehand_drop_cross,0.3,2,8,8,False,yellow,60.0,Neutral,forehand_drop_cross → forehand_lift → overhead_smash
+7278,P0,forehand_lift,0.4,3,8,9,False,darkred,0.0,Bad,forehand_lift → overhead_smash → forehand_defense
+7328,P1,overhead_smash,1.0,5,8,10,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_push
+7357,P0,forehand_defense,0.1,1,8,11,False,red,37.0,Poor,forehand_defense → backhand_push → flat_game
+7409,P1,backhand_push,0.5,3,8,12,False,red,37.0,Poor,backhand_push → flat_game → flat_game
+7432,P0,flat_game,0.65,4,8,13,False,darkred,24.0,Bad,flat_game → flat_game → forehand_drop_cross
+7468,P1,flat_game,0.65,4,8,14,False,gray,,gray,No follow-up shot
+7499,P0,forehand_drop_cross,0.3,2,8,15,False,green,100.0,Excellent,Won the rally
+7866,P0,serve_middle,0.0,1,9,1,True,gray,,gray,Serve - not analyzed
+7933,P1,backhand_lift_cross,0.4,3,9,2,False,darkred,2.0,Bad,backhand_lift_cross → overhead_smash_cross → backhand_defense
+7994,P0,overhead_smash_cross,1.0,5,9,3,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_dribble
+8033,P1,backhand_defense,0.1,1,9,4,False,darkred,2.0,Bad,backhand_defense → forehand_dribble → backhand_lift_cross
+8100,P0,forehand_dribble,1.0,5,9,5,False,green,82.0,Excellent,forehand_dribble → backhand_lift_cross → overhead_smash
+8179,P1,backhand_lift_cross,0.4,3,9,6,False,gray,,gray,No follow-up shot
+8256,P0,overhead_smash,1.0,5,9,7,False,green,100.0,Excellent,Won the rally
+8643,P0,serve_middle,0.0,1,10,1,True,gray,,gray,Serve - not analyzed
+8703,P1,backhand_netkeep,0.7,4,10,2,False,yellow,58.0,Neutral,backhand_netkeep → backhand_lift_cross → overhead_clear
+8761,P0,backhand_lift_cross,0.4,3,10,3,False,yellow,50.0,Neutral,backhand_lift_cross → overhead_clear → forehand_pulldrop
+8823,P1,overhead_clear,0.45,3,10,4,False,yellow,58.0,Neutral,overhead_clear → forehand_pulldrop → backhand_netkeep
+8897,P0,forehand_pulldrop,0.5,3,10,5,False,darkred,34.0,Bad,forehand_pulldrop → backhand_netkeep → forehand_lift_cross
+8949,P1,backhand_netkeep,0.7,4,10,6,False,green,81.0,Excellent,backhand_netkeep → forehand_lift_cross → forehand_smash
+9011,P0,forehand_lift_cross,0.4,3,10,7,False,gray,,gray,No follow-up shot
+9079,P1,forehand_smash,1.0,5,10,8,False,green,100.0,Excellent,Won the rally
+9354,P0,serve_middle,0.0,1,11,1,True,gray,,gray,Serve - not analyzed
+9424,P1,backhand_netkeep_cross,0.7,4,11,2,False,yellow,58.0,Neutral,backhand_netkeep_cross → backhand_netkeep → forehand_dribble
+9474,P0,backhand_netkeep,0.7,4,11,3,False,darkred,26.0,Bad,backhand_netkeep → forehand_dribble → backhand_lift
+9530,P1,forehand_dribble,1.0,5,11,4,False,yellow,58.0,Neutral,forehand_dribble → backhand_lift → forehand_drop_cross
+9604,P0,backhand_lift,0.4,3,11,5,False,orange,74.0,Good,backhand_lift → forehand_drop_cross → forehand_netkeep_cross
+9710,P1,forehand_drop_cross,0.3,2,11,6,False,darkred,19.0,Bad,forehand_drop_cross → forehand_netkeep_cross → forehand_lift_cross
+9750,P0,forehand_netkeep_cross,0.7,4,11,7,False,orange,71.0,Good,forehand_netkeep_cross → forehand_lift_cross → forehand_drive
+9806,P1,forehand_lift_cross,0.4,3,11,8,False,darkred,8.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense_cross
+9867,P0,forehand_drive,0.6,4,11,9,False,green,100.0,Excellent,forehand_drive → backhand_defense_cross → backhand_push_cross
+9909,P1,backhand_defense_cross,0.1,1,11,10,False,darkred,0.0,Bad,backhand_defense_cross → backhand_push_cross → backhand_defense_cross
+9949,P0,backhand_push_cross,0.5,3,11,11,False,green,100.0,Excellent,backhand_push_cross → backhand_defense_cross → backhand_push_cross
+9975,P1,backhand_defense_cross,0.1,1,11,12,False,darkred,12.0,Bad,backhand_defense_cross → backhand_push_cross → backhand_clear_cross
+10026,P0,backhand_push_cross,0.5,3,11,13,False,green,100.0,Excellent,backhand_push_cross → backhand_clear_cross → overhead_smash
+10063,P1,backhand_clear_cross,0.2,2,11,14,False,darkred,0.0,Bad,backhand_clear_cross → overhead_smash → forehand_defense
+10125,P0,overhead_smash,1.0,5,11,15,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_lift_cross
+10162,P1,forehand_defense,0.1,1,11,16,False,gray,,gray,No follow-up shot
+10238,P0,backhand_lift_cross,0.4,3,11,17,False,green,100.0,Excellent,Won the rally
+10614,P0,serve_middle,0.0,1,12,1,True,gray,,gray,Serve - not analyzed
+10672,P1,forehand_netkeep_cross,0.7,4,12,2,False,gray,,gray,No follow-up shot
+10734,P0,forehand_lift,0.4,3,12,3,False,green,100.0,Excellent,Won the rally
+11065,P1,serve_middle,0.0,1,13,1,True,gray,,gray,Serve - not analyzed
+11120,P0,forehand_lift_cross,0.4,3,13,2,False,darkred,18.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense_cross
+11183,P1,forehand_drive,0.6,4,13,3,False,green,100.0,Excellent,forehand_drive → backhand_defense_cross → overhead_smash
+11229,P0,backhand_defense_cross,0.1,1,13,4,False,gray,,gray,No follow-up shot
+11265,P1,overhead_smash,1.0,5,13,5,False,green,100.0,Excellent,Won the rally
+11618,P1,serve_middle,0.0,1,14,1,True,gray,,gray,Serve - not analyzed
+11670,P0,forehand_dribble,1.0,5,14,2,False,green,82.0,Excellent,forehand_dribble → forehand_lift → overhead_smash
+11742,P1,forehand_lift,0.4,3,14,3,False,gray,,gray,No follow-up shot
+11823,P0,overhead_smash,1.0,5,14,4,False,green,100.0,Excellent,Won the rally
+12154,P0,serve_middle,0.0,1,15,1,True,gray,,gray,Serve - not analyzed
+12226,P1,backhand_lift,0.4,3,15,2,False,red,42.0,Poor,backhand_lift → forehand_clear → backhand_drop
+12286,P0,forehand_clear,0.45,3,15,3,False,orange,74.0,Good,forehand_clear → backhand_drop → forehand_netkeep
+12323,P1,backhand_drop,0.3,2,15,4,False,darkred,26.0,Bad,backhand_drop → forehand_netkeep → backhand_lift
+12385,P0,forehand_netkeep,0.7,4,15,5,False,yellow,58.0,Neutral,forehand_netkeep → backhand_lift → forehand_clear
+12435,P1,backhand_lift,0.4,3,15,6,False,yellow,50.0,Neutral,backhand_lift → forehand_clear → overhead_clear
+12557,P0,forehand_clear,0.45,3,15,7,False,yellow,50.0,Neutral,forehand_clear → overhead_clear → forehand_clear
+12631,P1,overhead_clear,0.45,3,15,8,False,orange,71.0,Good,overhead_clear → forehand_clear → overhead_smash_cross
+12739,P0,forehand_clear,0.45,3,15,9,False,darkred,0.0,Bad,forehand_clear → overhead_smash_cross → backhand_defense
+12785,P1,overhead_smash_cross,1.0,5,15,10,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep_cross
+12843,P0,backhand_defense,0.1,1,15,11,False,darkred,0.0,Bad,backhand_defense → forehand_netkeep_cross → forehand_lift
+12897,P1,forehand_netkeep_cross,0.7,4,15,12,False,yellow,50.0,Neutral,forehand_netkeep_cross → forehand_lift → backhand_pulldrop
+12947,P0,forehand_lift,0.4,3,15,13,False,green,76.0,Excellent,forehand_lift → backhand_pulldrop → forehand_lift_cross
+13012,P1,backhand_pulldrop,0.3,2,15,14,False,darkred,34.0,Bad,backhand_pulldrop → forehand_lift_cross → forehand_clear
+13087,P0,forehand_lift_cross,0.4,3,15,15,False,orange,66.0,Good,forehand_lift_cross → forehand_clear → overhead_halfsmash_cross
+13145,P1,forehand_clear,0.45,3,15,16,False,gray,,gray,No follow-up shot
+13204,P0,overhead_halfsmash_cross,0.7,4,15,17,False,green,100.0,Excellent,Won the rally
+13547,P0,serve_middle,0.0,1,16,1,True,gray,,gray,Serve - not analyzed
+13607,P1,backhand_lift,0.4,3,16,2,False,yellow,58.0,Neutral,backhand_lift → backhand_clear → forehand_drop
+13660,P0,backhand_clear,0.2,2,16,3,False,orange,66.0,Good,backhand_clear → forehand_drop → backhand_netkeep_cross
+13727,P1,forehand_drop,0.3,2,16,4,False,darkred,26.0,Bad,forehand_drop → backhand_netkeep_cross → backhand_lift
+13789,P0,backhand_netkeep_cross,0.7,4,16,5,False,yellow,58.0,Neutral,backhand_netkeep_cross → backhand_lift → forehand_clear_cross
+13849,P1,backhand_lift,0.4,3,16,6,False,red,40.0,Poor,backhand_lift → forehand_clear_cross → forehand_drop_cross
+13933,P0,forehand_clear_cross,0.45,3,16,7,False,gray,,gray,No follow-up shot
+13985,P1,forehand_drop_cross,0.3,2,16,8,False,green,100.0,Excellent,Won the rally
+14370,P0,flick_serve,0.0,1,17,1,True,gray,,gray,Serve - not analyzed
+14442,P1,overhead_halfsmash_cross,0.7,4,17,2,False,green,100.0,Excellent,Won the rally
+14829,P1,serve_middle,0.0,1,18,1,True,gray,,gray,Serve - not analyzed
+14892,P0,backhand_lift_cross,0.4,3,18,2,False,orange,66.0,Good,backhand_lift_cross → forehand_clear → overhead_smash_cross
+14958,P1,forehand_clear,0.45,3,18,3,False,darkred,2.0,Bad,forehand_clear → overhead_smash_cross → backhand_defense
+15022,P0,overhead_smash_cross,1.0,5,18,4,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep_cross
+15068,P1,backhand_defense,0.1,1,18,5,False,darkred,18.0,Bad,backhand_defense → forehand_netkeep_cross → forehand_lift
+15116,P0,forehand_netkeep_cross,0.7,4,18,6,False,yellow,50.0,Neutral,forehand_netkeep_cross → forehand_lift → backhand_pulldrop
+15172,P1,forehand_lift,0.4,3,18,7,False,orange,71.0,Good,forehand_lift → backhand_pulldrop → forehand_nettap_cross
+15233,P0,backhand_pulldrop,0.3,2,18,8,False,darkred,19.0,Bad,backhand_pulldrop → forehand_nettap_cross → forehand_defense
+15269,P1,forehand_nettap_cross,0.5,3,18,9,False,green,100.0,Excellent,forehand_nettap_cross → forehand_defense → forehand_smash_cross
+15313,P0,forehand_defense,0.1,1,18,10,False,darkred,0.0,Bad,forehand_defense → forehand_smash_cross → forehand_defense
+15352,P1,forehand_smash_cross,1.0,5,18,11,False,green,100.0,Excellent,forehand_smash_cross → forehand_defense → backhand_netkeep
+15392,P0,forehand_defense,0.1,1,18,12,False,darkred,0.0,Bad,forehand_defense → backhand_netkeep → forehand_lift
+15454,P1,backhand_netkeep,0.7,4,18,13,False,yellow,50.0,Neutral,backhand_netkeep → forehand_lift → overhead_drop
+15530,P0,forehand_lift,0.4,3,18,14,False,green,98.0,Excellent,forehand_lift → overhead_drop → forehand_netkeep_cross
+15590,P1,overhead_drop,0.3,2,18,15,False,gray,,gray,No follow-up shot
+15630,P0,forehand_netkeep_cross,0.7,4,18,16,False,green,100.0,Excellent,Won the rally
+16078,P0,serve_middle,0.0,1,19,1,True,gray,,gray,Serve - not analyzed
+16145,P1,backhand_netkeep_cross,0.7,4,19,2,False,orange,66.0,Good,backhand_netkeep_cross → forehand_lift → overhead_halfsmash
+16216,P0,forehand_lift,0.4,3,19,3,False,gray,,gray,No follow-up shot
+16272,P1,overhead_halfsmash,0.7,4,19,4,False,green,100.0,Excellent,Won the rally
+16591,P0,serve_corner,0.0,1,20,1,True,gray,,gray,Serve - not analyzed
+16664,P1,backhand_lift_cross,0.4,3,20,2,False,darkred,18.0,Bad,backhand_lift_cross → overhead_halfsmash → forehand_defense
+16708,P0,overhead_halfsmash,0.7,4,20,3,False,green,98.0,Excellent,overhead_halfsmash → forehand_defense → forehand_netkeep
+16750,P1,forehand_defense,0.1,1,20,4,False,darkred,18.0,Bad,forehand_defense → forehand_netkeep → forehand_lift_cross
+16800,P0,forehand_netkeep,0.7,4,20,5,False,orange,74.0,Good,forehand_netkeep → forehand_lift_cross → forehand_smash_cross
+16860,P1,forehand_lift_cross,0.4,3,20,6,False,gray,,gray,No follow-up shot
+16917,P0,forehand_smash_cross,1.0,5,20,7,False,green,100.0,Excellent,Won the rally
+17253,P0,flick_serve,0.0,1,21,1,True,gray,,gray,Serve - not analyzed
+17320,P1,forehand_smash_cross,1.0,5,21,2,False,gray,,gray,No follow-up shot
+17365,P0,forehand_defense,0.1,1,21,3,False,green,100.0,Excellent,Won the rally
+17599,P0,serve_middle,0.0,1,22,1,True,gray,,gray,Serve - not analyzed
+17665,P1,backhand_netkeep_cross,0.7,4,22,2,False,orange,74.0,Good,backhand_netkeep_cross → backhand_lift_cross → overhead_smash_cross
+17724,P0,backhand_lift_cross,0.4,3,22,3,False,darkred,2.0,Bad,backhand_lift_cross → overhead_smash_cross → backhand_defense
+17788,P1,overhead_smash_cross,1.0,5,22,4,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep
+17838,P0,backhand_defense,0.1,1,22,5,False,darkred,18.0,Bad,backhand_defense → forehand_netkeep → backhand_lift
+17908,P1,forehand_netkeep,0.7,4,22,6,False,green,81.0,Excellent,forehand_netkeep → backhand_lift → forehand_smash
+17968,P0,backhand_lift,0.4,3,22,7,False,darkred,0.0,Bad,backhand_lift → forehand_smash → backhand_defense_cross
+18029,P1,forehand_smash,1.0,5,22,8,False,gray,,gray,No follow-up shot
+18056,P0,backhand_defense_cross,0.1,1,22,9,False,green,100.0,Excellent,Won the rally
+18429,P0,serve_middle,0.0,1,23,1,True,gray,,gray,Serve - not analyzed
+18488,P1,forehand_dribble,1.0,5,23,2,False,yellow,58.0,Neutral,forehand_dribble → backhand_lift_cross → overhead_drop
+18548,P0,backhand_lift_cross,0.4,3,23,3,False,orange,74.0,Good,backhand_lift_cross → overhead_drop → forehand_netkeep
+18633,P1,overhead_drop,0.3,2,23,4,False,gray,,gray,No follow-up shot
+18693,P0,forehand_netkeep,0.7,4,23,5,False,green,100.0,Excellent,Won the rally
+18941,P1,high_serve,0.0,1,24,1,True,gray,,gray,Serve - not analyzed
+19071,P0,overhead_smash,1.0,5,24,2,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_netkeep_cross
+19109,P1,forehand_defense,0.1,1,24,3,False,gray,,gray,No follow-up shot
+19148,P0,backhand_netkeep_cross,0.7,4,24,4,False,green,100.0,Excellent,Won the rally
+19417,P0,serve_middle,0.0,1,25,1,True,gray,,gray,Serve - not analyzed
+19485,P1,backhand_lift,0.4,3,25,2,False,darkred,18.0,Bad,backhand_lift → forehand_drive → backhand_defense
+19543,P0,forehand_drive,0.6,4,25,3,False,green,98.0,Excellent,forehand_drive → backhand_defense → forehand_netkeep
+19577,P1,backhand_defense,0.1,1,25,4,False,darkred,34.0,Bad,backhand_defense → forehand_netkeep → backhand_dribble
+19630,P0,forehand_netkeep,0.7,4,25,5,False,red,42.0,Poor,forehand_netkeep → backhand_dribble → forehand_dribble
+19680,P1,backhand_dribble,1.0,5,25,6,False,yellow,50.0,Neutral,backhand_dribble → forehand_dribble → backhand_dribble
+19743,P0,forehand_dribble,1.0,5,25,7,False,gray,,gray,No follow-up shot
+19784,P1,backhand_dribble,1.0,5,25,8,False,green,100.0,Excellent,Won the rally
+20043,P0,serve_middle,0.0,1,26,1,True,gray,,gray,Serve - not analyzed
+20108,P1,forehand_lift,0.4,3,26,2,False,orange,66.0,Good,forehand_lift → backhand_clear → forehand_clear
+20177,P0,backhand_clear,0.2,2,26,3,False,darkred,34.0,Bad,backhand_clear → forehand_clear → overhead_drop_cross
+20244,P1,forehand_clear,0.45,3,26,4,False,orange,66.0,Good,forehand_clear → overhead_drop_cross → backhand_lift
+20310,P0,overhead_drop_cross,0.3,2,26,5,False,red,42.0,Poor,overhead_drop_cross → backhand_lift → forehand_clear
+20370,P1,backhand_lift,0.4,3,26,6,False,orange,71.0,Good,backhand_lift → forehand_clear → overhead_smash
+20447,P0,forehand_clear,0.45,3,26,7,False,darkred,0.0,Bad,forehand_clear → overhead_smash → forehand_defense_cross
+20508,P1,overhead_smash,1.0,5,26,8,False,gray,,gray,No follow-up shot
+20553,P0,forehand_defense_cross,0.1,1,26,9,False,green,100.0,Excellent,Won the rally
+20859,P0,serve_middle,0.0,1,27,1,True,gray,,gray,Serve - not analyzed
+20922,P1,backhand_lift_cross,0.4,3,27,2,False,orange,66.0,Good,backhand_lift_cross → overhead_clear → forehand_smash
+20997,P0,overhead_clear,0.45,3,27,3,False,darkred,2.0,Bad,overhead_clear → forehand_smash → backhand_defense_cross
+21054,P1,forehand_smash,1.0,5,27,4,False,green,98.0,Excellent,forehand_smash → backhand_defense_cross → backhand_push
+21092,P0,backhand_defense_cross,0.1,1,27,5,False,gray,,gray,No follow-up shot
+21141,P1,backhand_push,0.5,3,27,6,False,green,100.0,Excellent,Won the rally
+21417,P1,serve_middle,0.0,1,28,1,True,gray,,gray,Serve - not analyzed
+21474,P0,backhand_netkeep,0.7,4,28,2,False,yellow,50.0,Neutral,backhand_netkeep → backhand_lift → forehand_drop_cross
+21547,P1,backhand_lift,0.4,3,28,3,False,orange,66.0,Good,backhand_lift → forehand_drop_cross → forehand_push
+21612,P0,forehand_drop_cross,0.3,2,28,4,False,darkred,26.0,Bad,forehand_drop_cross → forehand_push → backhand_defense
+21649,P1,forehand_push,0.5,3,28,5,False,green,90.0,Excellent,forehand_push → backhand_defense → forehand_netkeep
+21687,P0,backhand_defense,0.1,1,28,6,False,darkred,8.0,Bad,backhand_defense → forehand_netkeep → backhand_lift_cross
+21744,P1,forehand_netkeep,0.7,4,28,7,False,green,81.0,Excellent,forehand_netkeep → backhand_lift_cross → overhead_smash
+21816,P0,backhand_lift_cross,0.4,3,28,8,False,darkred,0.0,Bad,backhand_lift_cross → overhead_smash → forehand_defense
+21879,P1,overhead_smash,1.0,5,28,9,False,gray,,gray,No follow-up shot
+21929,P0,forehand_defense,0.1,1,28,10,False,green,100.0,Excellent,Won the rally
+22180,P1,flick_serve,0.0,1,29,1,True,gray,,gray,Serve - not analyzed
+22264,P0,overhead_drop,0.3,2,29,2,False,darkred,26.0,Bad,overhead_drop → forehand_netkeep → backhand_lift
+22309,P1,forehand_netkeep,0.7,4,29,3,False,orange,66.0,Good,forehand_netkeep → backhand_lift → forehand_drive_cross
+22371,P0,backhand_lift,0.4,3,29,4,False,red,42.0,Poor,backhand_lift → forehand_drive_cross → flat_game
+22436,P1,forehand_drive_cross,0.6,4,29,5,False,darkred,30.0,Bad,forehand_drive_cross → flat_game → backhand_clear
+22466,P0,flat_game,0.65,4,29,6,False,green,100.0,Excellent,flat_game → backhand_clear → forehand_smash
+22501,P1,backhand_clear,0.2,2,29,7,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense_cross
+22563,P0,forehand_smash,1.0,5,29,8,False,green,100.0,Excellent,forehand_smash → backhand_defense_cross → backhand_drop
+22585,P1,backhand_defense_cross,0.1,1,29,9,False,yellow,50.0,Neutral,backhand_defense_cross → backhand_drop → backhand_lift_cross
+22627,P0,backhand_drop,0.3,2,29,10,False,yellow,50.0,Neutral,backhand_drop → backhand_lift_cross → forehand_drive
+22681,P1,backhand_lift_cross,0.4,3,29,11,False,darkred,0.0,Bad,backhand_lift_cross → forehand_drive → backhand_defense
+22756,P0,forehand_drive,0.6,4,29,12,False,green,100.0,Excellent,forehand_drive → backhand_defense → forehand_lift_cross
+22802,P1,backhand_defense,0.1,1,29,13,False,darkred,12.0,Bad,backhand_defense → forehand_lift_cross → forehand_drop_cross
+22862,P0,forehand_lift_cross,0.4,3,29,14,False,green,82.0,Excellent,forehand_lift_cross → forehand_drop_cross → forehand_lift
+22929,P1,forehand_drop_cross,0.3,2,29,15,False,darkred,34.0,Bad,forehand_drop_cross → forehand_lift → overhead_clear
+22989,P0,forehand_lift,0.4,3,29,16,False,gray,,gray,No follow-up shot
+23050,P1,overhead_clear,0.45,3,29,17,False,green,100.0,Excellent,Won the rally
+23600,P1,serve_corner,0.0,1,30,1,True,gray,,gray,Serve - not analyzed
+23662,P0,forehand_lift,0.4,3,30,2,False,green,82.0,Excellent,forehand_lift → backhand_clear → forehand_smash
+23715,P1,backhand_clear,0.2,2,30,3,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense_cross
+23773,P0,forehand_smash,1.0,5,30,4,False,gray,,gray,No follow-up shot
+23799,P1,backhand_defense_cross,0.1,1,30,5,False,green,100.0,Excellent,Won the rally
+24056,P0,serve_middle,0.0,1,31,1,True,gray,,gray,Serve - not analyzed
+24113,P1,backhand_lift,0.4,3,31,2,False,orange,66.0,Good,backhand_lift → backhand_clear → forehand_pulldrop
+24154,P0,backhand_clear,0.2,2,31,3,False,red,42.0,Poor,backhand_clear → forehand_pulldrop → backhand_lift_cross
+24213,P1,forehand_pulldrop,0.5,3,31,4,False,yellow,50.0,Neutral,forehand_pulldrop → backhand_lift_cross → overhead_clear
+24263,P0,backhand_lift_cross,0.4,3,31,5,False,orange,66.0,Good,backhand_lift_cross → overhead_clear → forehand_smash_cross
+24355,P1,overhead_clear,0.45,3,31,6,False,darkred,0.0,Bad,overhead_clear → forehand_smash_cross → forehand_defense_cross
+24406,P0,forehand_smash_cross,1.0,5,31,7,False,green,100.0,Excellent,forehand_smash_cross → forehand_defense_cross → forehand_netkeep
+24438,P1,forehand_defense_cross,0.1,1,31,8,False,darkred,8.0,Bad,forehand_defense_cross → forehand_netkeep → backhand_lift_cross
+24508,P0,forehand_netkeep,0.7,4,31,9,False,green,81.0,Excellent,forehand_netkeep → backhand_lift_cross → overhead_smash
+24568,P1,backhand_lift_cross,0.4,3,31,10,False,gray,,gray,No follow-up shot
+24625,P0,overhead_smash,1.0,5,31,11,False,green,100.0,Excellent,Won the rally
+25370,P0,serve_middle,0.0,1,32,1,True,gray,,gray,Serve - not analyzed
+25432,P1,forehand_lift_cross,0.4,3,32,2,False,darkred,18.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense_cross
+25500,P0,forehand_drive,0.6,4,32,3,False,green,98.0,Excellent,forehand_drive → backhand_defense_cross → backhand_netkeep
+25545,P1,backhand_defense_cross,0.1,1,32,4,False,darkred,34.0,Bad,backhand_defense_cross → backhand_netkeep → forehand_dribble
+25598,P0,backhand_netkeep,0.7,4,32,5,False,gray,,gray,No follow-up shot
+25658,P1,forehand_dribble,1.0,5,32,6,False,green,100.0,Excellent,Won the rally
+26121,P1,serve_middle,0.0,1,33,1,True,gray,,gray,Serve - not analyzed
+26176,P0,forehand_netkeep,0.7,4,33,2,False,yellow,50.0,Neutral,forehand_netkeep → forehand_lift → backhand_clear_cross
+26236,P1,forehand_lift,0.4,3,33,3,False,green,82.0,Excellent,forehand_lift → backhand_clear_cross → overhead_smash
+26328,P0,backhand_clear_cross,0.2,2,33,4,False,gray,,gray,No follow-up shot
+26386,P1,overhead_smash,1.0,5,33,5,False,green,100.0,Excellent,Won the rally
+26648,P0,serve_corner,0.0,1,34,1,True,gray,,gray,Serve - not analyzed
+26720,P1,backhand_netkeep,0.7,4,34,2,False,orange,74.0,Good,backhand_netkeep → forehand_lift_cross → forehand_smash
+26790,P0,forehand_lift_cross,0.4,3,34,3,False,gray,,gray,No follow-up shot
+26855,P1,forehand_smash,1.0,5,34,4,False,green,100.0,Excellent,Won the rally
+27220,P0,serve_middle,0.0,1,35,1,True,gray,,gray,Serve - not analyzed
+27294,P1,backhand_lift,0.4,3,35,2,False,darkred,2.0,Bad,backhand_lift → overhead_smash → forehand_defense_cross
+27335,P0,overhead_smash,1.0,5,35,3,False,green,100.0,Excellent,overhead_smash → forehand_defense_cross → forehand_netkeep_cross
+27365,P1,forehand_defense_cross,0.1,1,35,4,False,darkred,18.0,Bad,forehand_defense_cross → forehand_netkeep_cross → forehand_lift_cross
+27422,P0,forehand_netkeep_cross,0.7,4,35,5,False,orange,74.0,Good,forehand_netkeep_cross → forehand_lift_cross → forehand_smash_cross
+27482,P1,forehand_lift_cross,0.4,3,35,6,False,gray,,gray,No follow-up shot
+27545,P0,forehand_smash_cross,1.0,5,35,7,False,green,100.0,Excellent,Won the rally
+27929,P0,serve_middle,0.0,1,36,1,True,gray,,gray,Serve - not analyzed
+27984,P1,forehand_dribble,1.0,5,36,2,False,green,82.0,Excellent,forehand_dribble → forehand_lift → overhead_smash_cross
+28044,P0,forehand_lift,0.4,3,36,3,False,darkred,2.0,Bad,forehand_lift → overhead_smash_cross → backhand_defense
+28158,P1,overhead_smash_cross,1.0,5,36,4,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep
+28211,P0,backhand_defense,0.1,1,36,5,False,darkred,18.0,Bad,backhand_defense → forehand_netkeep → backhand_lift_cross
+28262,P1,forehand_netkeep,0.7,4,36,6,False,yellow,60.0,Neutral,forehand_netkeep → backhand_lift_cross → overhead_clear_cross
+28322,P0,backhand_lift_cross,0.4,3,36,7,False,orange,71.0,Good,backhand_lift_cross → overhead_clear_cross → overhead_smash
+28464,P1,overhead_clear_cross,0.45,3,36,8,False,gray,,gray,No follow-up shot
+28513,P0,overhead_smash,1.0,5,36,9,False,green,100.0,Excellent,Won the rally
+28868,P0,serve_middle,0.0,1,37,1,True,gray,,gray,Serve - not analyzed
+28928,P1,backhand_lift,0.4,3,37,2,False,yellow,58.0,Neutral,backhand_lift → backhand_clear → forehand_drop
+28972,P0,backhand_clear,0.2,2,37,3,False,yellow,58.0,Neutral,backhand_clear → forehand_drop → backhand_lift_cross
+29013,P1,forehand_drop,0.3,2,37,4,False,gray,,gray,No follow-up shot
+29069,P0,backhand_lift_cross,0.4,3,37,5,False,green,100.0,Excellent,Won the rally
+29454,P1,serve_middle,0.0,1,38,1,True,gray,,gray,Serve - not analyzed
+29518,P0,backhand_lift,0.4,3,38,2,False,darkred,2.0,Bad,backhand_lift → overhead_smash → forehand_defense
+29557,P1,overhead_smash,1.0,5,38,3,False,green,98.0,Excellent,overhead_smash → forehand_defense → backhand_lift_cross
+29590,P0,forehand_defense,0.1,1,38,4,False,darkred,26.0,Bad,forehand_defense → backhand_lift_cross → backhand_drop
+29637,P1,backhand_lift_cross,0.4,3,38,5,False,orange,66.0,Good,backhand_lift_cross → backhand_drop → forehand_lift_cross
+29677,P0,backhand_drop,0.3,2,38,6,False,yellow,60.0,Neutral,backhand_drop → forehand_lift_cross → forehand_smash
+29735,P1,forehand_lift_cross,0.4,3,38,7,False,gray,,gray,No follow-up shot
+29789,P0,forehand_smash,1.0,5,38,8,False,green,100.0,Excellent,Won the rally
+30145,P0,serve_middle,0.0,1,39,1,True,gray,,gray,Serve - not analyzed
+30202,P1,backhand_netkeep_cross,0.7,4,39,2,False,yellow,50.0,Neutral,backhand_netkeep_cross → backhand_netkeep → backhand_netkeep_cross
+30252,P0,backhand_netkeep,0.7,4,39,3,False,yellow,58.0,Neutral,backhand_netkeep → backhand_netkeep_cross → forehand_dribble
+30311,P1,backhand_netkeep_cross,0.7,4,39,4,False,darkred,26.0,Bad,backhand_netkeep_cross → forehand_dribble → backhand_lift
+30363,P0,forehand_dribble,1.0,5,39,5,False,yellow,58.0,Neutral,forehand_dribble → backhand_lift → forehand_drop
+30425,P1,backhand_lift,0.4,3,39,6,False,green,81.0,Excellent,backhand_lift → forehand_drop → flat_game
+30510,P0,forehand_drop,0.3,2,39,7,False,darkred,0.0,Bad,forehand_drop → flat_game → forehand_defense
+30542,P1,flat_game,0.65,4,39,8,False,green,100.0,Excellent,flat_game → forehand_defense → backhand_netkeep_cross
+30577,P0,forehand_defense,0.1,1,39,9,False,darkred,8.0,Bad,forehand_defense → backhand_netkeep_cross → backhand_lift_cross
+30627,P1,backhand_netkeep_cross,0.7,4,39,10,False,gray,,gray,No follow-up shot
+30677,P0,backhand_lift_cross,0.4,3,39,11,False,green,100.0,Excellent,Won the rally
+31040,P1,serve_corner,0.0,1,40,1,True,gray,,gray,Serve - not analyzed
+31096,P0,backhand_lift_cross,0.4,3,40,2,False,green,100.0,Excellent,Won the rally
+31341,P1,serve_middle,0.0,1,41,1,True,gray,,gray,Serve - not analyzed
+31399,P0,backhand_netkeep,0.7,4,41,2,False,red,42.0,Poor,backhand_netkeep → backhand_netkeep → forehand_lift_cross
+31458,P1,backhand_netkeep,0.7,4,41,3,False,orange,74.0,Good,backhand_netkeep → forehand_lift_cross → forehand_smash_cross
+31512,P0,forehand_lift_cross,0.4,3,41,4,False,darkred,2.0,Bad,forehand_lift_cross → forehand_smash_cross → forehand_defense
+31575,P1,forehand_smash_cross,1.0,5,41,5,False,green,100.0,Excellent,forehand_smash_cross → forehand_defense → backhand_netkeep_cross
+31630,P0,forehand_defense,0.1,1,41,6,False,darkred,29.0,Bad,forehand_defense → backhand_netkeep_cross → backhand_dribble
+31676,P1,backhand_netkeep_cross,0.7,4,41,7,False,darkred,19.0,Bad,backhand_netkeep_cross → backhand_dribble → forehand_lift_cross
+31729,P0,backhand_dribble,1.0,5,41,8,False,orange,71.0,Good,backhand_dribble → forehand_lift_cross → forehand_pulldrop_cross
+31789,P1,forehand_lift_cross,0.4,3,41,9,False,yellow,60.0,Neutral,forehand_lift_cross → forehand_pulldrop_cross → forehand_netkeep
+31870,P0,forehand_pulldrop_cross,0.5,3,41,10,False,red,37.0,Poor,forehand_pulldrop_cross → forehand_netkeep → backhand_netkeep_cross
+31929,P1,forehand_netkeep,0.7,4,41,11,False,yellow,50.0,Neutral,forehand_netkeep → backhand_netkeep_cross → backhand_netkeep
+31989,P0,backhand_netkeep_cross,0.7,4,41,12,False,orange,63.0,Good,backhand_netkeep_cross → backhand_netkeep → forehand_dribble
+32036,P1,backhand_netkeep,0.7,4,41,13,False,darkred,24.0,Bad,backhand_netkeep → forehand_dribble → backhand_netkeep
+32100,P0,forehand_dribble,1.0,5,41,14,False,gray,,gray,No follow-up shot
+32173,P1,backhand_netkeep,0.7,4,41,15,False,green,100.0,Excellent,Won the rally
+32537,P0,flick_serve,0.0,1,42,1,True,gray,,gray,Serve - not analyzed
+32610,P1,forehand_smash,1.0,5,42,2,False,green,98.0,Excellent,forehand_smash → backhand_defense → backhand_lift_cross
+32650,P0,backhand_defense,0.1,1,42,3,False,red,42.0,Poor,backhand_defense → backhand_lift_cross → forehand_drive
+32716,P1,backhand_lift_cross,0.4,3,42,4,False,darkred,18.0,Bad,backhand_lift_cross → forehand_drive → backhand_defense
+32778,P0,forehand_drive,0.6,4,42,5,False,green,90.0,Excellent,forehand_drive → backhand_defense → forehand_pulldrop_cross
+32826,P1,backhand_defense,0.1,1,42,6,False,red,40.0,Poor,backhand_defense → forehand_pulldrop_cross → forehand_netkeep
+32883,P0,forehand_pulldrop_cross,0.5,3,42,7,False,red,40.0,Poor,forehand_pulldrop_cross → forehand_netkeep → backhand_netkeep_cross
+32923,P1,forehand_netkeep,0.7,4,42,8,False,red,40.0,Poor,forehand_netkeep → backhand_netkeep_cross → backhand_lift
+32973,P0,backhand_netkeep_cross,0.7,4,42,9,False,orange,71.0,Good,backhand_netkeep_cross → backhand_lift → forehand_drive
+33023,P1,backhand_lift,0.4,3,42,10,False,darkred,0.0,Bad,backhand_lift → forehand_drive → backhand_defense
+33089,P0,forehand_drive,0.6,4,42,11,False,green,100.0,Excellent,forehand_drive → backhand_defense → forehand_lift
+33129,P1,backhand_defense,0.1,1,42,12,False,darkred,12.0,Bad,backhand_defense → forehand_lift → overhead_drop_cross
+33189,P0,forehand_lift,0.4,3,42,13,False,green,88.0,Excellent,forehand_lift → overhead_drop_cross → backhand_netkeep
+33255,P1,overhead_drop_cross,0.3,2,42,14,False,darkred,2.0,Bad,overhead_drop_cross → backhand_netkeep → forehand_lift
+33325,P0,backhand_netkeep,0.7,4,42,15,False,yellow,50.0,Neutral,backhand_netkeep → forehand_lift → backhand_clear_cross
+33385,P1,forehand_lift,0.4,3,42,16,False,green,100.0,Excellent,forehand_lift → backhand_clear_cross → overhead_smash
+33468,P0,backhand_clear_cross,0.2,2,42,17,False,darkred,0.0,Bad,backhand_clear_cross → overhead_smash → backhand_defense_cross
+33553,P1,overhead_smash,1.0,5,42,18,False,green,100.0,Excellent,overhead_smash → backhand_defense_cross → backhand_push
+33582,P0,backhand_defense_cross,0.1,1,42,19,False,darkred,0.0,Bad,backhand_defense_cross → backhand_push → forehand_defense
+33625,P1,backhand_push,0.5,3,42,20,False,green,100.0,Excellent,backhand_push → forehand_defense → backhand_push_cross
+33666,P0,forehand_defense,0.1,1,42,21,False,darkred,0.0,Bad,forehand_defense → backhand_push_cross → backhand_defense
+33709,P1,backhand_push_cross,0.5,3,42,22,False,green,100.0,Excellent,backhand_push_cross → backhand_defense → forehand_lift_cross
+33738,P0,backhand_defense,0.1,1,42,23,False,darkred,18.0,Bad,backhand_defense → forehand_lift_cross → forehand_clear_cross
+33787,P1,forehand_lift_cross,0.4,3,42,24,False,yellow,50.0,Neutral,forehand_lift_cross → forehand_clear_cross → forehand_clear_cross
+33835,P0,forehand_clear_cross,0.45,3,42,25,False,darkred,34.0,Bad,forehand_clear_cross → forehand_clear_cross → forehand_drop
+33892,P1,forehand_clear_cross,0.45,3,42,26,False,green,82.0,Excellent,forehand_clear_cross → forehand_drop → backhand_lift
+33948,P0,forehand_drop,0.3,2,42,27,False,darkred,34.0,Bad,forehand_drop → backhand_lift → forehand_clear
+34011,P1,backhand_lift,0.4,3,42,28,False,darkred,34.0,Bad,backhand_lift → forehand_clear → overhead_drop_cross
+34087,P0,forehand_clear,0.45,3,42,29,False,gray,,gray,No follow-up shot
+34149,P1,overhead_drop_cross,0.3,2,42,30,False,green,100.0,Excellent,Won the rally
+34506,P0,serve_middle,0.0,1,43,1,True,gray,,gray,Serve - not analyzed
+34571,P1,backhand_netkeep,0.7,4,43,2,False,orange,66.0,Good,backhand_netkeep → forehand_lift → overhead_halfsmash
+34628,P0,forehand_lift,0.4,3,43,3,False,darkred,18.0,Bad,forehand_lift → overhead_halfsmash → forehand_defense_cross
+34662,P1,overhead_halfsmash,0.7,4,43,4,False,green,98.0,Excellent,overhead_halfsmash → forehand_defense_cross → forehand_netkeep
+34691,P0,forehand_defense_cross,0.1,1,43,5,False,darkred,18.0,Bad,forehand_defense_cross → forehand_netkeep → backhand_lift
+34751,P1,forehand_netkeep,0.7,4,43,6,False,orange,71.0,Good,forehand_netkeep → backhand_lift → forehand_drive
+34815,P0,backhand_lift,0.4,3,43,7,False,red,40.0,Poor,backhand_lift → forehand_drive → backhand_netkeep_cross
+34871,P1,forehand_drive,0.6,4,43,8,False,yellow,50.0,Neutral,forehand_drive → backhand_netkeep_cross → backhand_netkeep
+34911,P0,backhand_netkeep_cross,0.7,4,43,9,False,red,40.0,Poor,backhand_netkeep_cross → backhand_netkeep → forehand_nettap
+34981,P1,backhand_netkeep,0.7,4,43,10,False,gray,,gray,No follow-up shot
+35004,P0,forehand_nettap,0.5,3,43,11,False,green,100.0,Excellent,Won the rally
+35393,P0,serve_middle,0.0,1,44,1,True,gray,,gray,Serve - not analyzed
+35451,P1,backhand_lift,0.4,3,44,2,False,green,82.0,Excellent,backhand_lift → backhand_clear → forehand_smash
+35522,P0,backhand_clear,0.2,2,44,3,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense
+35579,P1,forehand_smash,1.0,5,44,4,False,green,100.0,Excellent,forehand_smash → backhand_defense → backhand_netkeep
+35637,P0,backhand_defense,0.1,1,44,5,False,darkred,18.0,Bad,backhand_defense → backhand_netkeep → backhand_lift_cross
+35690,P1,backhand_netkeep,0.7,4,44,6,False,yellow,60.0,Neutral,backhand_netkeep → backhand_lift_cross → overhead_clear
+35750,P0,backhand_lift_cross,0.4,3,44,7,False,orange,71.0,Good,backhand_lift_cross → overhead_clear → forehand_smash_cross
+35811,P1,overhead_clear,0.45,3,44,8,False,darkred,0.0,Bad,overhead_clear → forehand_smash_cross → forehand_defense_cross
+35860,P0,forehand_smash_cross,1.0,5,44,9,False,green,100.0,Excellent,forehand_smash_cross → forehand_defense_cross → forehand_lift
+35887,P1,forehand_defense_cross,0.1,1,44,10,False,darkred,12.0,Bad,forehand_defense_cross → forehand_lift → backhand_clear
+35932,P0,forehand_lift,0.4,3,44,11,False,green,100.0,Excellent,forehand_lift → backhand_clear → forehand_smash
+35985,P1,backhand_clear,0.2,2,44,12,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense
+36032,P0,forehand_smash,1.0,5,44,13,False,green,100.0,Excellent,forehand_smash → backhand_defense → backhand_push
+36067,P1,backhand_defense,0.1,1,44,14,False,darkred,0.0,Bad,backhand_defense → backhand_push → forehand_defense
+36101,P0,backhand_push,0.5,3,44,15,False,green,100.0,Excellent,backhand_push → forehand_defense → forehand_pulldrop
+36132,P1,forehand_defense,0.1,1,44,16,False,darkred,34.0,Bad,forehand_defense → forehand_pulldrop → backhand_netkeep_cross
+36196,P0,forehand_pulldrop,0.5,3,44,17,False,yellow,50.0,Neutral,forehand_pulldrop → backhand_netkeep_cross → backhand_dribble
+36239,P1,backhand_netkeep_cross,0.7,4,44,18,False,darkred,2.0,Bad,backhand_netkeep_cross → backhand_dribble → forehand_lift_cross
+36299,P0,backhand_dribble,1.0,5,44,19,False,green,82.0,Excellent,backhand_dribble → forehand_lift_cross → forehand_clear_cross
+36349,P1,forehand_lift_cross,0.4,3,44,20,False,darkred,34.0,Bad,forehand_lift_cross → forehand_clear_cross → forehand_drop_cross
+36428,P0,forehand_clear_cross,0.45,3,44,21,False,gray,,gray,No follow-up shot
+36492,P1,forehand_drop_cross,0.3,2,44,22,False,green,100.0,Excellent,Won the rally
+36859,P0,serve_middle,0.0,1,45,1,True,gray,,gray,Serve - not analyzed
+36920,P1,backhand_lift,0.4,3,45,2,False,orange,66.0,Good,backhand_lift → forehand_clear → overhead_smash_cross
+36985,P0,forehand_clear,0.45,3,45,3,False,darkred,2.0,Bad,forehand_clear → overhead_smash_cross → backhand_defense
+37039,P1,overhead_smash_cross,1.0,5,45,4,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep
+37079,P0,backhand_defense,0.1,1,45,5,False,gray,,gray,No follow-up shot
+37149,P1,forehand_netkeep,0.7,4,45,6,False,green,100.0,Excellent,Won the rally
+37397,P0,serve_middle,0.0,1,46,1,True,gray,,gray,Serve - not analyzed
+37449,P1,backhand_push,0.5,3,46,2,False,green,90.0,Excellent,backhand_push → backhand_defense → forehand_netkeep_cross
+37478,P0,backhand_defense,0.1,1,46,3,False,darkred,26.0,Bad,backhand_defense → forehand_netkeep_cross → forehand_netkeep
+37534,P1,forehand_netkeep_cross,0.7,4,46,4,False,red,42.0,Poor,forehand_netkeep_cross → forehand_netkeep → backhand_lift
+37602,P0,forehand_netkeep,0.7,4,46,5,False,orange,66.0,Good,forehand_netkeep → backhand_lift → forehand_drive
+37664,P1,backhand_lift,0.4,3,46,6,False,darkred,8.0,Bad,backhand_lift → forehand_drive → backhand_defense
+37719,P0,forehand_drive,0.6,4,46,7,False,green,92.0,Excellent,forehand_drive → backhand_defense → forehand_drop
+37758,P1,backhand_defense,0.1,1,46,8,False,yellow,50.0,Neutral,backhand_defense → forehand_drop → backhand_lift
+37805,P0,forehand_drop,0.3,2,46,9,False,red,40.0,Poor,forehand_drop → backhand_lift → forehand_clear
+37875,P1,backhand_lift,0.4,3,46,10,False,yellow,50.0,Neutral,backhand_lift → forehand_clear → overhead_clear
+37932,P0,forehand_clear,0.45,3,46,11,False,yellow,50.0,Neutral,forehand_clear → overhead_clear → forehand_pulldrop_cross
+38005,P1,overhead_clear,0.45,3,46,12,False,yellow,50.0,Neutral,overhead_clear → forehand_pulldrop_cross → forehand_lift
+38058,P0,forehand_pulldrop_cross,0.5,3,46,13,False,red,37.0,Poor,forehand_pulldrop_cross → forehand_lift → overhead_drop
+38118,P1,forehand_lift,0.4,3,46,14,False,green,82.0,Excellent,forehand_lift → overhead_drop → forehand_lift_cross
+38173,P0,overhead_drop,0.3,2,46,15,False,darkred,34.0,Bad,overhead_drop → forehand_lift_cross → forehand_clear
+38223,P1,forehand_lift_cross,0.4,3,46,16,False,yellow,50.0,Neutral,forehand_lift_cross → forehand_clear → overhead_clear
+38298,P0,forehand_clear,0.45,3,46,17,False,yellow,50.0,Neutral,forehand_clear → overhead_clear → forehand_clear
+38363,P1,overhead_clear,0.45,3,46,18,False,yellow,50.0,Neutral,overhead_clear → forehand_clear → overhead_clear
+38428,P0,forehand_clear,0.45,3,46,19,False,yellow,50.0,Neutral,forehand_clear → overhead_clear → forehand_clear
+38490,P1,overhead_clear,0.45,3,46,20,False,orange,66.0,Good,overhead_clear → forehand_clear → overhead_halfsmash_cross
+38583,P0,forehand_clear,0.45,3,46,21,False,darkred,0.0,Bad,forehand_clear → overhead_halfsmash_cross → backhand_defense
+38611,P1,overhead_halfsmash_cross,0.7,4,46,22,False,green,100.0,Excellent,overhead_halfsmash_cross → backhand_defense → forehand_netkeep_cross
+38654,P0,backhand_defense,0.1,1,46,23,False,darkred,2.0,Bad,backhand_defense → forehand_netkeep_cross → forehand_netkeep
+38721,P1,forehand_netkeep_cross,0.7,4,46,24,False,gray,,gray,No follow-up shot
+38796,P0,forehand_netkeep,0.7,4,46,25,False,green,100.0,Excellent,Won the rally
+39232,P0,serve_middle,0.0,1,47,1,True,gray,,gray,Serve - not analyzed
+39294,P1,backhand_lift_cross,0.4,3,47,2,False,green,82.0,Excellent,backhand_lift_cross → backhand_clear → forehand_smash
+39376,P0,backhand_clear,0.2,2,47,3,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense
+39431,P1,forehand_smash,1.0,5,47,4,False,green,100.0,Excellent,forehand_smash → backhand_defense → forehand_netkeep_cross
+39469,P0,backhand_defense,0.1,1,47,5,False,darkred,18.0,Bad,backhand_defense → forehand_netkeep_cross → forehand_lift
+39510,P1,forehand_netkeep_cross,0.7,4,47,6,False,green,81.0,Excellent,forehand_netkeep_cross → forehand_lift → overhead_smash
+39570,P0,forehand_lift,0.4,3,47,7,False,darkred,0.0,Bad,forehand_lift → overhead_smash → forehand_defense
+39625,P1,overhead_smash,1.0,5,47,8,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_netkeep_cross
+39667,P0,forehand_defense,0.1,1,47,9,False,gray,,gray,No follow-up shot
+39725,P1,backhand_netkeep_cross,0.7,4,47,10,False,green,100.0,Excellent,Won the rally
+40019,P0,serve_middle,0.0,1,48,1,True,gray,,gray,Serve - not analyzed
+40071,P1,backhand_push,0.5,3,48,2,False,green,82.0,Excellent,backhand_push → backhand_defense → forehand_clear_cross
+40106,P0,backhand_defense,0.1,1,48,3,False,darkred,34.0,Bad,backhand_defense → forehand_clear_cross → forehand_clear_cross
+40169,P1,forehand_clear_cross,0.45,3,48,4,False,red,42.0,Poor,forehand_clear_cross → forehand_clear_cross → forehand_drop
+40242,P0,forehand_clear_cross,0.45,3,48,5,False,gray,,gray,No follow-up shot
+40304,P1,forehand_drop,0.3,2,48,6,False,green,100.0,Excellent,Won the rally
+40559,P0,serve_middle,0.0,1,49,1,True,gray,,gray,Serve - not analyzed
+40811,P1,serve_middle,0.0,1,50,1,True,gray,,gray,Serve - not analyzed
+40883,P0,backhand_lift_cross,0.4,3,50,2,False,orange,66.0,Good,backhand_lift_cross → overhead_clear_cross → overhead_smash
+40932,P1,overhead_clear_cross,0.45,3,50,3,False,darkred,2.0,Bad,overhead_clear_cross → overhead_smash → forehand_defense
+40998,P0,overhead_smash,1.0,5,50,4,False,green,98.0,Excellent,overhead_smash → forehand_defense → backhand_lift_cross
+41032,P1,forehand_defense,0.1,1,50,5,False,yellow,50.0,Neutral,forehand_defense → backhand_lift_cross → overhead_smash
+41087,P0,backhand_lift_cross,0.4,3,50,6,False,darkred,0.0,Bad,backhand_lift_cross → overhead_smash → forehand_defense
+41113,P1,overhead_smash,1.0,5,50,7,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_netkeep
+41154,P0,forehand_defense,0.1,1,50,8,False,darkred,8.0,Bad,forehand_defense → backhand_netkeep → forehand_lift
+41205,P1,backhand_netkeep,0.7,4,50,9,False,yellow,60.0,Neutral,backhand_netkeep → forehand_lift → overhead_clear
+41278,P0,forehand_lift,0.4,3,50,10,False,red,37.0,Poor,forehand_lift → overhead_clear → forehand_drop_cross
+41337,P1,overhead_clear,0.45,3,50,11,False,green,76.0,Excellent,overhead_clear → forehand_drop_cross → forehand_lift
+41385,P0,forehand_drop_cross,0.3,2,50,12,False,darkred,24.0,Bad,forehand_drop_cross → forehand_lift → backhand_clear
+41429,P1,forehand_lift,0.4,3,50,13,False,green,76.0,Excellent,forehand_lift → backhand_clear → forehand_clear
+41505,P0,backhand_clear,0.2,2,50,14,False,darkred,18.0,Bad,backhand_clear → forehand_clear → backhand_pulldrop_cross
+41573,P1,forehand_clear,0.45,3,50,15,False,green,82.0,Excellent,forehand_clear → backhand_pulldrop_cross → backhand_push
+41649,P0,backhand_pulldrop_cross,0.3,2,50,16,False,yellow,50.0,Neutral,backhand_pulldrop_cross → backhand_push → flat_game_cross
+41713,P1,backhand_push,0.5,3,50,17,False,darkred,0.0,Bad,backhand_push → flat_game_cross → forehand_defense
+41759,P0,flat_game_cross,0.65,4,50,18,False,green,100.0,Excellent,flat_game_cross → forehand_defense → overhead_clear_cross
+41808,P1,forehand_defense,0.1,1,50,19,False,darkred,18.0,Bad,forehand_defense → overhead_clear_cross → overhead_clear_cross
+41898,P0,overhead_clear_cross,0.45,3,50,20,False,yellow,50.0,Neutral,overhead_clear_cross → overhead_clear_cross → overhead_clear_cross
+41948,P1,overhead_clear_cross,0.45,3,50,21,False,green,82.0,Excellent,overhead_clear_cross → overhead_clear_cross → overhead_smash
+42015,P0,overhead_clear_cross,0.45,3,50,22,False,darkred,0.0,Bad,overhead_clear_cross → overhead_smash → forehand_defense_cross
+42083,P1,overhead_smash,1.0,5,50,23,False,green,100.0,Excellent,overhead_smash → forehand_defense_cross → forehand_lift
+42130,P0,forehand_defense_cross,0.1,1,50,24,False,darkred,2.0,Bad,forehand_defense_cross → forehand_lift → backhand_pulldrop
+42186,P1,forehand_lift,0.4,3,50,25,False,green,98.0,Excellent,forehand_lift → backhand_pulldrop → flat_game_cross
+42251,P0,backhand_pulldrop,0.3,2,50,26,False,darkred,0.0,Bad,backhand_pulldrop → flat_game_cross → backhand_defense
+42284,P1,flat_game_cross,0.65,4,50,27,False,gray,,gray,No follow-up shot
+42311,P0,backhand_defense,0.1,1,50,28,False,green,100.0,Excellent,Won the rally
+42598,P1,serve_middle,0.0,1,51,1,True,gray,,gray,Serve - not analyzed
+42661,P0,backhand_lift,0.4,3,51,2,False,orange,74.0,Good,backhand_lift → overhead_drop → forehand_netkeep
+42723,P1,overhead_drop,0.3,2,51,3,False,darkred,34.0,Bad,overhead_drop → forehand_netkeep → backhand_netkeep
+42784,P0,forehand_netkeep,0.7,4,51,4,False,red,42.0,Poor,forehand_netkeep → backhand_netkeep → forehand_lift_cross
+42842,P1,backhand_netkeep,0.7,4,51,5,False,yellow,58.0,Neutral,backhand_netkeep → forehand_lift_cross → forehand_clear
+42899,P0,forehand_lift_cross,0.4,3,51,6,False,orange,71.0,Good,forehand_lift_cross → forehand_clear → overhead_smash
+42990,P1,forehand_clear,0.45,3,51,7,False,darkred,0.0,Bad,forehand_clear → overhead_smash → forehand_defense_cross
+43060,P0,overhead_smash,1.0,5,51,8,False,green,100.0,Excellent,overhead_smash → forehand_defense_cross → forehand_push
+43084,P1,forehand_defense_cross,0.1,1,51,9,False,darkred,8.0,Bad,forehand_defense_cross → forehand_push → backhand_defense
+43139,P0,forehand_push,0.5,3,51,10,False,green,100.0,Excellent,forehand_push → backhand_defense → forehand_clear
+43169,P1,backhand_defense,0.1,1,51,11,False,yellow,50.0,Neutral,backhand_defense → forehand_clear → overhead_smash
+43229,P0,forehand_clear,0.45,3,51,12,False,darkred,0.0,Bad,forehand_clear → overhead_smash → forehand_defense
+43297,P1,overhead_smash,1.0,5,51,13,False,green,100.0,Excellent,overhead_smash → forehand_defense → backhand_netkeep_cross
+43336,P0,forehand_defense,0.1,1,51,14,False,darkred,18.0,Bad,forehand_defense → backhand_netkeep_cross → backhand_dribble
+43393,P1,backhand_netkeep_cross,0.7,4,51,15,False,darkred,34.0,Bad,backhand_netkeep_cross → backhand_dribble → backhand_dribble
+43444,P0,backhand_dribble,1.0,5,51,16,False,darkred,18.0,Bad,backhand_dribble → backhand_dribble → forehand_lift
+43484,P1,backhand_dribble,1.0,5,51,17,False,orange,66.0,Good,backhand_dribble → forehand_lift → forehand_drop
+43536,P0,forehand_lift,0.4,3,51,18,False,green,98.0,Excellent,forehand_lift → forehand_drop → flat_game
+43623,P1,forehand_drop,0.3,2,51,19,False,darkred,0.0,Bad,forehand_drop → flat_game → backhand_defense
+43652,P0,flat_game,0.65,4,51,20,False,green,100.0,Excellent,flat_game → backhand_defense → forehand_lift_cross
+43691,P1,backhand_defense,0.1,1,51,21,False,yellow,50.0,Neutral,backhand_defense → forehand_lift_cross → forehand_smash
+43741,P0,forehand_lift_cross,0.4,3,51,22,False,gray,,gray,No follow-up shot
+43770,P1,forehand_smash,1.0,5,51,23,False,green,100.0,Excellent,Won the rally
+44286,P0,serve_middle,0.0,1,52,1,True,gray,,gray,Serve - not analyzed
+44344,P1,backhand_lift,0.4,3,52,2,False,orange,74.0,Good,backhand_lift → backhand_drop → forehand_netkeep_cross
+44389,P0,backhand_drop,0.3,2,52,3,False,darkred,34.0,Bad,backhand_drop → forehand_netkeep_cross → forehand_netkeep
+44439,P1,forehand_netkeep_cross,0.7,4,52,4,False,red,42.0,Poor,forehand_netkeep_cross → forehand_netkeep → backhand_lift
+44509,P0,forehand_netkeep,0.7,4,52,5,False,yellow,58.0,Neutral,forehand_netkeep → backhand_lift → forehand_clear_cross
+44554,P1,backhand_lift,0.4,3,52,6,False,red,40.0,Poor,backhand_lift → forehand_clear_cross → forehand_drop_cross
+44620,P0,forehand_clear_cross,0.45,3,52,7,False,green,81.0,Excellent,forehand_clear_cross → forehand_drop_cross → forehand_netkeep
+44687,P1,forehand_drop_cross,0.3,2,52,8,False,darkred,29.0,Bad,forehand_drop_cross → forehand_netkeep → backhand_netkeep_cross
+44744,P0,forehand_netkeep,0.7,4,52,9,False,yellow,60.0,Neutral,forehand_netkeep → backhand_netkeep_cross → backhand_dribble
+44806,P1,backhand_netkeep_cross,0.7,4,52,10,False,darkred,12.0,Bad,backhand_netkeep_cross → backhand_dribble → forehand_lift_cross
+44866,P0,backhand_dribble,1.0,5,52,11,False,green,88.0,Excellent,backhand_dribble → forehand_lift_cross → forehand_drive
+44905,P1,forehand_lift_cross,0.4,3,52,12,False,darkred,0.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense
+44967,P0,forehand_drive,0.6,4,52,13,False,green,100.0,Excellent,forehand_drive → backhand_defense → forehand_pulldrop
+45009,P1,backhand_defense,0.1,1,52,14,False,darkred,34.0,Bad,backhand_defense → forehand_pulldrop → backhand_netkeep
+45061,P0,forehand_pulldrop,0.5,3,52,15,False,yellow,50.0,Neutral,forehand_pulldrop → backhand_netkeep → forehand_dribble
+45133,P1,backhand_netkeep,0.7,4,52,16,False,darkred,2.0,Bad,backhand_netkeep → forehand_dribble → backhand_lift_cross
+45183,P0,forehand_dribble,1.0,5,52,17,False,orange,66.0,Good,forehand_dribble → backhand_lift_cross → overhead_drop
+45244,P1,backhand_lift_cross,0.4,3,52,18,False,green,82.0,Excellent,backhand_lift_cross → overhead_drop → forehand_lift
+45318,P0,overhead_drop,0.3,2,52,19,False,darkred,18.0,Bad,overhead_drop → forehand_lift → backhand_clear
+45351,P1,forehand_lift,0.4,3,52,20,False,green,82.0,Excellent,forehand_lift → backhand_clear → forehand_clear
+45420,P0,backhand_clear,0.2,2,52,21,False,darkred,18.0,Bad,backhand_clear → forehand_clear → backhand_clear_cross
+45504,P1,forehand_clear,0.45,3,52,22,False,green,82.0,Excellent,forehand_clear → backhand_clear_cross → overhead_clear
+45585,P0,backhand_clear_cross,0.2,2,52,23,False,darkred,34.0,Bad,backhand_clear_cross → overhead_clear → forehand_pulldrop_cross
+45655,P1,overhead_clear,0.45,3,52,24,False,orange,66.0,Good,overhead_clear → forehand_pulldrop_cross → forehand_netkeep
+45723,P0,forehand_pulldrop_cross,0.5,3,52,25,False,yellow,50.0,Neutral,forehand_pulldrop_cross → forehand_netkeep → backhand_dribble
+45773,P1,forehand_netkeep,0.7,4,52,26,False,darkred,2.0,Bad,forehand_netkeep → backhand_dribble → forehand_lift
+45833,P0,backhand_dribble,1.0,5,52,27,False,green,82.0,Excellent,backhand_dribble → forehand_lift → overhead_clear_cross
+45893,P1,forehand_lift,0.4,3,52,28,False,yellow,50.0,Neutral,forehand_lift → overhead_clear_cross → overhead_clear
+46001,P0,overhead_clear_cross,0.45,3,52,29,False,darkred,34.0,Bad,overhead_clear_cross → overhead_clear → forehand_drop_cross
+46083,P1,overhead_clear,0.45,3,52,30,False,green,98.0,Excellent,overhead_clear → forehand_drop_cross → forehand_netkeep
+46158,P0,forehand_drop_cross,0.3,2,52,31,False,darkred,2.0,Bad,forehand_drop_cross → forehand_netkeep → backhand_lift_cross
+46218,P1,forehand_netkeep,0.7,4,52,32,False,orange,66.0,Good,forehand_netkeep → backhand_lift_cross → overhead_clear
+46288,P0,backhand_lift_cross,0.4,3,52,33,False,yellow,50.0,Neutral,backhand_lift_cross → overhead_clear → forehand_clear_cross
+46368,P1,overhead_clear,0.45,3,52,34,False,darkred,34.0,Bad,overhead_clear → forehand_clear_cross → forehand_drop
+46459,P0,forehand_clear_cross,0.45,3,52,35,False,green,98.0,Excellent,forehand_clear_cross → forehand_drop → backhand_netkeep_cross
+46521,P1,forehand_drop,0.3,2,52,36,False,gray,,gray,No follow-up shot
+46581,P0,backhand_netkeep_cross,0.7,4,52,37,False,green,100.0,Excellent,Won the rally
+46981,P1,serve_middle,0.0,1,53,1,True,gray,,gray,Serve - not analyzed
+47041,P0,forehand_dribble,1.0,5,53,2,False,orange,74.0,Good,forehand_dribble → forehand_lift → overhead_halfsmash
+47101,P1,forehand_lift,0.4,3,53,3,False,darkred,18.0,Bad,forehand_lift → overhead_halfsmash → forehand_defense
+47184,P0,overhead_halfsmash,0.7,4,53,4,False,green,90.0,Excellent,overhead_halfsmash → forehand_defense → backhand_lift_cross
+47229,P1,forehand_defense,0.1,1,53,5,False,darkred,26.0,Bad,forehand_defense → backhand_lift_cross → backhand_clear
+47279,P0,backhand_lift_cross,0.4,3,53,6,False,green,92.0,Excellent,backhand_lift_cross → backhand_clear → forehand_smash
+47316,P1,backhand_clear,0.2,2,53,7,False,darkred,0.0,Bad,backhand_clear → forehand_smash → backhand_defense_cross
+47377,P0,forehand_smash,1.0,5,53,8,False,green,100.0,Excellent,forehand_smash → backhand_defense_cross → backhand_lift_cross
+47405,P1,backhand_defense_cross,0.1,1,53,9,False,yellow,50.0,Neutral,backhand_defense_cross → backhand_lift_cross → overhead_smash
+47456,P0,backhand_lift_cross,0.4,3,53,10,False,gray,,gray,No follow-up shot
+47476,P1,overhead_smash,1.0,5,53,11,False,green,100.0,Excellent,Won the rally
+47824,P0,serve_middle,0.0,1,54,1,True,gray,,gray,Serve - not analyzed
+47880,P1,backhand_netkeep_cross,0.7,4,54,2,False,yellow,58.0,Neutral,backhand_netkeep_cross → backhand_lift_cross → overhead_clear
+47948,P0,backhand_lift_cross,0.4,3,54,3,False,gray,,gray,No follow-up shot
+48022,P1,overhead_clear,0.45,3,54,4,False,green,100.0,Excellent,Won the rally
+48368,P0,serve_middle,0.0,1,55,1,True,gray,,gray,Serve - not analyzed
+48421,P1,backhand_push_cross,0.5,3,55,2,False,darkred,18.0,Bad,backhand_push_cross → flat_game → backhand_defense
+48444,P0,flat_game,0.65,4,55,3,False,green,100.0,Excellent,flat_game → backhand_defense → forehand_smash
+48483,P1,backhand_defense,0.1,1,55,4,False,darkred,0.0,Bad,backhand_defense → forehand_smash → backhand_defense
+48527,P0,forehand_smash,1.0,5,55,5,False,gray,,gray,No follow-up shot
+48556,P1,backhand_defense,0.1,1,55,6,False,green,100.0,Excellent,Won the rally
+48825,P0,serve_middle,0.0,1,56,1,True,gray,,gray,Serve - not analyzed
+48884,P1,backhand_lift,0.4,3,56,2,False,darkred,2.0,Bad,backhand_lift → forehand_smash → backhand_defense
+48915,P0,forehand_smash,1.0,5,56,3,False,green,98.0,Excellent,forehand_smash → backhand_defense → forehand_lift_cross
+48943,P1,backhand_defense,0.1,1,56,4,False,yellow,50.0,Neutral,backhand_defense → forehand_lift_cross → forehand_smash
+49009,P0,forehand_lift_cross,0.4,3,56,5,False,darkred,2.0,Bad,forehand_lift_cross → forehand_smash → backhand_defense_cross
+49064,P1,forehand_smash,1.0,5,56,6,False,green,100.0,Excellent,forehand_smash → backhand_defense_cross → overhead_halfsmash
+49100,P0,backhand_defense_cross,0.1,1,56,7,False,gray,,gray,No follow-up shot
+49136,P1,overhead_halfsmash,0.7,4,56,8,False,green,100.0,Excellent,Won the rally
+49557,P0,serve_middle,0.0,1,57,1,True,gray,,gray,Serve - not analyzed
+49611,P1,backhand_netkeep,0.7,4,57,2,False,yellow,50.0,Neutral,backhand_netkeep → backhand_lift → forehand_drop_cross
+49671,P0,backhand_lift,0.4,3,57,3,False,orange,66.0,Good,backhand_lift → forehand_drop_cross → forehand_lift
+49732,P1,forehand_drop_cross,0.3,2,57,4,False,red,42.0,Poor,forehand_drop_cross → forehand_lift → overhead_clear
+49792,P0,forehand_lift,0.4,3,57,5,False,orange,66.0,Good,forehand_lift → overhead_clear → forehand_smash
+49883,P1,overhead_clear,0.45,3,57,6,False,darkred,0.0,Bad,overhead_clear → forehand_smash → backhand_defense
+49944,P0,forehand_smash,1.0,5,57,7,False,green,100.0,Excellent,forehand_smash → backhand_defense → forehand_netkeep_cross
+49981,P1,backhand_defense,0.1,1,57,8,False,gray,,gray,No follow-up shot
+50034,P0,forehand_netkeep_cross,0.7,4,57,9,False,green,100.0,Excellent,Won the rally
+50368,P1,serve_middle,0.0,1,58,1,True,gray,,gray,Serve - not analyzed
+50435,P0,backhand_netkeep_cross,0.7,4,58,2,False,orange,74.0,Good,backhand_netkeep_cross → forehand_lift → overhead_smash_cross
+50505,P1,forehand_lift,0.4,3,58,3,False,darkred,2.0,Bad,forehand_lift → overhead_smash_cross → backhand_defense
+50592,P0,overhead_smash_cross,1.0,5,58,4,False,green,100.0,Excellent,overhead_smash_cross → backhand_defense → forehand_netkeep
+50633,P1,backhand_defense,0.1,1,58,5,False,darkred,26.0,Bad,backhand_defense → forehand_netkeep → backhand_netkeep_cross
+50701,P0,forehand_netkeep,0.7,4,58,6,False,red,40.0,Poor,forehand_netkeep → backhand_netkeep_cross → backhand_nettap
+50761,P1,backhand_netkeep_cross,0.7,4,58,7,False,red,40.0,Poor,backhand_netkeep_cross → backhand_nettap → forehand_defense_cross
+50790,P0,backhand_nettap,0.5,3,58,8,False,green,100.0,Excellent,backhand_nettap → forehand_defense_cross → overhead_smash
+50813,P1,forehand_defense_cross,0.1,1,58,9,False,gray,,gray,No follow-up shot
+50854,P0,overhead_smash,1.0,5,58,10,False,green,100.0,Excellent,Won the rally
+51194,P0,serve_middle,0.0,1,59,1,True,gray,,gray,Serve - not analyzed
+51258,P1,backhand_lift,0.4,3,59,2,False,green,100.0,Excellent,Won the rally
+51460,P0,serve_middle,0.0,1,60,1,True,gray,,gray,Serve - not analyzed
+51523,P1,forehand_lift_cross,0.4,3,60,2,False,darkred,18.0,Bad,forehand_lift_cross → forehand_drive → backhand_defense
+51602,P0,forehand_drive,0.6,4,60,3,False,green,100.0,Excellent,forehand_drive → backhand_defense → forehand_smash_cross
+51653,P1,backhand_defense,0.1,1,60,4,False,gray,,gray,No follow-up shot
+51702,P0,forehand_smash_cross,1.0,5,60,5,False,green,100.0,Excellent,Won the rally

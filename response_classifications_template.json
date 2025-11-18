@@ -1,0 +1,2946 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Master response classification rules for badminton shot effectiveness analysis (attacking + defensive)",
+    "author": "Adithya / Paradigm",
+    "date": "2025-09-27",
+    "instructions": {
+      "pressure_level": "Options: 'forced' (opponent under pressure), 'neutral' (balanced exchange), 'counter' (opponent gains advantage)",
+      "quality_score": "Range: 0.0-1.0 (0=poor shot, 1=excellent shot based on opponent's response)",
+      "tactical_meaning": "Brief description of what this exchange means tactically",
+      "notes": "Standardized notes auto-filled from pressure_level"
+    }
+  },
+  "shot_categories": {
+    "attacking_shots": [
+      "forehand_smash",
+      "overhead_smash",
+      "backhand_smash",
+      "forehand_halfsmash",
+      "overhead_halfsmash"
+    ],
+    "defensive_shots": [
+      "forehand_defense",
+      "backhand_defense",
+      "forehand_defense_cross",
+      "backhand_defense_cross"
+    ],
+    "net_shots": [
+      "forehand_netkeep",
+      "backhand_netkeep",
+      "forehand_dribble",
+      "backhand_dribble"
+    ],
+    "net_kill": [
+      "forehand_nettap",
+      "backhand_nettap"
+    ],
+    "placement_shots": [
+      "overhead_drop",
+      "forehand_drop",
+      "backhand_drop"
+    ],
+    "defensive_placement": [
+      "forehand_pulldrop",
+      "backhand_pulldrop"
+    ],
+    "reset_shots": [
+      "forehand_lift",
+      "backhand_lift",
+      "forehand_clear",
+      "overhead_clear",
+      "backhand_clear"
+    ],
+    "pressure_shots": [
+      "forehand_drive",
+      "backhand_drive",
+      "flat_game",
+      "forehand_push",
+      "backhand_push"
+    ],
+    "serve_shots": [
+      "serve_middle",
+      "serve_T",
+      "serve_corner",
+      "serve_long",
+      "high_serve",
+      "serve_low",
+      "serve_corner",
+      "flick_serve"
+    ]
+  },
+  "response_classifications": {
+    "smash_responses": [
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_smash_cross",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_smash_cross",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_smash",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "net_shot_responses": [
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_netkeep_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_netkeep_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "forehand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.2,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_dribble",
+        "response_shot": "backhand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.2,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_netkeep_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_netkeep_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "forehand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.2,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_dribble",
+        "response_shot": "backhand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.2,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_netkeep_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_netkeep_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.10,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_netkeep",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.10,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_lift_cross",
+        "pressure_level": "forced",
+        "quality_score": 0.75,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.45,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_push_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_netkeep_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.10,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.10,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_netkeep",
+        "response_shot": "backhand_netkeep_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.55,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      }
+    ],
+    "clear_responses": [
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.8,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.8,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "backhand_clear",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "backhand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "overhead_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.6,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_lift",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.7,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "backhand_clear",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "backhand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "overhead_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.80,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.6,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_lift",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.7,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "backhand_clear",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "backhand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "backhand_drop",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.85,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "forehand_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_clear",
+        "response_shot": "overhead_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "backhand_clear",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "backhand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "backhand_drop",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "forehand_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_clear",
+        "response_shot": "overhead_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.7,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "backhand_clear",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "backhand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "backhand_drop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "forehand_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_clear",
+        "response_shot": "overhead_halfsmash",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "defense_responses": [
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "forehand_netkkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_defense",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "forehand_netkkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_defense",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      }
+    ],
+    "drop_responses": [
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_pulldrop",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "forehand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "backhand_push",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "forehand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_pulldrop",
+        "response_shot": "backhand_nettap",
+        "pressure_level": "counter",
+        "quality_score": 0.1,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "halfsmash_responses": [
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_halfsmash",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "forehand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "backhand_defense_cross",
+        "pressure_level": "neutral",
+        "quality_score": 0.65,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "forehand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.4,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_halfsmash",
+        "response_shot": "backhand_drive_cross",
+        "pressure_level": "counter",
+        "quality_score": 0.35,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "nettap_responses": [
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_nettap",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.9,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_nettap",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "drop_responses_extended": [
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "overhead_drop",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "forehand_drop",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      },
+      {
+        "attack_shot": "backhand_drop",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.3,
+        "tactical_meaning": "counter_attack",
+        "notes": "Attack was neutralized; opponent counterattacks or gains initiative."
+      }
+    ],
+    "drive_responses": [
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "forehand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "backhand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_drive",
+        "response_shot": "flat_game",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "forehand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "backhand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_drive",
+        "response_shot": "flat_game",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      }
+    ],
+    "flat_game_responses": [
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "forehand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "backhand_lift",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.7,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "forehand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "backhand_drive",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "flat_game",
+        "response_shot": "flat_game",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      }
+    ],
+    "push_responses": [
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "backhand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "forehand_push",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "forehand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "backhand_pulldrop",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "forehand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "backhand_defense",
+        "pressure_level": "forced",
+        "quality_score": 0.8,
+        "tactical_meaning": "forced_defensive",
+        "notes": "Attacker created pressure; opponent forced into defensive/awkward reply."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "backhand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      },
+      {
+        "attack_shot": "backhand_push",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.6,
+        "tactical_meaning": "reset_to_neutral",
+        "notes": "Exchange remains balanced; no clear advantage after the shot."
+      }
+    ],
+    "serve_responses": [
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "backhand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_middle",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "backhand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_T",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "forehand_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "high_serve",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_lift",
+        "pressure_level": "neutral",
+        "quality_score": 0.45,
+        "tactical_meaning": "serve_neutralized",
+        "notes": "Standard serve return"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_dribble",
+        "pressure_level": "counter",
+        "quality_score": 0.30,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_netkeep",
+        "pressure_level": "neutral",
+        "quality_score": 0.50,
+        "tactical_meaning": "serve_to_net",
+        "notes": "Serve leads to net play"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "serve_corner",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "serve_attacked",
+        "notes": "Poor serve - opponent attacks"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "forehand_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "flick_neutralized",
+        "notes": "Flick serve handled well"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "overhead_clear",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "flick_neutralized",
+        "notes": "Flick serve handled well"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "overhead_drop",
+        "pressure_level": "neutral",
+        "quality_score": 0.5,
+        "tactical_meaning": "flick_neutralized",
+        "notes": "Flick serve handled well"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "overhead_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.5,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "forehand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "backhand_smash",
+        "pressure_level": "counter",
+        "quality_score": 0.25,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "forehand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "backhand_drive",
+        "pressure_level": "counter",
+        "quality_score": 0.20,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      },
+      {
+        "attack_shot": "flick_serve",
+        "response_shot": "flat_game",
+        "pressure_level": "counter",
+        "quality_score": 0.15,
+        "tactical_meaning": "flick_punished",
+        "notes": "Poor flick serve - attacked"
+      }
+    ]
+  }
+}

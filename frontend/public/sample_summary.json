@@ -1,0 +1,231 @@
+{
+  "mandatory_observations": [
+    {
+      "statement": "Serve→receive patterns were repeatable and predictable.",
+      "anchors": [
+        { "type": "frame_range", "value": "12491-12523" },
+        { "type": "frame_range", "value": "13118-13151" },
+        { "type": "frame_range", "value": "30356-30397" },
+        { "type": "frame_range", "value": "18865-18901" },
+        { "type": "frame_range", "value": "28042-28079" },
+        { "type": "frame_range", "value": "55771-55809" },
+        { "type": "frame_range", "value": "18201-18232" }
+      ]
+    },
+    {
+      "statement": "Rallies often turned on rescue→counter sequences.",
+      "anchors": [
+        { "type": "frame_range", "value": "13789-14273" },
+        { "type": "frame_range", "value": "23911-24674" },
+        { "type": "frame_range", "value": "25743-26211" },
+        { "type": "frame_range", "value": "31069-31697" },
+        { "type": "frame_range", "value": "42240-43310" },
+        { "type": "frame_range", "value": "52208-52495" },
+        { "type": "frame_range", "value": "16196-16705" },
+        { "type": "frame_range", "value": "18201-18458" }
+      ]
+    },
+    {
+      "statement": "Phase changes that decided outcomes were consistent across sides.",
+      "anchors": [
+        { "type": "frame_range", "value": "20567-21315" },
+        { "type": "frame_range", "value": "23911-24674" },
+        { "type": "frame_range", "value": "32099-32732" },
+        { "type": "frame_range", "value": "38208-38694" },
+        { "type": "frame_range", "value": "22035-22091" },
+        { "type": "frame_range", "value": "25743-26211" },
+        { "type": "frame_range", "value": "31069-31697" },
+        { "type": "frame_range", "value": "14896-15432" },
+        { "type": "frame_range", "value": "16196-16705" },
+        { "type": "frame_range", "value": "11843-12066" }
+      ]
+    },
+    {
+      "statement": "Finishing bias at the rear vs. forecourt split the players.",
+      "anchors": [
+        { "type": "frame_range", "value": "12635-12635" },
+        { "type": "frame_range", "value": "44306-44306" },
+        { "type": "frame_range", "value": "30498-30498" },
+        { "type": "frame_range", "value": "18458-18458" },
+        { "type": "frame_range", "value": "28129-28129" },
+        { "type": "frame_range", "value": "15432-15432" },
+        { "type": "frame_range", "value": "19013-19013" }
+      ]
+    }
+  ],
+  "things_that_worked": [
+    {
+      "statement": "Rear-court power finished for P0 (overhead smash cross/straight; forehand smash straight).",
+      "anchors": [
+        { "type": "frame_range", "value": "12635-12635" },
+        { "type": "frame_range", "value": "16312-16312" },
+        { "type": "frame_range", "value": "25869-25869" },
+        { "type": "frame_range", "value": "38669-38669" },
+        { "type": "frame_range", "value": "44306-44306" },
+        { "type": "frame_range", "value": "14256-14256" },
+        { "type": "frame_range", "value": "27123-27123" },
+        { "type": "frame_range", "value": "29544-29544" },
+        { "type": "frame_range", "value": "38293-38293" },
+        { "type": "frame_range", "value": "55809-55809" },
+        { "type": "frame_range", "value": "13364-13364" },
+        { "type": "frame_range", "value": "18954-18954" },
+        { "type": "frame_range", "value": "21042-21042" },
+        { "type": "frame_range", "value": "24306-24306" },
+        { "type": "frame_range", "value": "40038-40038" }
+      ]
+    },
+    {
+      "statement": "Winning transitions favored patience then expand (Net→Net; Net→Baseline).",
+      "anchors": [
+        { "type": "frame_range", "value": "20567-21315" },
+        { "type": "frame_range", "value": "23911-24674" },
+        { "type": "frame_range", "value": "38208-38694" },
+        { "type": "frame_range", "value": "32099-32732" }
+      ]
+    },
+    {
+      "statement": "Backhand rescue started runs (defense/cross and lifts preceded positive swings).",
+      "anchors": [
+        { "type": "frame_range", "value": "13789-14273" },
+        { "type": "frame_range", "value": "23911-24674" },
+        { "type": "frame_range", "value": "25743-26211" },
+        { "type": "frame_range", "value": "31069-31697" },
+        { "type": "frame_range", "value": "42240-43310" },
+        { "type": "frame_range", "value": "52208-52495" }
+      ]
+    },
+    {
+      "statement": "Individual winning shots recorded (overhead smash cross; forehand push cross; overhead drop).",
+      "anchors": [
+        { "type": "frame_range", "value": "12635-12635" },
+        { "type": "frame_range", "value": "44306-44306" },
+        { "type": "frame_range", "value": "32732-32732" },
+        { "type": "frame_range", "value": "30498-30498" }
+      ]
+    },
+    {
+      "statement": "High-risk/high-reward plays paid off (overhead smash cross/straight; forehand smash cross).",
+      "anchors": [
+        { "type": "frame_range", "value": "12635-12635" },
+        { "type": "frame_range", "value": "16312-16312" },
+        { "type": "frame_range", "value": "25869-25869" },
+        { "type": "frame_range", "value": "38669-38669" },
+        { "type": "frame_range", "value": "44306-44306" },
+        { "type": "frame_range", "value": "14256-14256" },
+        { "type": "frame_range", "value": "27123-27123" },
+        { "type": "frame_range", "value": "29544-29544" },
+        { "type": "frame_range", "value": "38293-38293" },
+        { "type": "frame_range", "value": "55809-55809" },
+        { "type": "frame_range", "value": "16449-16449" },
+        { "type": "frame_range", "value": "24003-24003" },
+        { "type": "frame_range", "value": "42420-42420" },
+        { "type": "frame_range", "value": "42983-42983" }
+      ]
+    }
+  ],
+  "things_that_didnt_work": [
+    {
+      "statement": "Forecourt softeners or giving height preceded negative swings for P0 (netkeep/drop/clear).",
+      "anchors": [
+        { "type": "frame_range", "value": "13789-14273" },
+        { "type": "frame_range", "value": "17192-17415" },
+        { "type": "frame_range", "value": "23911-24674" },
+        { "type": "frame_range", "value": "29367-29620" },
+        { "type": "frame_range", "value": "32099-32732" },
+        { "type": "frame_range", "value": "55771-56034" },
+        { "type": "frame_range", "value": "62256-62417" }
+      ]
+    },
+    {
+      "statement": "Losing transitions clustered in baseline holds or early baseline pulls (Baseline→Baseline; Serve→Baseline).",
+      "anchors": [
+        { "type": "frame_range", "value": "22035-22091" },
+        { "type": "frame_range", "value": "25743-26211" },
+        { "type": "frame_range", "value": "31069-31697" }
+      ]
+    },
+    {
+      "statement": "Low-return shots in sample.",
+      "anchors": [
+        { "type": "frame_range", "value": "15417-15417" },
+        { "type": "frame_range", "value": "58685-58685" },
+        { "type": "frame_range", "value": "45411-45411" }
+      ]
+    },
+    {
+      "statement": "P1 strengths bit when rallies flattened or when they got on the forehand (flat cross; forehand smash/net-tap).",
+      "anchors": [
+        { "type": "frame_range", "value": "18968-18968" },
+        { "type": "frame_range", "value": "45425-45425" },
+        { "type": "frame_range", "value": "18458-18458" },
+        { "type": "frame_range", "value": "28129-28129" },
+        { "type": "frame_range", "value": "15432-15432" },
+        { "type": "frame_range", "value": "19013-19013" }
+      ]
+    },
+    {
+      "statement": "Error clusters on P0’s side (unforced and forced examples).",
+      "anchors": [
+        { "type": "frame_range", "value": "31697-31697" },
+        { "type": "frame_range", "value": "49128-49128" },
+        { "type": "frame_range", "value": "55399-55399" },
+        { "type": "frame_range", "value": "37899-37899" },
+        { "type": "frame_range", "value": "39549-39549" },
+        { "type": "frame_range", "value": "13409-13409" },
+        { "type": "frame_range", "value": "27651-27651" },
+        { "type": "frame_range", "value": "52495-52495" },
+        { "type": "frame_range", "value": "22091-22091" }
+      ]
+    }
+  ],
+  "things_that_could_be_better": [
+    {
+      "statement": "Serve-middle patterns were readable for P1 (predictable receive responses).",
+      "anchors": [
+        { "type": "frame_range", "value": "12491-12523" },
+        { "type": "frame_range", "value": "13118-13151" }
+      ]
+    },
+    {
+      "statement": "P0 flick invited straight heat from P1 (forehand smash straight).",
+      "anchors": [
+        { "type": "frame_range", "value": "30356-30397" }
+      ]
+    },
+    {
+      "statement": "P1 flick pulled attacking thirds from the rear (drop/clear/smash).",
+      "anchors": [
+        { "type": "frame_range", "value": "18865-18901" },
+        { "type": "frame_range", "value": "28042-28079" },
+        { "type": "frame_range", "value": "55771-55809" }
+      ]
+    },
+    {
+      "statement": "Baseline-hold exchanges tilted towards P1 outcomes more often in deciding moments.",
+      "anchors": [
+        { "type": "frame_range", "value": "22035-22091" },
+        { "type": "frame_range", "value": "25743-26211" },
+        { "type": "frame_range", "value": "14896-15432" },
+        { "type": "frame_range", "value": "16196-16705" }
+      ]
+    },
+    {
+      "statement": "Flat exchanges favored P1 in the small sample observed.",
+      "anchors": [
+        { "type": "frame_range", "value": "45411-45411" },
+        { "type": "frame_range", "value": "18968-18968" },
+        { "type": "frame_range", "value": "45425-45425" }
+      ]
+    },
+    {
+      "statement": "Front-court kills on P1’s side appeared as a finishing lever (forehand net-tap).",
+      "anchors": [
+        { "type": "frame_range", "value": "15432-15432" },
+        { "type": "frame_range", "value": "19013-19013" }
+      ]
+    }
+  ]
+}
+
+
+

@@ -1,0 +1,146 @@
+GameNumber,RallyNumber,StrokeNumber,Frame,FrameNumber,Player,Stroke,ScoreP0,ScoreP1,Phase,is_serve,score,rally_position,band,rally_id,color,effectiveness,effectiveness_label,reason,rally_start_frame,rally_end_frame,rally_start_ms,rally_end_ms
+1,1,4,frame_2686,2686,P0,forehand_lift,0,0,start,False,0.4,4,3,1,red,,Error,P0 made an error,2558,2686,85267,89533
+1,2,2,frame_3026,3026,P0,forehand_smash,0,1,start,False,1.0,2,5,2,green,,Winner,P0 hit a winner,2959,3026,98633,100867
+1,3,7,frame_3564,3564,P0,overhead_smash,1,1,start,False,1.0,7,5,3,green,,Winner,P0 hit a winner,3399,3564,113300,118800
+1,4,3,frame_3994,3994,P0,forehand_defense_cross,2,1,start,False,0.1,3,1,4,green,,Winner,P0 hit a winner,3914,3994,130467,133133
+1,5,3,frame_4427,4427,P0,overhead_smash,3,1,start,False,1.0,3,5,5,green,,Winner,P0 hit a winner,4345,4427,144833,147567
+1,7,2,frame_5336,5336,P0,overhead_smash_cross,4,2,start,False,1.0,2,5,7,green,,Winner,P0 hit a winner,5272,5336,175733,177867
+1,10,4,frame_6590,6590,P0,forehand_clear,6,3,start,False,0.45,4,3,10,darkred,2.0,Bad (2%),forehand_clear → overhead_smash_cross → backhand_defense,6504,6640,216800,221333
+1,10,6,frame_6640,6640,P0,backhand_defense,6,3,start,False,0.1,6,1,10,green,,Winner,P0 hit a winner,6504,6640,216800,221333
+1,12,2,frame_7440,7440,P0,overhead_smash,7,4,start,False,1.0,2,5,12,green,98.0,Excellent (98%),overhead_smash → forehand_defense → backhand_lift_cross,7407,7513,246900,250433
+1,13,5,frame_8080,8080,P0,forehand_pulldrop_cross,8,4,start,False,0.5,5,3,13,darkred,34.0,Bad (34%),forehand_pulldrop_cross → forehand_netkeep → backhand_lift_cross,7919,8134,263967,271133
+1,13,7,frame_8134,8134,P0,backhand_lift_cross,8,4,start,False,0.4,7,3,13,red,,Error,P0 made an error,7919,8134,263967,271133
+1,14,2,frame_8555,8555,P0,forehand_drop,8,5,start,False,0.3,2,2,14,darkred,26.0,Bad (26%),forehand_drop → backhand_netkeep → forehand_lift,8490,8962,283000,298733
+1,14,8,frame_8759,8759,P0,overhead_clear_cross,8,5,start,False,0.45,8,3,14,darkred,0.0,Bad (0%),overhead_clear_cross → overhead_smash → forehand_defense,8490,8962,283000,298733
+1,14,10,frame_8807,8807,P0,forehand_defense,8,5,start,False,0.1,10,1,14,darkred,0.0,Bad (0%),forehand_defense → backhand_netkeep → forehand_lift,8490,8962,283000,298733
+1,14,12,frame_8866,8866,P0,forehand_lift,8,5,start,False,0.4,12,3,14,red,37.0,Poor (37%),forehand_lift → overhead_clear_cross → overhead_drop_cross,8490,8962,283000,298733
+1,16,3,frame_10217,10217,P0,forehand_drop,10,5,start,False,0.3,3,2,16,darkred,34.0,Bad (34%),forehand_drop → backhand_lift_cross → overhead_drop_cross,10127,11015,337567,367167
+1,16,5,frame_10284,10284,P0,overhead_drop_cross,10,5,start,False,0.3,5,2,16,red,42.0,Poor (42%),overhead_drop_cross → backhand_netkeep_cross → backhand_dribble,10127,11015,337567,367167
+1,16,7,frame_10342,10342,P0,backhand_dribble,10,5,start,False,1.0,7,5,16,green,92.0,Excellent (92%),backhand_dribble → forehand_lift_cross → forehand_smash,10127,11015,337567,367167
+1,16,9,frame_10422,10422,P0,forehand_smash,10,5,start,False,1.0,9,5,16,green,100.0,Excellent (100%),forehand_smash → backhand_defense_cross → backhand_lift,10127,11015,337567,367167
+1,16,17,frame_10685,10685,P0,overhead_clear,10,5,start,False,0.45,17,3,16,darkred,0.0,Bad (0%),overhead_clear → forehand_smash → backhand_defense,10127,11015,337567,367167
+1,16,19,frame_10735,10735,P0,backhand_defense,10,5,start,False,0.1,19,1,16,darkred,2.0,Bad (2%),backhand_defense → forehand_lift_cross → forehand_drop,10127,11015,337567,367167
+1,16,21,frame_10781,10781,P0,forehand_drop,10,5,start,False,0.3,21,2,16,darkred,34.0,Bad (34%),forehand_drop → backhand_lift → forehand_clear,10127,11015,337567,367167
+1,16,25,frame_10925,10925,P0,forehand_pulldrop,10,5,start,False,0.5,25,3,16,darkred,34.0,Bad (34%),forehand_pulldrop → backhand_lift_cross → backhand_pulldrop,10127,11015,337567,367167
+1,17,3,frame_11858,11858,P0,forehand_defense,11,5,start,False,0.1,3,1,17,darkred,0.0,Bad (0%),forehand_defense → overhead_smash → forehand_defense,11775,11935,392500,397833
+1,18,3,frame_12606,12606,P0,forehand_clear,12,5,championship,False,0.45,3,3,18,red,42.0,Poor (42%),forehand_clear → overhead_clear → forehand_drop_cross,12518,12708,417267,423600
+1,20,3,frame_13698,13698,P0,overhead_clear,13,6,championship,False,0.45,3,3,20,red,,Error,P0 made an error,13618,13698,453933,456600
+1,21,2,frame_14005,14005,P0,backhand_lift,13,7,championship,False,0.4,2,3,21,red,,Error,P0 made an error,13972,14005,465733,466833
+1,23,2,frame_14697,14697,P0,backhand_lift_cross,13,9,championship,False,0.4,2,3,23,red,42.0,Poor (42%),backhand_lift_cross → forehand_clear_cross → forehand_drop,14661,14901,488700,496700
+1,23,6,frame_14822,14822,P0,overhead_smash,13,9,championship,False,1.0,6,5,23,green,100.0,Excellent (100%),overhead_smash → forehand_defense → backhand_netkeep,14661,14901,488700,496700
+1,24,3,frame_15470,15470,P0,backhand_lift,14,9,championship,False,0.4,3,3,24,red,42.0,Poor (42%),backhand_lift → forehand_clear → overhead_drop_cross,15382,15657,512733,521900
+1,24,5,frame_15528,15528,P0,overhead_drop_cross,14,9,championship,False,0.3,5,2,24,darkred,26.0,Bad (26%),overhead_drop_cross → backhand_netkeep → forehand_lift_cross,15382,15657,512733,521900
+1,24,9,frame_15657,15657,P0,forehand_netkeep,14,9,championship,False,0.7,9,4,24,red,,Error,P0 made an error,15382,15657,512733,521900
+1,25,2,frame_16132,16132,P0,overhead_halfsmash_cross,14,10,championship,False,0.7,2,4,25,green,90.0,Excellent (90%),overhead_halfsmash_cross → backhand_defense_cross → backhand_lift_cross,16069,16308,535633,543600
+1,25,4,frame_16184,16184,P0,backhand_lift_cross,14,10,championship,False,0.4,4,3,25,red,42.0,Poor (42%),backhand_lift_cross → overhead_clear_cross → overhead_drop_cross,16069,16308,535633,543600
+1,25,6,frame_16250,16250,P0,overhead_drop_cross,14,10,championship,False,0.3,6,2,25,darkred,29.0,Bad (29%),overhead_drop_cross → backhand_netkeep → forehand_netkeep,16069,16308,535633,543600
+1,25,8,frame_16308,16308,P0,forehand_netkeep,14,10,championship,False,0.7,8,4,25,red,,Error,P0 made an error,16069,16308,535633,543600
+1,26,2,frame_16711,16711,P0,forehand_drop,14,11,championship,False,0.3,2,2,26,green,,Winner,P0 hit a winner,16650,16711,555000,557033
+1,27,3,frame_17308,17308,P0,overhead_halfsmash,15,11,championship,False,0.7,3,4,27,green,,Winner,P0 hit a winner,17223,17308,574100,576933
+1,28,5,frame_17880,17880,P0,forehand_push,16,11,championship,False,0.5,5,3,28,green,,Winner,P0 hit a winner,17725,17880,590833,596000
+1,30,2,frame_21267,21267,P0,overhead_drop_cross,17,12,championship,False,0.3,2,2,30,darkred,26.0,Bad (26%),overhead_drop_cross → backhand_netkeep → forehand_lift,21202,21491,706733,716367
+1,30,4,frame_21323,21323,P0,forehand_lift,17,12,championship,False,0.4,4,3,30,darkred,2.0,Bad (2%),forehand_lift → overhead_smash → forehand_defense,21202,21491,706733,716367
+1,30,8,frame_21431,21431,P0,forehand_smash,17,12,championship,False,1.0,8,5,30,green,100.0,Excellent (100%),forehand_smash → backhand_defense → forehand_lift_cross,21202,21491,706733,716367
+1,31,2,frame_21907,21907,P0,forehand_smash,17,13,championship,False,1.0,2,5,31,green,98.0,Excellent (98%),forehand_smash → backhand_defense_cross → backhand_push_cross,21849,22079,728300,735967
+1,31,4,frame_21947,21947,P0,backhand_push_cross,17,13,championship,False,0.5,4,3,31,red,42.0,Poor (42%),backhand_push_cross → flat_game_cross → backhand_netkeep_cross,21849,22079,728300,735967
+1,31,6,frame_21980,21980,P0,backhand_netkeep_cross,17,13,championship,False,0.7,6,4,31,green,81.0,Excellent (81%),backhand_netkeep_cross → backhand_lift_cross → overhead_smash,21849,22079,728300,735967
+1,31,8,frame_22032,22032,P0,overhead_smash,17,13,championship,False,1.0,8,5,31,green,100.0,Excellent (100%),overhead_smash → forehand_defense → backhand_netkeep,21849,22079,728300,735967
+1,31,10,frame_22079,22079,P0,backhand_netkeep,17,13,championship,False,0.7,10,4,31,green,,Winner,P0 hit a winner,21849,22079,728300,735967
+1,32,3,frame_23148,23148,P0,forehand_defense,18,13,championship,False,0.1,3,1,32,darkred,18.0,Bad (18%),forehand_defense → forehand_netkeep → forehand_lift_cross,23071,23244,769033,774800
+1,32,7,frame_23244,23244,P0,forehand_pulldrop,18,13,championship,False,0.5,7,3,32,red,,Error,P0 made an error,23071,23244,769033,774800
+1,33,6,frame_23722,23722,P0,forehand_smash,18,14,championship,False,1.0,6,5,33,green,,Winner,P0 hit a winner,23545,23722,784833,790733
+1,35,3,frame_24892,24892,P0,overhead_clear,20,14,championship,False,0.45,3,3,35,darkred,2.0,Bad (2%),overhead_clear → forehand_smash_cross → forehand_defense,24796,25029,826533,834300
+2,1,3,frame_25534,25534,P0,backhand_defense,0,0,start,False,0.1,3,1,1,red,,Error,P0 made an error,25458,25534,848600,851133
+2,2,2,frame_25877,25877,P0,backhand_lift,0,1,start,False,0.4,2,3,2,green,82.0,Excellent (82%),backhand_lift → backhand_clear → forehand_smash,25839,25931,861300,864367
+2,2,4,frame_25931,25931,P0,forehand_smash,0,1,start,False,1.0,4,5,2,red,,Error,P0 made an error,25839,25931,861300,864367
+2,3,4,frame_26554,26554,P0,overhead_smash,0,2,start,False,1.0,4,5,3,red,,Error,P0 made an error,26458,26554,881933,885133
+2,4,2,frame_26867,26867,P0,backhand_netkeep,0,3,start,False,0.7,2,4,4,darkred,34.0,Bad (34%),backhand_netkeep → backhand_dribble → forehand_netkeep_cross,26832,26919,894400,897300
+2,4,4,frame_26919,26919,P0,forehand_netkeep_cross,0,3,start,False,0.7,4,4,4,red,,Error,P0 made an error,26832,26919,894400,897300
+2,5,4,frame_27357,27357,P0,overhead_smash,0,4,start,False,1.0,4,5,5,green,100.0,Excellent (100%),overhead_smash → forehand_defense_cross → forehand_netkeep,27260,27537,908667,917900
+2,5,10,frame_27537,27537,P0,forehand_nettap,0,4,start,False,0.5,10,3,5,green,,Winner,P0 hit a winner,27260,27537,908667,917900
+2,6,3,frame_27996,27996,P0,forehand_defense,1,4,start,False,0.1,3,1,6,darkred,34.0,Bad (34%),forehand_defense → overhead_clear → forehand_clear,27919,28369,930633,945633
+2,6,7,frame_28118,28118,P0,forehand_smash_cross,1,4,start,False,1.0,7,5,6,green,100.0,Excellent (100%),forehand_smash_cross → forehand_defense → backhand_netkeep,27919,28369,930633,945633
+2,6,9,frame_28173,28173,P0,backhand_netkeep,1,4,start,False,0.7,9,4,6,red,40.0,Poor (40%),backhand_netkeep → forehand_netkeep → backhand_lift,27919,28369,930633,945633
+2,6,11,frame_28234,28234,P0,backhand_lift,1,4,start,False,0.4,11,3,6,darkred,0.0,Bad (0%),backhand_lift → forehand_smash → forehand_defense,27919,28369,930633,945633
+2,6,13,frame_28292,28292,P0,forehand_defense,1,4,start,False,0.1,13,1,6,darkred,12.0,Bad (12%),forehand_defense → forehand_lift → overhead_drop_cross,27919,28369,930633,945633
+2,7,3,frame_28920,28920,P0,backhand_defense,2,4,start,False,0.1,3,1,7,darkred,18.0,Bad (18%),backhand_defense → forehand_netkeep_cross → forehand_lift_cross,28841,28977,961367,965900
+2,7,5,frame_28977,28977,P0,forehand_lift_cross,2,4,start,False,0.4,5,3,7,red,,Error,P0 made an error,28841,28977,961367,965900
+2,8,2,frame_29355,29355,P0,forehand_smash_cross,2,5,start,False,1.0,2,5,8,green,,Winner,P0 hit a winner,29319,29355,977300,978500
+2,9,3,frame_29974,29974,P0,forehand_drop,3,5,start,False,0.3,3,2,9,red,,Error,P0 made an error,29889,29974,996300,999133
+2,10,2,frame_30368,30368,P0,overhead_drop_cross,3,6,start,False,0.3,2,2,10,darkred,34.0,Bad (34%),overhead_drop_cross → backhand_netkeep_cross → backhand_netkeep,30307,30495,1010233,1016500
+2,10,6,frame_30495,30495,P0,overhead_smash_cross,3,6,start,False,1.0,6,5,10,green,,Winner,P0 hit a winner,30307,30495,1010233,1016500
+2,12,6,frame_31527,31527,P0,forehand_clear,4,7,start,False,0.45,6,3,12,red,40.0,Poor (40%),forehand_clear → overhead_clear → forehand_drop_cross,31380,31723,1046000,1057433
+2,12,8,frame_31594,31594,P0,forehand_drop_cross,4,7,start,False,0.3,8,2,12,darkred,19.0,Bad (19%),forehand_drop_cross → forehand_netkeep_cross → forehand_lift_cross,31380,31723,1046000,1057433
+2,12,10,frame_31659,31659,P0,forehand_lift_cross,4,7,start,False,0.4,10,3,12,darkred,0.0,Bad (0%),forehand_lift_cross → forehand_drive → backhand_defense_cross,31380,31723,1046000,1057433
+2,12,12,frame_31723,31723,P0,backhand_defense_cross,4,7,start,False,0.1,12,1,12,green,,Winner,P0 hit a winner,31380,31723,1046000,1057433
+2,13,3,frame_32369,32369,P0,forehand_smash,5,7,start,False,1.0,3,5,13,green,100.0,Excellent (100%),forehand_smash → backhand_defense_cross → backhand_netkeep,32294,32446,1076467,1081533
+2,15,3,frame_34557,34557,P0,backhand_defense,6,8,start,False,0.1,3,1,15,darkred,2.0,Bad (2%),backhand_defense → forehand_dribble → backhand_lift_cross,34481,34882,1149367,1162733
+2,15,5,frame_34614,34614,P0,backhand_lift_cross,6,8,start,False,0.4,5,3,15,red,42.0,Poor (42%),backhand_lift_cross → overhead_clear_cross → overhead_drop_cross,34481,34882,1149367,1162733
+2,15,7,frame_34685,34685,P0,overhead_drop_cross,6,8,start,False,0.3,7,2,15,darkred,19.0,Bad (19%),overhead_drop_cross → backhand_netkeep_cross → backhand_lift,34481,34882,1149367,1162733
+2,15,9,frame_34749,34749,P0,backhand_lift,6,8,start,False,0.4,9,3,15,darkred,8.0,Bad (8%),backhand_lift → forehand_drive → backhand_defense,34481,34882,1149367,1162733
+2,15,11,frame_34803,34803,P0,backhand_defense,6,8,start,False,0.1,11,1,15,red,37.0,Poor (37%),backhand_defense → forehand_lift_cross → flat_game,34481,34882,1149367,1162733
+2,15,13,frame_34842,34842,P0,flat_game,6,8,start,False,0.65,13,4,15,green,100.0,Excellent (100%),flat_game → backhand_defense → forehand_netkeep_cross,34481,34882,1149367,1162733
+2,15,15,frame_34882,34882,P0,forehand_netkeep_cross,6,8,start,False,0.7,15,4,15,red,,Error,P0 made an error,34481,34882,1149367,1162733
+2,16,2,frame_35349,35349,P0,forehand_drop_cross,6,9,start,False,0.3,2,2,16,darkred,34.0,Bad (34%),forehand_drop_cross → forehand_netkeep → backhand_netkeep,35282,35421,1176067,1180700
+2,17,2,frame_35823,35823,P0,backhand_netkeep,6,10,start,False,0.7,2,4,17,red,42.0,Poor (42%),backhand_netkeep → forehand_netkeep → backhand_push_cross,35789,35887,1192967,1196233
+2,18,2,frame_36339,36339,P0,forehand_smash,6,11,start,False,1.0,2,5,18,red,,Error,P0 made an error,36273,36339,1209100,1211300
+2,19,4,frame_36824,36824,P0,overhead_smash,6,12,championship,False,1.0,4,5,19,red,,Error,P0 made an error,36690,36824,1223000,1227467
+2,20,2,frame_37248,37248,P0,forehand_clear,6,13,championship,False,0.45,2,3,20,red,42.0,Poor (42%),forehand_clear → overhead_clear → forehand_drop_cross,37181,37377,1239367,1245900
+2,20,4,frame_37312,37312,P0,forehand_drop_cross,6,13,championship,False,0.3,4,2,20,darkred,34.0,Bad (34%),forehand_drop_cross → forehand_lift → overhead_drop_cross,37181,37377,1239367,1245900
+2,20,6,frame_37377,37377,P0,overhead_drop_cross,6,13,championship,False,0.3,6,2,20,red,,Error,P0 made an error,37181,37377,1239367,1245900
+2,21,2,frame_37838,37838,P0,overhead_clear,6,14,championship,False,0.45,2,3,21,red,42.0,Poor (42%),overhead_clear → forehand_clear → overhead_drop_cross,37773,37971,1259100,1265700
+2,21,4,frame_37913,37913,P0,overhead_drop_cross,6,14,championship,False,0.3,4,2,21,darkred,34.0,Bad (34%),overhead_drop_cross → backhand_netkeep → forehand_netkeep,37773,37971,1259100,1265700
+2,21,6,frame_37971,37971,P0,forehand_netkeep,6,14,championship,False,0.7,6,4,21,green,,Winner,P0 hit a winner,37773,37971,1259100,1265700
+2,22,5,frame_38602,38602,P0,backhand_netkeep,7,14,championship,False,0.7,5,4,22,red,,Error,P0 made an error,38456,38602,1281867,1286733
+2,23,2,frame_38998,38998,P0,forehand_smash,7,15,championship,False,1.0,2,5,23,green,,Winner,P0 hit a winner,38934,38998,1297800,1299933
+2,24,3,frame_39499,39499,P0,overhead_clear,8,15,championship,False,0.45,3,3,24,red,,Error,P0 made an error,39418,39499,1313933,1316633
+2,25,2,frame_40101,40101,P0,overhead_drop,8,16,championship,False,0.3,2,2,25,darkred,26.0,Bad (26%),overhead_drop → forehand_netkeep → backhand_lift_cross,40043,40406,1334767,1346867
+2,25,6,frame_40236,40236,P0,forehand_smash,8,16,championship,False,1.0,6,5,25,green,100.0,Excellent (100%),forehand_smash → backhand_defense → forehand_lift,40043,40406,1334767,1346867
+2,25,10,frame_40363,40363,P0,forehand_smash,8,16,championship,False,1.0,10,5,25,green,100.0,Excellent (100%),forehand_smash → backhand_defense_cross → backhand_netkeep,40043,40406,1334767,1346867
+2,25,12,frame_40406,40406,P0,backhand_netkeep,8,16,championship,False,0.7,12,4,25,red,,Error,P0 made an error,40043,40406,1334767,1346867
+2,28,2,frame_44322,44322,P0,forehand_lift,9,18,championship,False,0.4,2,3,28,green,82.0,Excellent (82%),forehand_lift → backhand_clear → forehand_smash,44287,44381,1476233,1479367
+2,30,2,frame_45314,45314,P0,overhead_smash,10,19,championship,False,1.0,2,5,30,green,98.0,Excellent (98%),overhead_smash → forehand_defense_cross → forehand_lift,45252,45446,1508400,1514867
+2,30,4,frame_45361,45361,P0,forehand_lift,10,19,championship,False,0.4,4,3,30,red,42.0,Poor (42%),forehand_lift → overhead_clear_cross → overhead_drop,45252,45446,1508400,1514867
+2,32,3,frame_46308,46308,P0,forehand_lift,11,20,championship,False,0.4,3,3,32,red,42.0,Poor (42%),forehand_lift → overhead_clear → forehand_drop,46223,46417,1540767,1547233
+2,32,5,frame_46357,46357,P0,forehand_drop,11,20,championship,False,0.3,5,2,32,darkred,34.0,Bad (34%),forehand_drop → backhand_netkeep_cross → backhand_netkeep,46223,46417,1540767,1547233
+2,32,7,frame_46417,46417,P0,backhand_netkeep,11,20,championship,False,0.7,7,4,32,red,,Error,P0 made an error,46223,46417,1540767,1547233
+3,2,4,frame_47320,47320,P0,forehand_drive,0,1,start,False,0.6,4,4,2,green,90.0,Excellent (90%),forehand_drive → backhand_defense_cross → backhand_lift,47200,47628,1573333,1587600
+3,2,6,frame_47375,47375,P0,backhand_lift,0,1,start,False,0.4,6,3,2,red,40.0,Poor (40%),backhand_lift → forehand_clear → overhead_drop_cross,47200,47628,1573333,1587600
+3,2,8,frame_47441,47441,P0,overhead_drop_cross,0,1,start,False,0.3,8,2,2,darkred,29.0,Bad (29%),overhead_drop_cross → backhand_netkeep → forehand_netkeep,47200,47628,1573333,1587600
+3,2,10,frame_47498,47498,P0,forehand_netkeep,0,1,start,False,0.7,10,4,2,green,88.0,Excellent (88%),forehand_netkeep → backhand_lift → forehand_smash,47200,47628,1573333,1587600
+3,2,12,frame_47579,47579,P0,forehand_smash,0,1,start,False,1.0,12,5,2,green,100.0,Excellent (100%),forehand_smash → backhand_defense_cross → backhand_lift_cross,47200,47628,1573333,1587600
+3,2,14,frame_47628,47628,P0,backhand_lift_cross,0,1,start,False,0.4,14,3,2,red,,Error,P0 made an error,47200,47628,1573333,1587600
+3,3,2,frame_48081,48081,P0,backhand_netkeep,0,2,start,False,0.7,2,4,3,red,42.0,Poor (42%),backhand_netkeep → forehand_netkeep_cross → forehand_lift,48043,48345,1601433,1611500
+3,3,4,frame_48143,48143,P0,forehand_lift,0,2,start,False,0.4,4,3,3,darkred,2.0,Bad (2%),forehand_lift → overhead_smash → forehand_defense,48043,48345,1601433,1611500
+3,3,6,frame_48191,48191,P0,forehand_defense,0,2,start,False,0.1,6,1,3,darkred,29.0,Bad (29%),forehand_defense → backhand_lift_cross → overhead_clear_cross,48043,48345,1601433,1611500
+3,3,8,frame_48251,48251,P0,overhead_clear_cross,0,2,start,False,0.45,8,3,3,darkred,0.0,Bad (0%),overhead_clear_cross → overhead_smash → forehand_defense,48043,48345,1601433,1611500
+3,4,4,frame_50133,50133,P0,overhead_smash,0,3,start,False,1.0,4,5,4,red,,Error,P0 made an error,50024,50133,1667467,1671100
+3,6,2,frame_51177,51177,P0,forehand_clear,0,5,start,False,0.45,2,3,6,red,42.0,Poor (42%),forehand_clear → overhead_clear → forehand_drop,51119,51498,1703967,1716600
+3,6,4,frame_51241,51241,P0,forehand_drop,0,5,start,False,0.3,4,2,6,darkred,18.0,Bad (18%),forehand_drop → backhand_dribble → forehand_netkeep,51119,51498,1703967,1716600
+3,6,8,frame_51383,51383,P0,forehand_clear,0,5,start,False,0.45,8,3,6,darkred,0.0,Bad (0%),forehand_clear → overhead_smash → forehand_defense,51119,51498,1703967,1716600
+3,6,10,frame_51435,51435,P0,forehand_defense,0,5,start,False,0.1,10,1,6,darkred,12.0,Bad (12%),forehand_defense → backhand_netkeep → forehand_netkeep,51119,51498,1703967,1716600
+3,6,12,frame_51498,51498,P0,forehand_netkeep,0,5,start,False,0.7,12,4,6,green,,Winner,P0 hit a winner,51119,51498,1703967,1716600
+3,10,3,frame_53632,53632,P0,overhead_drop_cross,3,6,start,False,0.3,3,2,10,red,,Error,P0 made an error,53541,53632,1784700,1787733
+3,11,4,frame_54091,54091,P0,forehand_smash,3,7,start,False,1.0,4,5,11,green,98.0,Excellent (98%),forehand_smash → backhand_defense_cross → backhand_lift,53978,54148,1799267,1804933
+3,11,6,frame_54148,54148,P0,backhand_lift,3,7,start,False,0.4,6,3,11,red,,Error,P0 made an error,53978,54148,1799267,1804933
+3,12,10,frame_56052,56052,P0,forehand_smash_cross,3,8,start,False,1.0,10,5,12,red,,Error,P0 made an error,55731,56052,1857700,1868400
+3,13,2,frame_56499,56499,P0,forehand_clear,3,9,start,False,0.45,2,3,13,red,42.0,Poor (42%),forehand_clear → overhead_clear → forehand_drop,56439,56563,1881300,1885433
+3,13,4,frame_56563,56563,P0,forehand_drop,3,9,start,False,0.3,4,2,13,red,,Error,P0 made an error,56439,56563,1881300,1885433
+3,14,2,frame_56980,56980,P0,overhead_smash,3,10,start,False,1.0,2,5,14,green,,Winner,P0 hit a winner,56918,56980,1897267,1899333
+3,17,3,frame_58382,58382,P0,overhead_clear_cross,6,10,start,False,0.45,3,3,17,red,42.0,Poor (42%),overhead_clear_cross → overhead_clear → forehand_drop_cross,58291,58450,1943033,1948333
+3,17,5,frame_58450,58450,P0,forehand_drop_cross,6,10,start,False,0.3,5,2,17,green,,Winner,P0 hit a winner,58291,58450,1943033,1948333
+3,18,3,frame_58960,58960,P0,forehand_defense_cross,7,10,start,False,0.1,3,1,18,darkred,26.0,Bad (26%),forehand_defense_cross → forehand_clear → overhead_drop_cross,58890,59010,1963000,1967000
+3,18,5,frame_59010,59010,P0,overhead_drop_cross,7,10,start,False,0.3,5,2,18,red,,Error,P0 made an error,58890,59010,1963000,1967000
+3,19,4,frame_59477,59477,P0,backhand_lift,7,11,start,False,0.4,4,3,19,darkred,18.0,Bad (18%),backhand_lift → flat_game → forehand_defense,59357,59538,1978567,1984600
+3,20,2,frame_59977,59977,P0,forehand_clear,7,12,championship,False,0.45,2,3,20,red,42.0,Poor (42%),forehand_clear → overhead_clear → forehand_drop,59916,60426,1997200,2014200
+3,20,4,frame_60036,60036,P0,forehand_drop,7,12,championship,False,0.3,4,2,20,red,42.0,Poor (42%),forehand_drop → backhand_lift_cross → overhead_clear_cross,59916,60426,1997200,2014200
+3,20,12,frame_60310,60310,P0,forehand_lift,7,12,championship,False,0.4,12,3,20,green,76.0,Excellent (76%),forehand_lift → overhead_clear → forehand_smash,59916,60426,1997200,2014200
+3,20,14,frame_60384,60384,P0,forehand_smash,7,12,championship,False,1.0,14,5,20,green,100.0,Excellent (100%),forehand_smash → backhand_defense → forehand_netkeep_cross,59916,60426,1997200,2014200
+3,20,16,frame_60426,60426,P0,forehand_netkeep_cross,7,12,championship,False,0.7,16,4,20,red,,Error,P0 made an error,59916,60426,1997200,2014200
+3,21,2,frame_61033,61033,P0,overhead_drop,7,13,championship,False,0.3,2,2,21,darkred,26.0,Bad (26%),overhead_drop → forehand_netkeep_cross → forehand_lift,60969,61355,2032300,2045167
+3,21,4,frame_61099,61099,P0,forehand_lift,7,13,championship,False,0.4,4,3,21,darkred,2.0,Bad (2%),forehand_lift → overhead_smash → forehand_defense,60969,61355,2032300,2045167
+3,21,6,frame_61154,61154,P0,forehand_defense,7,13,championship,False,0.1,6,1,21,darkred,8.0,Bad (8%),forehand_defense → backhand_netkeep → forehand_lift,60969,61355,2032300,2045167
+3,21,8,frame_61214,61214,P0,forehand_lift,7,13,championship,False,0.4,8,3,21,darkred,0.0,Bad (0%),forehand_lift → overhead_smash → forehand_defense,60969,61355,2032300,2045167
+3,21,10,frame_61269,61269,P0,forehand_defense,7,13,championship,False,0.1,10,1,21,darkred,12.0,Bad (12%),forehand_defense → backhand_netkeep_cross → backhand_netkeep,60969,61355,2032300,2045167
+3,23,6,frame_62691,62691,P0,forehand_netkeep,7,15,championship,False,0.7,6,4,23,red,40.0,Poor (40%),forehand_netkeep → backhand_netkeep → forehand_nettap_cross,62501,62745,2083367,2091500
+3,23,8,frame_62745,62745,P0,forehand_nettap_cross,7,15,championship,False,0.5,8,3,23,green,,Winner,P0 hit a winner,62501,62745,2083367,2091500
