@@ -325,7 +325,6 @@ const BadmintonCourt: React.FC<{ zones: ZoneEffectData[]; title?: string; fps: n
   // Calculate max values for intensity (combination of uses and effectiveness) - only consider zones with data
   const zonesWithData = zones.filter(z => z.type !== null);
   const maxUses = zonesWithData.length > 0 ? Math.max(...zonesWithData.map(z => z.uses), 1) : 1;
-  const maxEff = zonesWithData.length > 0 ? Math.max(...zonesWithData.map(z => z.avgEffectiveness || 0), 1) : 1;
   
   const getColor = (zone: ZoneEffectData | undefined) => {
     if (!zone || !zone.type) return '#1f2937'; // Grey for empty
@@ -479,7 +478,7 @@ const RallyTimeline: React.FC<{ rallies: Array<{ start: number; end: number; gam
 export type TimelineInstance = { timeSec: number; label: string; category?: string };
 type VideoTimelineMarkerProps = { instances: TimelineInstance[]; sectionName: string; fps: number; videoRef: Props['videoRef']; videoDurationSec?: number; colorByCategory?: boolean };
 
-export const VideoTimelineMarker: React.FC<VideoTimelineMarkerProps> = ({ instances, sectionName, fps, videoRef, videoDurationSec, colorByCategory = false }) => {
+export const VideoTimelineMarker: React.FC<VideoTimelineMarkerProps> = ({ instances, sectionName, fps: _fps, videoRef, videoDurationSec, colorByCategory = false }) => {
   if (!instances || instances.length === 0) return null;
   
   // Color palette for shot types (when colorByCategory is true)

@@ -54,7 +54,7 @@ type Props = {
 const H = 220;
 const PAD = 28;
 
-export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps, fullWidth = false }) => {
+export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, fullWidth = false }) => {
   const rallyIds = useMemo(() => Object.keys(data?.rallies || {}).sort(), [data]);
   const [selectedRally, setSelectedRally] = useState<string>(rallyIds[0] || '');
   const [showP0, setShowP0] = useState<boolean>(true);
