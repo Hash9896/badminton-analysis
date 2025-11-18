@@ -478,7 +478,9 @@ const RallyTimeline: React.FC<{ rallies: Array<{ start: number; end: number; gam
 export type TimelineInstance = { timeSec: number; label: string; category?: string };
 type VideoTimelineMarkerProps = { instances: TimelineInstance[]; sectionName: string; fps: number; videoRef: Props['videoRef']; videoDurationSec?: number; colorByCategory?: boolean };
 
-export const VideoTimelineMarker: React.FC<VideoTimelineMarkerProps> = ({ instances, sectionName, fps: _fps, videoRef, videoDurationSec, colorByCategory = false }) => {
+export const VideoTimelineMarker: React.FC<VideoTimelineMarkerProps> = ({ instances, sectionName, fps, videoRef, videoDurationSec, colorByCategory = false }) => {
+  // fps parameter is required by Props but not used in this component
+  void fps;
   if (!instances || instances.length === 0) return null;
   
   // Color palette for shot types (when colorByCategory is true)

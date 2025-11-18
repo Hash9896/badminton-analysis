@@ -54,7 +54,9 @@ type Props = {
 const H = 220;
 const PAD = 28;
 
-export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, fullWidth = false }) => {
+export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps, fullWidth = false }) => {
+  // fps parameter is required by Props but not used in this component
+  void fps;
   const rallyIds = useMemo(() => Object.keys(data?.rallies || {}).sort(), [data]);
   const [selectedRally, setSelectedRally] = useState<string>(rallyIds[0] || '');
   const [showP0, setShowP0] = useState<boolean>(true);
