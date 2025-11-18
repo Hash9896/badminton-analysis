@@ -29,9 +29,7 @@ const seek = (ref: React.RefObject<HTMLVideoElement | null>, sec: number) => {
   const v = ref.current; if (!v) return; const s = Math.max(0, sec - 2); v.currentTime = s; v.play().catch(() => {});
 };
 
-const IneffectiveSlowEvents: React.FC<Props> = ({ events, fps, videoRef }) => {
-  // fps parameter is required by Props but not used in this component
-  void fps;
+const IneffectiveSlowEvents: React.FC<Props> = ({ events, fps: _fps, videoRef }) => {
   const [groupBy, setGroupBy] = useState<'stroke' | 'combo'>('stroke');
 
   const byPlayer = useMemo(() => {
