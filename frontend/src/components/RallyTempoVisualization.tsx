@@ -1,4 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import {
+  CLUTCH_FILTERS,
+  EFFECTIVENESS_FILTERS,
+  LENGTH_FILTERS,
+  TEMPO_FILTERS,
+  type RallyTags,
+  resolveTempoDominance,
+} from '../utils/rallyTags';
 
 export type RallyTempoShot = {
   stroke_number: number;
@@ -33,11 +41,20 @@ export type RallyTempoPayload = {
 type Props = {
   data: RallyTempoPayload | null;
   videoRef: React.RefObject<HTMLVideoElement | null>;
+  tags?: Record<string, RallyTags>;
 };
 
 const PAD = 40;
 const H = 400;
 const W = 1000;
+
+const filterSelectStyle: React.CSSProperties = {
+  padding: '4px 8px',
+  borderRadius: 6,
+  border: '1px solid #2c2c34',
+  background: '#0f0f15',
+  color: '#e5e7eb',
+};
 
 const seek = (ref: React.RefObject<HTMLVideoElement | null>, sec: number) => {
   const v = ref.current;
@@ -100,32 +117,6 @@ const getClassificationRadius = (classification: string): number => {
   return classificationSizes[key];
 };
 
-const resolveTempoDominance = (
-  player: 'P0' | 'P1' | string,
-  tempoControl?: string
-): { dominant: 'P0' | 'P1' | null; label: string } => {
-  const control = (tempoControl || '').toLowerCase();
-  const shooter = player === 'P0' || player === 'P1' ? player : null;
-  let dominant: 'P0' | 'P1' | null = null;
-
-  if (control.startsWith('player') && shooter) {
-    dominant = shooter;
-  } else if (control.startsWith('opponent') && shooter) {
-    dominant = shooter === 'P0' ? 'P1' : 'P0';
-  }
-
-  let label: string;
-  if (dominant) {
-    label = `${dominant} dominant`;
-  } else if (control) {
-    label = control === 'neutral' ? 'Neutral tempo' : control.replace(/_/g, ' ');
-  } else {
-    label = 'Neutral tempo';
-  }
-
-  return { dominant, label };
-};
-
 const formatControlType = (controlType?: string) => {
   if (!controlType) return '';
   return controlType
@@ -134,16 +125,46 @@ const formatControlType = (controlType?: string) => {
     .join(' ');
 };
 
-const RallyTempoVisualization: React.FC<Props> = ({ data, videoRef }) => {
-  const [selectedRallyIndex, setSelectedRallyIndex] = useState<number>(0);
+const RallyTempoVisualization: React.FC<Props> = ({ data, videoRef, tags }) => {
+  const [selectedRallyId, setSelectedRallyId] = useState<string | null>(null);
   const [showTempoControl, setShowTempoControl] = useState<boolean>(true);
   const [showClassification, setShowClassification] = useState<boolean>(false);
+  const [lengthFilter, setLengthFilter] = useState<(typeof LENGTH_FILTERS)[number]['value']>('all');
+  const [tempoFilter, setTempoFilter] = useState<(typeof TEMPO_FILTERS)[number]['value']>('all');
+  const [effectFilter, setEffectFilter] = useState<(typeof EFFECTIVENESS_FILTERS)[number]['value']>('all');
+  const [clutchFilter, setClutchFilter] = useState<(typeof CLUTCH_FILTERS)[number]['value']>('all');
 
-  const selectedRally = useMemo(() => {
-    if (!data || !data.rallies || data.rallies.length === 0) return null;
-    const idx = Math.min(selectedRallyIndex, data.rallies.length - 1);
-    return data.rallies[idx];
-  }, [data, selectedRallyIndex]);
+  const filteredRallies = useMemo(() => {
+    if (!data?.rallies) return [];
+    return data.rallies.filter(rally => {
+      const tag = tags?.[rally.rally_id];
+      if (!tag) {
+        return (
+          lengthFilter === 'all' &&
+          tempoFilter === 'all' &&
+          effectFilter === 'all' &&
+          clutchFilter === 'all'
+        );
+      }
+      if (lengthFilter !== 'all' && tag.length !== lengthFilter) return false;
+      if (tempoFilter !== 'all' && tag.tempo !== tempoFilter) return false;
+      if (effectFilter !== 'all' && tag.effectiveness !== effectFilter) return false;
+      if (clutchFilter !== 'all' && tag.clutch !== clutchFilter) return false;
+      return true;
+    });
+  }, [data, tags, lengthFilter, tempoFilter, effectFilter, clutchFilter]);
+
+  useEffect(() => {
+    if (!filteredRallies.length) {
+      setSelectedRallyId(null);
+      return;
+    }
+    if (!selectedRallyId || !filteredRallies.some(r => r.rally_id === selectedRallyId)) {
+      setSelectedRallyId(filteredRallies[0].rally_id);
+    }
+  }, [filteredRallies, selectedRallyId]);
+
+  const selectedRally = filteredRallies.find(r => r.rally_id === selectedRallyId) || filteredRallies[0] || null;
 
   const plotData = useMemo(() => {
     if (!selectedRally) return null;
@@ -205,6 +226,14 @@ const RallyTempoVisualization: React.FC<Props> = ({ data, videoRef }) => {
     );
   }
 
+  if (!filteredRallies.length) {
+    return (
+      <div style={{ padding: 20, textAlign: 'center', color: '#94a3b8' }}>
+        No rallies match the selected filters.
+      </div>
+    );
+  }
+
   if (!plotData || plotData.p0Points.length === 0 && plotData.p1Points.length === 0) {
     return (
       <div style={{ padding: 20, textAlign: 'center', color: '#94a3b8' }}>
@@ -240,8 +269,8 @@ const RallyTempoVisualization: React.FC<Props> = ({ data, videoRef }) => {
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
         <strong>Rally Tempo Visualization</strong>
         <select
-          value={selectedRallyIndex}
-          onChange={(e) => setSelectedRallyIndex(Number(e.target.value))}
+          value={selectedRallyId || ''}
+          onChange={(e) => setSelectedRallyId(e.target.value || null)}
           style={{
             padding: '4px 8px',
             borderRadius: 6,
@@ -250,12 +279,34 @@ const RallyTempoVisualization: React.FC<Props> = ({ data, videoRef }) => {
             color: '#e5e7eb',
           }}
         >
-          {data.rallies.map((r, idx) => (
-            <option key={r.rally_id} value={idx}>
+          {filteredRallies.map(r => (
+            <option key={r.rally_id} value={r.rally_id}>
               Rally {r.rally_number} (Game {r.game_number}) - {r.rally_winner || 'Unknown'} - {r.total_shots} shots
             </option>
           ))}
         </select>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <select value={lengthFilter} onChange={e => setLengthFilter(e.target.value as any)} style={filterSelectStyle}>
+            {LENGTH_FILTERS.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <select value={tempoFilter} onChange={e => setTempoFilter(e.target.value as any)} style={filterSelectStyle}>
+            {TEMPO_FILTERS.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <select value={effectFilter} onChange={e => setEffectFilter(e.target.value as any)} style={filterSelectStyle}>
+            {EFFECTIVENESS_FILTERS.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          <select value={clutchFilter} onChange={e => setClutchFilter(e.target.value as any)} style={filterSelectStyle}>
+            {CLUTCH_FILTERS.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
         <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13 }}>
           <input
             type="checkbox"

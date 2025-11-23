@@ -16,6 +16,7 @@ import './App.css';
 import Papa from 'papaparse';
 import StatsPanel, { type StatsData } from './components/StatsPanel';
 import StatsPanelV2, { VideoTimelineMarker, type TimelineInstance } from './components/StatsPanelV2.tsx';
+import { computeRallyTags, type RallyTags } from './utils/rallyTags';
 
 // Generic JSON type
 type AnyJson = Record<string, any>;
@@ -27,6 +28,8 @@ type TechIssue = {
   recommended_feedback: string;
   timestampsSec: number[];
 };
+
+type StatsSurface = 'summary' | 'sr' | 'winners' | 'errors' | 'eff' | 'zones' | 'shotDist' | 'winRallies' | 'loseRallies' | 'threeShot';
 
 function normalizeSummaryJson(summary: AnyJson): Observation[] {
   const out: Observation[] = [];
@@ -84,7 +87,6 @@ function App() {
   // Technical state
   const techVideoRef = useRef<HTMLVideoElement | null>(null);
   const [techVideoUrl, setTechVideoUrl] = useState<string>('');
-  const [techVideoLoaded, setTechVideoLoaded] = useState<boolean>(false);
   const [techIssues, setTechIssues] = useState<TechIssue[]>([]);
   const [selectedTechIssue, setSelectedTechIssue] = useState<string | null>(null);
 
@@ -92,10 +94,10 @@ function App() {
 
   // Shared
   const [fps, setFps] = useState<number>(30);
-  const [inputsExpanded, setInputsExpanded] = useState<boolean>(true);
   const [statusMsg, setStatusMsg] = useState<string>('');
   const [statusType, setStatusType] = useState<'ok' | 'err' | ''>('');
   const [rightTab, setRightTab] = useState<'summary'|'stats'|'dynamics'|'tempo'|'chat'>('summary');
+  const [rightTempoView, setRightTempoView] = useState<'overview'|'rally_tempo'>('overview');
   const [statsData, setStatsData] = useState<StatsData>({});
   const [v3Text, setV3Text] = useState<string>('');
   const [uiVersion, setUiVersion] = useState<'v1'|'v2'>('v1');
@@ -112,6 +114,10 @@ function App() {
   const [activeStatsSection, setActiveStatsSection] = useState<string | null>(null);
   const [timelineInstances, setTimelineInstances] = useState<TimelineInstance[]>([]);
   const [timelineSectionName, setTimelineSectionName] = useState<string>('');
+  const [rallyTags, setRallyTags] = useState<Record<string, RallyTags>>({});
+  const [primaryTab, setPrimaryTab] = useState<'stats'|'dynamics'|'tempo'|'chat'|'summary'>('stats');
+  const [statsSurface, setStatsSurface] = useState<StatsSurface | null>(null);
+  const [playerView, setPlayerView] = useState<'both'|'P0'|'P1'>('both');
 
   const anyStatsLoaded = useMemo(() => {
     const d = statsData;
@@ -129,15 +135,32 @@ function App() {
       (d.shotDistribution && d.shotDistribution.length)
     );
   }, [statsData]);
-  const isMatchCollapsed = useMemo(() => videoLoaded && (summaryLoaded || anyStatsLoaded), [videoLoaded, summaryLoaded, anyStatsLoaded]);
-  const isTechCollapsed = useMemo(() => techVideoLoaded && techIssues.length > 0, [techVideoLoaded, techIssues.length]);
 
   useEffect(() => {
-    if (mode === 'match' && isMatchCollapsed) setInputsExpanded(false);
-    if (mode === 'technical' && isTechCollapsed) setInputsExpanded(false);
-  }, [mode, isMatchCollapsed, isTechCollapsed]);
+    if (rallyTempoData) {
+      setRallyTags(computeRallyTags(rallyTempoData, rallyMetrics, dynData));
+    } else {
+      setRallyTags({});
+    }
+  }, [rallyTempoData, rallyMetrics, dynData]);
 
   useEffect(() => { /* no auto-loads */ }, []);
+
+  useEffect(() => {
+    if (primaryTab !== 'stats') {
+      setActiveStatsSection(null);
+      setTimelineInstances([]);
+      setTimelineSectionName('');
+      return;
+    }
+    if (!statsSurface || statsSurface === 'summary') {
+      setActiveStatsSection(null);
+      setTimelineInstances([]);
+      setTimelineSectionName('');
+    } else {
+      setActiveStatsSection(statsSurface);
+    }
+  }, [primaryTab, statsSurface]);
 
   // Load CSV utility
   // Deprecated helper (replaced by folder loader parsing)
@@ -556,7 +579,7 @@ function App() {
     const f = e.target.files?.[0];
     if (!f) return;
     const url = URL.createObjectURL(f);
-    setTechVideoUrl(url); setTechVideoLoaded(true); showStatus('Technical video loaded', 'ok');
+    setTechVideoUrl(url); showStatus('Technical video loaded', 'ok');
     e.currentTarget.value = '';
   };
   const onPickTechJson: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -593,108 +616,357 @@ function App() {
   };
 
   // Inputs UI
-  const CollapsedInputsStrip: React.FC = () => {
-    const isMatch = mode === 'match';
-  return (
-      <div onClick={() => setInputsExpanded(true)}
-        style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '6px 10px', border: '1px solid #2c2c34', borderRadius: 8, background: '#0f0f15', fontSize: 12, cursor: 'pointer' }}>
-        {isMatch ? (
-          <>
-            <span title={videoLoaded ? 'Video loaded' : 'Video not loaded'} style={{ width: 8, height: 8, borderRadius: 999, background: videoLoaded ? '#22c55e' : '#475569', display: 'inline-block' }} />
-            <span title={summaryLoaded ? 'Summary loaded' : 'Summary not loaded'} style={{ width: 8, height: 8, borderRadius: 999, background: summaryLoaded ? '#22c55e' : '#475569', display: 'inline-block' }} />
-                  </>
-                ) : (
-                  <>
-            <span title={techVideoLoaded ? 'Technical video loaded' : 'Technical video not loaded'} style={{ width: 8, height: 8, borderRadius: 999, background: techVideoLoaded ? '#22c55e' : '#475569', display: 'inline-block' }} />
-            <span title={techIssues.length > 0 ? 'Technical JSON loaded' : 'Technical JSON not loaded'} style={{ width: 8, height: 8, borderRadius: 999, background: techIssues.length > 0 ? '#22c55e' : '#475569', display: 'inline-block' }} />
-                  </>
-                )}
-        <span style={{ opacity: 0.85 }}>FPS: {fps}</span>
-        <span style={{ marginLeft: 'auto' }}>▼</span>
-        </div>
-    );
-  };
 
   const InputsPanel = () => {
-    const isMatch = mode === 'match';
-    const collapsed = isMatch ? isMatchCollapsed : isTechCollapsed;
+    if (mode === 'match') {
+      return (
+        <label className="session-loader">
+          Load Session Folder
+          <input type="file" multiple onChange={onPickFolder} {...({ webkitdirectory: '' } as any)} />
+        </label>
+      );
+    }
     return (
-      <div className="inputs-panel-wrapper">
-        <div className="inputs-header" onClick={() => setInputsExpanded(v => !v)}>
-          <h2 style={{ margin: 0, fontSize: '1.1em' }}>Inputs</h2>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {collapsed && !inputsExpanded && (
-              <>
-                <span title={isMatch ? (videoLoaded ? 'Video loaded' : 'Video not loaded') : (techVideoLoaded ? 'Tech video loaded' : 'Tech video not loaded')}
-                  style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: (isMatch ? videoLoaded : techVideoLoaded) ? 'green' : 'gray' }}
-                />
-                <span title={isMatch ? (summaryLoaded ? 'Summary loaded' : 'Summary not loaded') : (techIssues.length > 0 ? 'Tech JSON loaded' : 'Tech JSON not loaded')}
-                  style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: (isMatch ? summaryLoaded : techIssues.length > 0) ? 'green' : 'gray' }}
-                />
-                <span>FPS: {fps}</span>
-              </>
-            )}
-            <span>{inputsExpanded ? '▲' : '▼'}</span>
-                  </div>
-              </div>
-        {inputsExpanded && (
-          <div className="inputs-content">
-            {isMatch ? (
-              <>
-                <div className="input-group">
-                  <label>Session Folder:</label>
-                  <label style={{ border:'1px solid #2c2c34', borderRadius:8, padding:'6px 10px', cursor:'pointer', color:'#e5e7eb', display:'inline-block', marginLeft: 8 }}>
-                    Load Session Folder
-                    <input type="file" style={{ display:'none' }} multiple onChange={onPickFolder} {...({ webkitdirectory: '' } as any)} />
-                  </label>
-                </div>
-                <div style={{ marginTop: 6, fontSize: 12, opacity: 0.8 }}>
-                  Video: {videoUrl ? 'loaded' : '—'} · Tempo: ev={tempoEvents.length} ine={ineffSlowEvents.length} zone={zoneBuckets.length} combos={comboSummaryBand.length}/{comboInstancesBand.length} rally={rallyMetrics.length}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="input-group">
-                  <label htmlFor="tech-video-upload">Technical Video:</label>
-                  <input id="tech-video-upload" type="file" accept="video/*" onChange={onPickTechVideo} />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="tech-json-upload">Technical JSON:</label>
-                  <input id="tech-json-upload" type="file" accept="application/json" onChange={onPickTechJson} />
-                </div>
-              </>
-            )}
-            <div className="input-group">
-              <label htmlFor="fps-select">FPS:</label>
-              <input id="fps-select" type="number" min={1} max={240} step={1} value={fps}
-                onChange={(e) => setFps(Number(e.target.value) || 30)}
-                placeholder="e.g., 25" style={{ width: 100 }} />
-            </div>
-                </div>
-              )}
-            </div>
+      <div className="session-loader--tech">
+        <label className="session-loader__btn">
+          Tech Video
+          <input type="file" accept="video/*" onChange={onPickTechVideo} />
+        </label>
+        <label className="session-loader__btn">
+          Tech JSON
+          <input type="file" accept="application/json" onChange={onPickTechJson} />
+        </label>
+      </div>
     );
   };
 
-  const isMatch = mode === 'match';
-  const collapsedInputs = isMatch ? isMatchCollapsed : isTechCollapsed;
+
+  // Helper to extract jump links for selected section (UI v1 format) - grouped by category
+  type JumpLinkGroup = { category: string; count: number; links: Array<{ label: string; title: string; sec: number }> };
+  
+  // Shot category mapping for rally categorization
+  const shotCategories = {
+    Attacking: ['forehand_smash','overhead_smash','backhand_smash','forehand_halfsmash','overhead_halfsmash','forehand_nettap','backhand_nettap','forehand_drive','backhand_drive','flat_game','forehand_push','backhand_push'],
+    Defense: ['forehand_defense','backhand_defense','forehand_defense_cross','backhand_defense_cross'],
+    NetBattle: ['forehand_netkeep','backhand_netkeep','forehand_dribble','backhand_dribble'],
+    Placement: ['overhead_drop','forehand_drop','backhand_drop','forehand_pulldrop','backhand_pulldrop'],
+    Reset: ['forehand_lift','backhand_lift','forehand_clear','overhead_clear','backhand_clear'],
+  };
+  const mapShotToBucket = (shot: string): keyof typeof shotCategories | 'Other' => {
+    const n = String(shot || '').replace(/_cross$/i, '').trim().toLowerCase();
+    for (const k of Object.keys(shotCategories) as (keyof typeof shotCategories)[]) {
+      if (shotCategories[k].some(s => s.toLowerCase() === n)) return k;
+    }
+    return 'Other';
+  };
+  
+  const extractJumpLinks = (section: StatsSurface | null): JumpLinkGroup[] => {
+    if (!section) return [];
+    const groups = new Map<string, Array<{ label: string; title: string; sec: number }>>();
+    const toSec = (frame: number) => (Number.isFinite(frame) && fps > 0 ? frame / fps : 0);
+    const normalizeShot = (s: string) => String(s || '').replace(/_cross$/i, '').trim();
+    const addLink = (category: string, link: { label: string; title: string; sec: number }) => {
+      if (!groups.has(category)) groups.set(category, []);
+      groups.get(category)!.push(link);
+    };
+
+    if (section === 'winners') {
+      const extract = (rows?: any[]) => {
+        if (!Array.isArray(rows)) return;
+        for (const r of rows || []) {
+          const f = parseInt(String(r.FrameNumber || r.LastShotFrame || ''), 10);
+          const stroke = normalizeShot(String(r.Stroke || ''));
+          if (Number.isFinite(f) && f > 0 && stroke) {
+            const sec = toSec(f);
+            addLink(stroke, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${stroke} (±2s)`, sec });
+          }
+        }
+      };
+      if (playerView === 'both' || playerView === 'P0') extract(statsData.p0Winners);
+      if (playerView === 'both' || playerView === 'P1') extract(statsData.p1Winners);
+    } else if (section === 'errors') {
+      const extract = (rows?: any[]) => {
+        if (!Array.isArray(rows)) return;
+        for (const r of rows || []) {
+          const f = parseInt(String(r.FrameNumber || r.LastShotFrame || ''), 10);
+          const stroke = normalizeShot(String(r.Stroke || ''));
+          if (Number.isFinite(f) && f > 0 && stroke) {
+            const sec = toSec(f);
+            addLink(stroke, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${stroke} (±2s)`, sec });
+          }
+        }
+      };
+      if (playerView === 'both' || playerView === 'P0') extract(statsData.p0Errors);
+      if (playerView === 'both' || playerView === 'P1') extract(statsData.p1Errors);
+    } else if (section === 'sr') {
+      const extract = (rows?: any[]) => {
+        if (!Array.isArray(rows)) return;
+        for (const r of rows || []) {
+          const serve = String(r.Serve_Shot || '').trim();
+          const recv = String(r.Receive_Shot || '').trim();
+          const category = `${serve} → ${recv}`;
+          const frames = String(r.Frames || '').trim();
+          if (frames) {
+            const parts = frames.split(',').map(s => s.trim()).filter(Boolean);
+            for (const p of parts) {
+              const m = p.match(/(\d+)\s*->\s*(\d+)/);
+              if (m) {
+                const frame = parseInt(m[1], 10);
+                if (Number.isFinite(frame) && frame > 0) {
+                  const sec = toSec(frame);
+                  addLink(category, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${serve}→${recv} (±2s)`, sec });
+                }
+              }
+            }
+          }
+        }
+      };
+      if (playerView === 'both' || playerView === 'P0') extract(statsData.p0SrPatterns);
+      if (playerView === 'both' || playerView === 'P1') extract(statsData.p1SrPatterns);
+    } else if (section === 'zones') {
+      const extract = (player: 'P0'|'P1') => {
+        const rows = Array.isArray(statsData.zoneTopBottom) ? statsData.zoneTopBottom.filter(r => r && String(r.Player || '').toUpperCase() === player) : [];
+        for (const r of rows) {
+          const allFramesStr = String(r.AllFrames || '').trim();
+          const zone = String(r.AnchorHittingZone || '').trim();
+          if (allFramesStr && zone) {
+            const parts = allFramesStr.split('|').filter(Boolean);
+            for (const part of parts) {
+              const m = part.match(/F(\d+)/i);
+              if (m) {
+                const f = parseInt(m[1], 10);
+                if (Number.isFinite(f) && f > 0) {
+                  const sec = toSec(f);
+                  addLink(zone, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${zone} F${f} (±2s)`, sec });
+                }
+              }
+            }
+          }
+        }
+      };
+      if (playerView === 'both' || playerView === 'P0') extract('P0');
+      if (playerView === 'both' || playerView === 'P1') extract('P1');
+    } else if (section === 'eff') {
+      // Include all effectiveness rows including forced/unforced errors
+      const rowsAll = Array.isArray(statsData.effectiveness) ? statsData.effectiveness.filter(r => {
+        const stroke = String(r.Stroke || '').toLowerCase();
+        const isServe = stroke.includes('serve') || String(r.is_serve || '').toLowerCase() === 'true';
+        const label = String(r.effectiveness_label || r.Effectiveness_Label || '').toLowerCase();
+        const isTerminal = label.includes('rally winner') || label.startsWith('serve');
+        return !isServe && !isTerminal; // Keep forced/unforced errors
+      }) : [];
+      
+      const extract = (player: 'P0'|'P1') => {
+        const playerRows = rowsAll.filter(r => r && String(r.Player || '').toUpperCase() === player);
+        
+        // Group by effectiveness type, then by shot type
+        const byTypeAndShot: Record<string, Record<string, Array<{f: number, stroke: string, label: string}>>> = {
+          'most effective': {},
+          'most ineffective': {},
+          'forced errors': {},
+          'unforced errors': {}
+        };
+        
+        for (const r of playerRows) {
+          const f = parseInt(String(r.FrameNumber || ''), 10);
+          const stroke = normalizeShot(String(r.Stroke || ''));
+          const color = String(r.color || '').toLowerCase();
+          const label = String(r.effectiveness_label || r.Effectiveness_Label || '').toLowerCase();
+          
+          if (Number.isFinite(f) && f > 0 && stroke) {
+            let type = '';
+            if (label.includes('forced error')) {
+              type = 'forced errors';
+            } else if (label.includes('unforced error')) {
+              type = 'unforced errors';
+            } else if (color === 'green' || label.includes('effective')) {
+              type = 'most effective';
+            } else if (color === 'red' || color === 'darkred' || label.includes('ineffective')) {
+              type = 'most ineffective';
+            }
+            
+            if (type) {
+              if (!byTypeAndShot[type][stroke]) {
+                byTypeAndShot[type][stroke] = [];
+              }
+              byTypeAndShot[type][stroke].push({ f, stroke, label });
+            }
+          }
+        }
+        
+        // Add links grouped by type and shot
+        const typeLabels: Record<string, string> = {
+          'most effective': 'most effective',
+          'most ineffective': 'most ineffective',
+          'forced errors': 'forced errors',
+          'unforced errors': 'unforced errors'
+        };
+        
+        for (const [type, byShot] of Object.entries(byTypeAndShot)) {
+          // Sort shots by count (descending)
+          const sortedShots = Object.entries(byShot).sort((a, b) => b[1].length - a[1].length);
+          
+          for (const [shot, items] of sortedShots) {
+            if (items.length > 0) {
+              // Category format: "P0 - most effective - Forehand clear"
+              const category = `${player} - ${typeLabels[type]} - ${shot}`;
+              for (const item of items) {
+                const sec = toSec(item.f);
+                addLink(category, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${item.stroke} (${type}) F${item.f} (±2s)`, sec });
+              }
+            }
+          }
+        }
+      };
+      
+      if (playerView === 'both' || playerView === 'P0') extract('P0');
+      if (playerView === 'both' || playerView === 'P1') extract('P1');
+    } else if (section === 'winRallies' || section === 'loseRallies') {
+      const extract = (player: 'P0'|'P1') => {
+        const rows = section === 'winRallies'
+          ? (player === 'P0' ? (statsData.p0WinningRallies || []) : (statsData.p1WinningRallies || []))
+          : (player === 'P0' ? (statsData.p0LosingRallies || []) : (statsData.p1LosingRallies || []));
+        
+        // Group by rally category
+        const byCategory: Record<string, Array<{start: number, game: string, rally: string, lastShot: string}>> = {
+          'Attacking': [],
+          'Defense': [],
+          'NetBattle': [],
+          'Placement': [],
+          'Reset': [],
+          'Other': []
+        };
+        
+        for (const r of rows) {
+          const start = parseInt(String(r.StartFrame || ''), 10);
+          const game = String(r.GameNumber || '');
+          const rally = String(r.RallyNumber || '');
+          const lastShot = String(r.LastShot || r.LastShotName || r.LastShotType || '').trim();
+          if (Number.isFinite(start) && start > 0) {
+            const category = mapShotToBucket(lastShot);
+            byCategory[category].push({ start, game, rally, lastShot });
+          }
+        }
+        
+        // Add links grouped by category
+        const categoryOrder: (keyof typeof shotCategories | 'Other')[] = ['Attacking', 'Defense', 'NetBattle', 'Placement', 'Reset', 'Other'];
+        const categoryLabels: Record<string, string> = {
+          'Attacking': 'attacking',
+          'Defense': 'defensive',
+          'NetBattle': 'Net battle',
+          'Placement': 'Placement',
+          'Reset': 'Reset',
+          'Other': 'Other'
+        };
+        for (const cat of categoryOrder) {
+          if (byCategory[cat].length > 0) {
+            const categoryName = `${player} - ${categoryLabels[cat]}`;
+            for (const item of byCategory[cat]) {
+              const sec = toSec(item.start);
+              addLink(categoryName, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `G${item.game}-R${item.rally} ${item.lastShot} (±2s)`, sec });
+            }
+          }
+        }
+      };
+      
+      if (playerView === 'both' || playerView === 'P0') extract('P0');
+      if (playerView === 'both' || playerView === 'P1') extract('P1');
+    } else if (section === 'threeShot') {
+      const rows = statsData.threeShot || [];
+      for (const r of rows) {
+        const f = parseInt(String(r.FirstFrame || r.TargetFrame || r.FrameNumber || ''), 10);
+        const seq = String(r.Sequence || r.Label || '').trim();
+        if (Number.isFinite(f) && f > 0 && seq) {
+          const sec = toSec(f);
+          addLink(seq, { label: `[${formatMs(Math.max(0, (sec-2))*1000)}]`, title: `${seq} F${f} (±2s)`, sec });
+        }
+      }
+    }
+    // shotDist doesn't have direct frame references, skip for now
+    
+    // Convert Map to array of groups
+    return Array.from(groups.entries()).map(([category, links]) => ({
+      category,
+      count: links.length,
+      links
+    })).sort((a, b) => b.count - a.count); // Sort by count descending
+  };
+
+  const seek = (ref: React.RefObject<HTMLVideoElement | null>, sec: number) => {
+    const v = ref.current; if (!v) return; const s = Math.max(0, sec - 2); v.currentTime = s; v.play().catch(() => {});
+  };
+
+  const renderSummaryBlock = () => {
+    if (v3Text) {
+      return (
+        <>
+          <h2 style={{ margin: 0 }}>Match Summary</h2>
+          <div style={{ marginTop: 8, whiteSpace: 'pre-wrap', lineHeight: 1.5, fontSize: 14 }}>{v3Text}</div>
+        </>
+      );
+    }
+    if (saSections.length > 0) {
+      return <StructuredAnalysis sections={saSections} videoRef={videoRef as any} fps={fps} />;
+    }
+    if (v2Sections.length > 0) {
+      return <KeyTakeawaysV2 sections={v2Sections} videoRef={videoRef} fps={fps} />;
+    }
+    if (observations.length > 0) {
+      return <KeyTakeaways items={observations} videoRef={videoRef} fps={fps} />;
+    }
+    return <div style={{ opacity: 0.7 }}>Load a summary file to view insights.</div>;
+  };
+
+  const primaryTabsConfig: Array<{ key: 'stats'|'dynamics'|'tempo'|'chat'|'summary'; label: string }> = [
+    { key: 'stats', label: 'Stats' },
+    { key: 'dynamics', label: 'Rally Dynamics' },
+    { key: 'tempo', label: 'Tempo' },
+    { key: 'chat', label: 'Chat' },
+    { key: 'summary', label: 'Summary' },
+  ];
+
+  const statsSegments: Array<{ key: StatsSurface; label: string; available: boolean }> = [
+    { key: 'shotDist', label: 'Shot Mix', available: Boolean(statsData.shotDistribution && statsData.shotDistribution.length) },
+    { key: 'zones', label: 'Zone Effectiveness', available: Boolean(statsData.zoneTopBottom && statsData.zoneTopBottom.length) },
+    { key: 'sr', label: 'Service → Receive', available: Boolean((statsData.p0SrPatterns && statsData.p0SrPatterns.length) || (statsData.p1SrPatterns && statsData.p1SrPatterns.length)) },
+    { key: 'eff', label: 'Shot Effectiveness', available: Boolean(statsData.effectiveness && statsData.effectiveness.length) },
+    { key: 'winners', label: 'Winners', available: anyStatsLoaded },
+    { key: 'errors', label: 'Errors', available: anyStatsLoaded },
+    { key: 'winRallies', label: 'Winning Rallies', available: Boolean((statsData.p0WinningRallies && statsData.p0WinningRallies.length) || (statsData.p1WinningRallies && statsData.p1WinningRallies.length)) },
+    { key: 'loseRallies', label: 'Losing Rallies', available: Boolean((statsData.p0LosingRallies && statsData.p0LosingRallies.length) || (statsData.p1LosingRallies && statsData.p1LosingRallies.length)) },
+    { key: 'threeShot', label: '3 Shot Sequence', available: Boolean(statsData.threeShot && statsData.threeShot.length) },
+  ];
+
+  const tempoSegments: Array<{ key: typeof tempoView; label: string; available: boolean }> = [
+    { key: 'overview', label: 'Overview', available: tempoEvents.length > 0 },
+    { key: 'combos', label: 'Combos', available: comboSummaryBand.length > 0 && comboInstancesBand.length > 0 },
+    { key: 'zones', label: 'Zones', available: zoneBuckets.length > 0 },
+    { key: 'rally', label: 'Rally Pace', available: rallyMetrics.length > 0 },
+    { key: 'ineff', label: 'Ineff + Slow', available: ineffSlowEvents.length > 0 },
+    { key: 'rally_tempo', label: 'Rally Tempo', available: Boolean(rallyTempoData && rallyTempoData.rallies.length) },
+    { key: 'tempo_effect', label: 'Tempo + Eff', available: Boolean(rallyTempoData && rallyTempoData.rallies.length && dynData) },
+  ];
 
   return (
     <div className="container">
-      <div style={{ margin: '0 0 12px', display: 'flex', gap: 8, alignItems:'center' }}>
-        <button onClick={() => setMode('match')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'match' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Match</button>
-        <button onClick={() => setMode('technical')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'technical' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Technical</button>
-        <div style={{ marginLeft:'auto', display:'flex', gap:6 }}>
+      <div className="header-controls">
+        <div className="header-controls__left">
+          <button onClick={() => setMode('match')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'match' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Match</button>
+          <button onClick={() => setMode('technical')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'technical' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Technical</button>
+          <label style={{ display:'flex', alignItems:'center', gap:6, fontSize:13 }}>
+            <span>FPS:</span>
+            <select value={fps} onChange={(e)=>setFps(Number(e.target.value) || 30)} style={{ background:'#0f0f15', color:'#e5e7eb', border:'1px solid #2c2c34', borderRadius:6, padding:'4px 6px' }}>
+              {[24,25,30,50,60,120].map(val => <option key={val} value={val}>{val}</option>)}
+            </select>
+          </label>
+          <InputsPanel />
+        </div>
+        <div style={{ display:'flex', gap:6 }}>
           <button onClick={()=>setUiVersion('v1')} title="Classic stats UI" style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: uiVersion==='v1' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>UI v1</button>
           <button onClick={()=>setUiVersion('v2')} title="Visualized stats UI" style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: uiVersion==='v2' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>UI v2</button>
         </div>
       </div>
       {/* Only show the full inputs panel in header if not collapsed or if user expanded */}
-      {(!collapsedInputs || inputsExpanded) && (
-        <div className="header">
-          <InputsPanel />
-        </div>
-      )}
       {statusMsg && (
         <div style={{ position: 'fixed', top: 12, right: 12, background: statusType === 'ok' ? '#064e3b' : '#3f1d1d', border: `1px solid ${statusType === 'ok' ? '#10b981' : '#ef4444'}`, color: '#e5e7eb', padding: '8px 10px', borderRadius: 8, fontSize: 12 }}>
           {statusMsg}
@@ -703,143 +975,244 @@ function App() {
 
       {mode === 'match' ? (
         uiVersion === 'v2' ? (
-          // UI v2: two-panel layout, stats on right, graph below video when section expanded
-          <div className="layout">
-            <div className="video-area">
-              <div className="panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                {collapsedInputs && !inputsExpanded && (
-                  <div style={{ marginBottom: 8 }}>
-                    <CollapsedInputsStrip />
-                  </div>
-                )}
-                <video className="video-el" ref={videoRef} src={videoUrl} controls />
-                {rightTab === 'stats' && activeStatsSection && (
-                  <div style={{ marginTop: 12, padding: 12, borderTop: '1px solid #2c2c34', maxHeight: '40%', overflow: 'auto' }}>
-                <StatsPanelV2 data={statsData} fps={fps} videoRef={videoRef} activeSection={activeStatsSection} onTimelineInstances={(instances, name) => { setTimelineInstances(instances); setTimelineSectionName(name); }} />
-                  </div>
-                )}
-                {rightTab === 'stats' && activeStatsSection && timelineInstances.length > 0 && (
-                  <div style={{ marginTop: 8, padding: '8px 12px', borderTop: '1px solid #2c2c34', width: '100%' }}>
-                    <VideoTimelineMarker 
-                      instances={timelineInstances} 
-                      sectionName={timelineSectionName}
-                      fps={fps}
-                      videoRef={videoRef}
-                      videoDurationSec={videoRef.current?.duration || undefined}
-                      colorByCategory={activeStatsSection === 'winners' || activeStatsSection === 'errors' || activeStatsSection === 'eff'}
-                    />
-                  </div>
-                )}
-                {rightTab === 'dynamics' && dynData && (
-                  <div style={{ marginTop: 12, padding: 12, borderTop: '1px solid #2c2c34', width: '100%', maxHeight: '40%', overflow: 'auto' }}>
-                    <RallyDynamics data={dynData} videoRef={videoRef} fps={fps} fullWidth={true} />
-                  </div>
-                )}
-                {rightTab === 'tempo' && (
-                  <div style={{ marginTop: 12, padding: 12, borderTop: '1px solid #2c2c34', width: '100%', flexGrow: 1, maxHeight: '50%', overflow: 'auto' }}>
-                    <div style={{ display:'flex', gap:8, marginBottom: 12, flexWrap: 'wrap' }}>
-                      <button onClick={()=>setTempoView('overview')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='overview' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Overview</button>
-                      <button onClick={()=>setTempoView('combos')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='combos' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Combos</button>
-                      <button onClick={()=>setTempoView('zones')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='zones' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Zones</button>
-                      <button onClick={()=>setTempoView('rally')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='rally' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Rally Pace</button>
-                      <button onClick={()=>setTempoView('ineff')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='ineff' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Ineff + Slow</button>
-                      <button onClick={()=>setTempoView('rally_tempo')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='rally_tempo' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Rally Tempo</button>
-                      <button onClick={()=>setTempoView('tempo_effect')} style={{ padding:'6px 10px', borderRadius:8, border:'1px solid #2c2c34', background: tempoView==='tempo_effect' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Tempo + Eff</button>
-                    </div>
-                    {tempoView === 'overview' && (
-                      tempoEvents.length > 0 ? (
-                        <TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with *_tempo_events.csv</div>
-                    )}
-                    {tempoView === 'combos' && (
-                      (comboSummaryBand.length > 0 && comboInstancesBand.length > 0) ? (
-                        <ComboExplorer summary={comboSummaryBand} instances={comboInstancesBand} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with *_tempo_combo_summary_band.csv and *_tempo_combo_instances_band.csv</div>
-                    )}
-                    {tempoView === 'zones' && (
-                      zoneBuckets.length > 0 ? (
-                        <ZoneBuckets data={zoneBuckets} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with *_tempo_zone_buckets.csv</div>
-                    )}
-                    {tempoView === 'rally' && (
-                      rallyMetrics.length > 0 ? (
-                        <RallyPace data={rallyMetrics} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with *_tempo_rally_metrics.csv</div>
-                    )}
-                    {tempoView === 'ineff' && (
-                      ineffSlowEvents.length > 0 ? (
-                        <IneffectiveSlowEvents events={ineffSlowEvents} fps={fps} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with *_tempo_ineffective_slow_events.csv</div>
-                    )}
-                    {tempoView === 'rally_tempo' && (
-                      rallyTempoData && rallyTempoData.rallies.length > 0 ? (
-                        <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load session folder with tempo_analysis_new.csv to generate rally tempo visualization</div>
-                    )}
-                    {tempoView === 'tempo_effect' && (
-                      rallyTempoData && rallyTempoData.rallies.length > 0 && dynData ? (
-                        <TempoEffectivenessCorrelation tempoData={rallyTempoData} dynamicsData={dynData} videoRef={videoRef} />
-                      ) : <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv and rally_timeseries.json to see the merged view</div>
-                    )}
-                  </div>
-                )}
-                {rightTab === 'stats' && (
-                  <div style={{ marginTop: 8, fontSize: 12, opacity: 0.8 }}>
+          <div className="app-shell-v2">
+            <header className="app-bar">
+              <div className="app-bar__left">
+                <div className="app-breadcrumb">
+                  <span className="app-breadcrumb__chevron">‹</span>
+                  <span>Match report</span>
+                </div>
+                <div className="app-meta">
+                  <span>Paradigm Sports</span>
+                  <span>·</span>
+                  <span>{new Date().toLocaleDateString(undefined, { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+                </div>
+              </div>
+              <div className="app-bar__actions">
+                <span className={`status-chip ${videoLoaded ? 'status-chip--ready' : ''}`}>{videoLoaded ? 'Video ready' : 'Video missing'}</span>
+                <span className={`status-chip ${summaryLoaded ? 'status-chip--ready' : ''}`}>{summaryLoaded ? 'Summary ready' : 'Summary pending'}</span>
+                <span className={`status-chip ${anyStatsLoaded ? 'status-chip--ready' : ''}`}>{anyStatsLoaded ? 'Stats ready' : 'Stats pending'}</span>
+              </div>
+            </header>
+
+
+            <nav className="primary-tabs">
+              {primaryTabsConfig.map(tab => (
+                <button
+                  key={tab.key}
+                  className={`tab-btn ${primaryTab === tab.key ? 'tab-btn--active' : ''}`}
+                  onClick={() => setPrimaryTab(tab.key)}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </nav>
+
+            <div className="content-split">
+              <aside className="video-column">
+                <section className="hero-stage hero-stage--side">
+                  <video className="video-el" ref={videoRef} src={videoUrl} controls />
+                  <div className="hero-meta">
                     Video: {videoUrl ? 'loaded' : '—'} · Tempo: ev={tempoEvents.length} ine={ineffSlowEvents.length} zone={zoneBuckets.length} combos={comboSummaryBand.length}/{comboInstancesBand.length} rally={rallyMetrics.length}
                   </div>
-                )}
-              </div>
-            </div>
-            <aside className="sidebar">
-              <div style={{ display:'flex', gap:8, marginBottom: 8, alignItems:'center' }}>
-                <button onClick={()=>{setRightTab('summary'); setActiveStatsSection(null); setTimelineInstances([]);}} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='summary' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Summary</button>
-                <button onClick={()=>{setRightTab('stats'); if (!activeStatsSection) setTimelineInstances([]);}} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='stats' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Stats</button>
-                <button onClick={()=>setRightTab('dynamics')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='dynamics' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Rally Dynamics</button>
-                <button onClick={()=>setRightTab('tempo')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='tempo' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Tempo</button>
-                <button onClick={()=>{setRightTab('chat'); setActiveStatsSection(null); setTimelineInstances([]);}} title="Ask questions (UI v2 only)" style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='chat' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Chat</button>
-              </div>
-              <div className="panel" style={{ height: 'calc(100% - 44px)', overflow:'auto' }}>
-                {rightTab === 'summary' ? (
-                  (v3Text || v2Sections.length > 0 || observations.length > 0 || saSections.length > 0) ? (
+                  {primaryTab === 'stats' && activeStatsSection && timelineInstances.length > 0 && (
+                    <div className="hero-timeline">
+                      <VideoTimelineMarker
+                        instances={timelineInstances}
+                        sectionName={timelineSectionName}
+                        fps={fps}
+                        videoRef={videoRef}
+                        videoDurationSec={videoRef.current?.duration || undefined}
+                        colorByCategory={activeStatsSection === 'winners' || activeStatsSection === 'errors' || activeStatsSection === 'eff'}
+                      />
+                    </div>
+                  )}
+                </section>
+              </aside>
+
+              <main className="data-column">
+                <div className="data-sticky-top">
+                  {primaryTab === 'stats' && (
                     <>
-                      {v3Text ? (
-                        <>
-                          <h2 style={{ margin: 0 }}>Match Summary</h2>
-                          <div style={{ marginTop: 8, whiteSpace: 'pre-wrap', lineHeight: 1.5, fontSize: 14 }}>{v3Text}</div>
-                        </>
-                      ) : saSections.length > 0 ? (
-                        <StructuredAnalysis sections={saSections} videoRef={videoRef as any} fps={fps} />
-                      ) : v2Sections.length > 0 ? (
-                        <KeyTakeawaysV2 sections={v2Sections} videoRef={videoRef} fps={fps} />
-                      ) : (
-                        <KeyTakeaways items={observations} videoRef={videoRef} fps={fps} />
+                      <div className="secondary-pills">
+                        {statsSegments.map(segment => (
+                          <button
+                            key={segment.key}
+                            disabled={!segment.available}
+                            className={`pill-btn ${statsSurface === segment.key ? 'pill-btn--active' : ''}`}
+                            onClick={() => segment.available && setStatsSurface(segment.key)}
+                          >
+                            {segment.label}
+                          </button>
+                        ))}
+                      </div>
+                      {activeStatsSection && (
+                        <div style={{ display: 'flex', gap: 6, marginTop: 8, alignItems: 'center' }}>
+                          <span style={{ fontSize: 12, opacity: 0.8 }}>Player view:</span>
+                          <button onClick={() => setPlayerView('both')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'both' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>Both</button>
+                          <button onClick={() => setPlayerView('P0')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'P0' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>P0</button>
+                          <button onClick={() => setPlayerView('P1')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'P1' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>P1</button>
+                        </div>
                       )}
                     </>
-                  ) : null
-                ) : rightTab === 'stats' ? (
-                  (anyStatsLoaded ? (
-                    <StatsPanel data={statsData} fps={fps} videoRef={videoRef} onSectionExpanded={setActiveStatsSection} uiVersion={uiVersion} />
-                  ) : null)
-                ) : rightTab === 'dynamics' ? (
-                  <div style={{ opacity: 0.7 }}>Select Rally Dynamics tab to view effectiveness charts below the video.</div>
-                ) : rightTab === 'tempo' ? (
-                  <div style={{ opacity: 0.7 }}>Tempo visualizations now appear below the video for more space.</div>
-                ) : rightTab === 'chat' ? (
-                  <ChatPanelV2 />
-                ) : null}
-              </div>
-            </aside>
+                  )}
+                  {primaryTab === 'tempo' && (
+                    <div className="secondary-pills">
+                      {tempoSegments.map(segment => (
+                        <button
+                          key={segment.key}
+                          disabled={!segment.available}
+                          className={`pill-btn ${tempoView === segment.key ? 'pill-btn--active' : ''}`}
+                          onClick={() => segment.available && setTempoView(segment.key)}
+                        >
+                          {segment.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="data-scrollable">
+                  {primaryTab === 'summary' && (
+                    <div className="panel panel--summary">
+                      {renderSummaryBlock()}
+                    </div>
+                  )}
+
+                  {primaryTab === 'stats' && (
+                    <>
+                      {/* Jump Links Section - tied to selected pill */}
+                      {statsSurface && statsSurface !== 'summary' && statsSurface !== 'shotDist' && (
+                        <div className="panel panel--jump-links">
+                          <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 12, opacity: 0.9 }}>
+                            {statsSegments.find(s => s.key === statsSurface)?.label || 'Jump Links'}
+                          </div>
+                          {extractJumpLinks(statsSurface).length === 0 ? (
+                            <div style={{ opacity: 0.7, fontSize: 13 }}>No jump links available for this section.</div>
+                          ) : (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                              {extractJumpLinks(statsSurface).map((group, groupIdx) => (
+                                <div key={`group-${statsSurface}-${groupIdx}`} style={{ marginBottom: 4 }}>
+                                  <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6, color: '#e5e7eb' }}>
+                                    {group.category} ({group.count})
+                                  </div>
+                                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                    {group.links.map((link, linkIdx) => (
+                                      <div
+                                        key={`jump-${statsSurface}-${groupIdx}-${linkIdx}`}
+                                        onClick={() => seek(videoRef, link.sec)}
+                                        title={link.title}
+                                        style={{
+                                          padding: '0.35rem 0.6rem',
+                                          background: '#eef2ff22',
+                                          border: '1px solid #334155',
+                                          borderRadius: 999,
+                                          fontSize: 12,
+                                          color: '#cbd5e1',
+                                          cursor: 'pointer',
+                                          userSelect: 'none'
+                                        }}
+                                      >
+                                        {link.label}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Graph Section - only selected section */}
+                      {statsSurface && statsSurface !== 'summary' && (
+                        <div className="panel panel--visual">
+                          {activeStatsSection ? (
+                            <StatsPanelV2
+                              data={statsData}
+                              fps={fps}
+                              videoRef={videoRef}
+                              activeSection={activeStatsSection}
+                              playerView={playerView}
+                              onTimelineInstances={(instances, name) => { setTimelineInstances(instances); setTimelineSectionName(name); }}
+                            />
+                          ) : (
+                            <div style={{ opacity: 0.7, fontSize: 14 }}>Select a section to view charts.</div>
+                          )}
+                        </div>
+                      )}
+                      {!statsSurface && (
+                        <div className="panel panel--visual">
+                          <div style={{ opacity: 0.7, fontSize: 14 }}>Select a section above to view charts and jump links.</div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {primaryTab === 'dynamics' && (
+                    <div className="panel panel--visual">
+                      {dynData ? (
+                        <RallyDynamics data={dynData} videoRef={videoRef} fps={fps} fullWidth={true} rallyTags={rallyTags} />
+                      ) : (
+                        <div style={{ opacity: 0.7 }}>Load rally_timeseries.json to view rally swings.</div>
+                      )}
+                    </div>
+                  )}
+
+                  {primaryTab === 'tempo' && (
+                    <div className="panel panel--visual">
+                      {tempoView === 'overview' && (
+                        tempoEvents.length > 0 ? (
+                          <TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />
+                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_events.csv to see tempo overview.</div>
+                      )}
+                      {tempoView === 'combos' && (
+                        (comboSummaryBand.length > 0 && comboInstancesBand.length > 0) ? (
+                          <ComboExplorer summary={comboSummaryBand} instances={comboInstancesBand} videoRef={videoRef} />
+                        ) : <div style={{ opacity: 0.7 }}>Provide *_tempo_combo_summary_band.csv and *_tempo_combo_instances_band.csv.</div>
+                      )}
+                      {tempoView === 'zones' && (
+                        zoneBuckets.length > 0 ? (
+                          <ZoneBuckets data={zoneBuckets} videoRef={videoRef} />
+                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_zone_buckets.csv to view zone buckets.</div>
+                      )}
+                      {tempoView === 'rally' && (
+                        rallyMetrics.length > 0 ? (
+                          <RallyPace data={rallyMetrics} />
+                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_rally_metrics.csv to unlock this view.</div>
+                      )}
+                      {tempoView === 'ineff' && (
+                        ineffSlowEvents.length > 0 ? (
+                          <IneffectiveSlowEvents events={ineffSlowEvents} fps={fps} videoRef={videoRef} />
+                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_ineffective_slow_events.csv to view slow rallies.</div>
+                      )}
+                      {tempoView === 'rally_tempo' && (
+                        rallyTempoData && rallyTempoData.rallies.length > 0 ? (
+                          <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} tags={rallyTags} />
+                        ) : <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv to generate rally tempo visualization.</div>
+                      )}
+                      {tempoView === 'tempo_effect' && (
+                        rallyTempoData && rallyTempoData.rallies.length > 0 && dynData ? (
+                          <TempoEffectivenessCorrelation tempoData={rallyTempoData} dynamicsData={dynData} videoRef={videoRef} />
+                        ) : <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv and rally_timeseries.json for the merged view.</div>
+                      )}
+                    </div>
+                  )}
+
+                  {primaryTab === 'chat' && (
+                    <div className="panel panel--visual">
+                      <ChatPanelV2 />
+                    </div>
+                  )}
+                </div>
+              </main>
+            </div>
           </div>
         ) : (
           // UI v1: original two-panel layout preserved
           <div className="layout">
             <div className="video-area">
               <div className="panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                {collapsedInputs && !inputsExpanded && (
-                  <div style={{ marginBottom: 8 }}>
-                    <CollapsedInputsStrip />
-                  </div>
-                )}
                 <video className="video-el" ref={videoRef} src={videoUrl} controls />
               </div>
             </div>
@@ -871,13 +1244,27 @@ function App() {
                 ) : rightTab === 'stats' ? (
                   (anyStatsLoaded ? (<StatsPanel data={statsData} fps={fps} videoRef={videoRef} uiVersion={uiVersion} />) : null)
                 ) : rightTab === 'dynamics' ? (
-                  dynData ? (<RallyDynamics data={dynData} videoRef={videoRef} fps={fps} />) : (
+                  dynData ? (<RallyDynamics data={dynData} videoRef={videoRef} fps={fps} rallyTags={rallyTags} />) : (
                     <div style={{ opacity: 0.7 }}>Load Rally Dynamics JSON to view swings chart.</div>
                   )
                 ) : rightTab === 'tempo' ? (
-                  tempoEvents.length > 0 ? (<TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />) : (
-                    <div style={{ opacity: 0.7 }}>Load Tempo Events CSV (and optional Thresholds JSON) to view tempo chart.</div>
-                  )
+                  <>
+                    <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'center' }}>
+                      <button onClick={() => setRightTempoView('overview')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTempoView === 'overview' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Overview</button>
+                      <button onClick={() => setRightTempoView('rally_tempo')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTempoView === 'rally_tempo' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Rally Tempo</button>
+                    </div>
+                    {rightTempoView === 'overview' ? (
+                      tempoEvents.length > 0 ? (<TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />) : (
+                        <div style={{ opacity: 0.7 }}>Load Tempo Events CSV (and optional Thresholds JSON) to view tempo chart.</div>
+                      )
+                    ) : rightTempoView === 'rally_tempo' ? (
+                      rallyTempoData && rallyTempoData.rallies.length > 0 ? (
+                        <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} tags={rallyTags} />
+                      ) : (
+                        <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv to generate rally tempo visualization.</div>
+                      )
+                    ) : null}
+                  </>
                 ) : null}
               </div>
             </aside>
@@ -887,11 +1274,6 @@ function App() {
         <div className="layout">
           <div className="video-area">
             <div className="panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              {collapsedInputs && !inputsExpanded && (
-                <div style={{ marginBottom: 8 }}>
-                  <CollapsedInputsStrip />
-                </div>
-              )}
               <video className="video-el" ref={techVideoRef} src={techVideoUrl} controls />
             </div>
           </div>

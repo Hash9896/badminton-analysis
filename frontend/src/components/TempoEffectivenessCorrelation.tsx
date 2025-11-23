@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { type RallyTempoPayload } from './RallyTempoVisualization';
 import { type DynamicsPayload } from './RallyDynamics';
+import { resolveTempoDominance } from '../utils/rallyTags';
 
 type TempoRally = RallyTempoPayload['rallies'][number];
 
@@ -56,32 +57,6 @@ const getClassificationColor = (player: 'P0' | 'P1', classification?: string) =>
 
 const getClassificationRadius = (classification?: string) =>
   classificationSizes[normalizeClassification(classification)];
-
-const resolveTempoDominance = (
-  player: 'P0' | 'P1' | string,
-  tempoControl?: string
-): { dominant: 'P0' | 'P1' | null; label: string } => {
-  const control = (tempoControl || '').toLowerCase();
-  const shooter = player === 'P0' || player === 'P1' ? player : null;
-  let dominant: 'P0' | 'P1' | null = null;
-
-  if (control.startsWith('player') && shooter) {
-    dominant = shooter;
-  } else if (control.startsWith('opponent') && shooter) {
-    dominant = shooter === 'P0' ? 'P1' : 'P0';
-  }
-
-  let label: string;
-  if (dominant) {
-    label = `${dominant} dominant`;
-  } else if (control) {
-    label = control === 'neutral' ? 'Neutral tempo' : control.replace(/_/g, ' ');
-  } else {
-    label = 'Neutral tempo';
-  }
-
-  return { dominant, label };
-};
 
 const formatControlType = (controlType?: string) => {
   if (!controlType) return '';

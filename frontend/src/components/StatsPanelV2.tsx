@@ -593,8 +593,7 @@ export const VideoTimelineMarker: React.FC<VideoTimelineMarkerProps> = ({ instan
   );
 };
 
-const StatsPanelV2: React.FC<Props & { onTimelineInstances?: (instances: TimelineInstance[], sectionName: string) => void }> = ({ data, fps, videoRef, activeSection, onTimelineInstances }) => {
-  const [playerView, setPlayerView] = useState<'both'|'P0'|'P1'>('both');
+const StatsPanelV2: React.FC<Props & { onTimelineInstances?: (instances: TimelineInstance[], sectionName: string) => void; playerView?: 'both'|'P0'|'P1' }> = ({ data, fps, videoRef, activeSection, onTimelineInstances, playerView = 'both' }) => {
   
   // Only show graph for the active section
   if (!activeSection) return null;
@@ -885,12 +884,6 @@ const StatsPanelV2: React.FC<Props & { onTimelineInstances?: (instances: Timelin
 
   return (
     <div>
-      <div style={{ display:'flex', gap:6, marginBottom: 12, alignItems:'center' }}>
-        <span style={{ fontSize: 12, opacity: 0.8 }}>Player view:</span>
-        <button onClick={()=>setPlayerView('both')} style={{ padding:'4px 8px', borderRadius: 6, border:'1px solid #2c2c34', background: playerView==='both' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>Both</button>
-        <button onClick={()=>setPlayerView('P0')} style={{ padding:'4px 8px', borderRadius: 6, border:'1px solid #2c2c34', background: playerView==='P0' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>P0</button>
-        <button onClick={()=>setPlayerView('P1')} style={{ padding:'4px 8px', borderRadius: 6, border:'1px solid #2c2c34', background: playerView==='P1' ? '#18181f' : '#0f0f15', color:'#e5e7eb' }}>P1</button>
-      </div>
 
       {activeSection === 'sr' && (srPatterns.P0.length>0 || srPatterns.P1.length>0) && (
         <Section title="Serve → Receive (top patterns)">

@@ -1,4 +1,11 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
+import {
+  CLUTCH_FILTERS,
+  EFFECTIVENESS_FILTERS,
+  LENGTH_FILTERS,
+  TEMPO_FILTERS,
+  type RallyTags,
+} from '../utils/rallyTags';
 
 type Point = {
   frame: number;
@@ -49,17 +56,29 @@ type Props = {
   videoRef: React.RefObject<HTMLVideoElement>;
   fps: number;
   fullWidth?: boolean;
+  rallyTags?: Record<string, RallyTags>;
 };
 
 const H = 220;
 const PAD = 28;
+const filterSelectStyle: React.CSSProperties = {
+  padding: '4px 8px',
+  borderRadius: 6,
+  border: '1px solid #2c2c34',
+  background: '#0f0f15',
+  color: '#e5e7eb',
+};
 
-export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, fullWidth = false }) => {
+export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, fullWidth = false, rallyTags }) => {
   const rallyIds = useMemo(() => Object.keys(data?.rallies || {}).sort(), [data]);
   const [selectedRally, setSelectedRally] = useState<string>(rallyIds[0] || '');
   const [showP0, setShowP0] = useState<boolean>(true);
   const [showP1, setShowP1] = useState<boolean>(true);
   const [containerWidth, setContainerWidth] = useState<number>(fullWidth ? 800 : 520);
+  const [lengthFilter, setLengthFilter] = useState<(typeof LENGTH_FILTERS)[number]['value']>('all');
+  const [tempoFilter, setTempoFilter] = useState<(typeof TEMPO_FILTERS)[number]['value']>('all');
+  const [effectFilter, setEffectFilter] = useState<(typeof EFFECTIVENESS_FILTERS)[number]['value']>('all');
+  const [clutchFilter, setClutchFilter] = useState<(typeof CLUTCH_FILTERS)[number]['value']>('all');
   
   // Measure container width for fullWidth mode
   const containerRef = useRef<HTMLDivElement>(null);
@@ -90,18 +109,39 @@ export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, full
     }
   }, [fullWidth]);
 
+  const filteredRallyIds = useMemo(() => {
+    return rallyIds.filter(rid => {
+      const tag = rallyTags?.[rid];
+      if (!tag) {
+        return (
+          lengthFilter === 'all' &&
+          tempoFilter === 'all' &&
+          effectFilter === 'all' &&
+          clutchFilter === 'all'
+        );
+      }
+      if (lengthFilter !== 'all' && tag.length !== lengthFilter) return false;
+      if (tempoFilter !== 'all' && tag.tempo !== tempoFilter) return false;
+      if (effectFilter !== 'all' && tag.effectiveness !== effectFilter) return false;
+      if (clutchFilter !== 'all' && tag.clutch !== clutchFilter) return false;
+      return true;
+    });
+  }, [rallyIds, rallyTags, lengthFilter, tempoFilter, effectFilter, clutchFilter]);
+
   useEffect(() => {
-    if (!rallyIds.length) {
-      if (selectedRally !== '') setSelectedRally('');
+    if (!filteredRallyIds.length) {
+      setSelectedRally('');
       return;
     }
-    if (!selectedRally || !rallyIds.includes(selectedRally)) {
-      setSelectedRally(rallyIds[0]);
+    if (!selectedRally || !filteredRallyIds.includes(selectedRally)) {
+      setSelectedRally(filteredRallyIds[0]);
     }
-  }, [rallyIds, selectedRally]);
+  }, [filteredRallyIds, selectedRally]);
 
   const W = fullWidth ? containerWidth : 520;
-  const rally = data?.rallies?.[selectedRally] as RallyItem | undefined;
+  const activeRallyId =
+    selectedRally && filteredRallyIds.includes(selectedRally) ? selectedRally : (filteredRallyIds[0] || '');
+  const rally = data?.rallies?.[activeRallyId] as RallyItem | undefined;
   const pointsP0 = useMemo(() => (rally?.points || []).filter(p => p.player === 'P0' && p.effectiveness != null), [rally]);
   const pointsP1 = useMemo(() => (rally?.points || []).filter(p => p.player === 'P1' && p.effectiveness != null), [rally]);
 
@@ -132,16 +172,43 @@ export const RallyDynamics: React.FC<Props> = ({ data, videoRef, fps: _fps, full
     v.play().catch(() => {});
   };
 
-  if (!rally || !rallyIds.length) {
+  if (!filteredRallyIds.length) {
+    return <div style={{ opacity: 0.7 }}>No rallies match the selected filters.</div>;
+  }
+
+  if (!rally) {
     return <div style={{ opacity: 0.7 }}>Load a rally_timeseries.json to view dynamics.</div>;
   }
 
   return (
     <div ref={containerRef} style={{ width: fullWidth ? '100%' : 'auto' }}>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
+        <select value={lengthFilter} onChange={e => setLengthFilter(e.target.value as any)} style={filterSelectStyle}>
+          {LENGTH_FILTERS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select value={tempoFilter} onChange={e => setTempoFilter(e.target.value as any)} style={filterSelectStyle}>
+          {TEMPO_FILTERS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select value={effectFilter} onChange={e => setEffectFilter(e.target.value as any)} style={filterSelectStyle}>
+          {EFFECTIVENESS_FILTERS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <select value={clutchFilter} onChange={e => setClutchFilter(e.target.value as any)} style={filterSelectStyle}>
+          {CLUTCH_FILTERS.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 8 }}>
         <label style={{ fontSize: 13 }}>Rally:</label>
-        <select value={selectedRally} onChange={e => setSelectedRally(e.target.value)} style={{ padding: '4px 6px', background: '#0f0f15', color: '#e5e7eb', border: '1px solid #2c2c34', borderRadius: 6 }}>
-          {rallyIds.map(rid => {
+        <select value={activeRallyId} onChange={e => setSelectedRally(e.target.value)} style={{ padding: '4px 6px', background: '#0f0f15', color: '#e5e7eb', border: '1px solid #2c2c34', borderRadius: 6 }}>
+          {filteredRallyIds.map(rid => {
             const item = data.rallies[rid] as RallyItem;
             const label = item?.score_label ? `${item.score_label} (${rid})` : rid;
             return (<option key={rid} value={rid}>{label}</option>);
