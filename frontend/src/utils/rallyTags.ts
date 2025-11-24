@@ -146,7 +146,9 @@ const determineEffectivenessTag = (
   rally: RallyTempoPayload['rallies'][number],
   dynRally: DynamicsPayload['rallies'][string] | undefined
 ): EffectivenessTag => {
-  const winner = (rally.rally_winner || dynRally?.rally_winner || dynRally?.winner) as 'P0' | 'P1' | undefined;
+  const rallyWinner = (rally as any).rally_winner || (rally as any).winner;
+  const dynamicsWinner = (dynRally as any)?.rally_winner || (dynRally as any)?.winner;
+  const winner = (rallyWinner || dynamicsWinner) as 'P0' | 'P1' | undefined;
   if (!winner) return 'steady';
   const loser = winner === 'P0' ? 'P1' : 'P0';
 

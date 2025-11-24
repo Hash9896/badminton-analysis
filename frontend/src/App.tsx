@@ -1,22 +1,26 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import JSZip from 'jszip';
 import { KeyTakeaways, type Observation } from './components/KeyTakeaways';
 import { KeyTakeawaysV2, type V2Section } from './components/KeyTakeawaysV2';
 import StructuredAnalysis, { type SASection } from './components/StructuredAnalysis';
 import RallyDynamics, { type DynamicsPayload } from './components/RallyDynamics';
-import TempoAnalysis, { type TempoEvent, type TempoThresholds } from './components/TempoAnalysis';
-import IneffectiveSlowEvents, { type IneffSlowEvent } from './components/IneffectiveSlowEvents';
-import ZoneBuckets, { type ZoneBucketRow } from './components/ZoneBuckets';
-import ComboExplorer, { type ComboSummaryBandRow, type ComboInstanceBandRow } from './components/ComboExplorer';
-import RallyPace, { type RallyMetricsRow } from './components/RallyPace';
-import ChatPanelV2 from './components/ChatPanelV2';
+import type { TempoEvent } from './components/TempoAnalysis';
+import type { IneffSlowEvent } from './components/IneffectiveSlowEvents';
+import type { ZoneBucketRow } from './components/ZoneBuckets';
+import type { ComboSummaryBandRow, ComboInstanceBandRow } from './components/ComboExplorer';
+import type { RallyMetricsRow } from './components/RallyPace';
 import RallyTempoVisualization, { type RallyTempoPayload } from './components/RallyTempoVisualization';
-import TempoEffectivenessCorrelation from './components/TempoEffectivenessCorrelation';
+import { SubmissionPanel } from './components/SubmissionPanel';
+import SubmissionAdminPanel from './components/SubmissionAdminPanel';
+import type { Submission } from './types/submission';
 import { formatMs } from './utils/timecode';
 import './App.css';
 import Papa from 'papaparse';
-import StatsPanel, { type StatsData } from './components/StatsPanel';
+import type { StatsData } from './components/StatsPanel';
 import StatsPanelV2, { VideoTimelineMarker, type TimelineInstance } from './components/StatsPanelV2.tsx';
 import { computeRallyTags, type RallyTags } from './utils/rallyTags';
+
+const BACKEND_URL = (import.meta.env.VITE_BACKEND_URL as string) || 'http://localhost:8000';
 
 // Generic JSON type
 type AnyJson = Record<string, any>;
@@ -74,6 +78,25 @@ function parseTimestampToSec(t: string): number | null {
 function App() {
   // Mode
   const [mode, setMode] = useState<'match' | 'technical'>('match');
+  const forceOpsPanel = (import.meta.env.VITE_FORCE_OPS_PANEL as string) === 'true';
+  const [opsPanelVisible, setOpsPanelVisible] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return window.localStorage.getItem('opsPanelVisible') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const shouldShowOpsPanel = forceOpsPanel || opsPanelVisible;
+
+  const [submissionPanelCollapsed, setSubmissionPanelCollapsed] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return window.localStorage.getItem('submissionPanelCollapsed') === 'true';
+    } catch {
+      return false;
+    }
+  });
 
   // Match state
   const videoRef = useRef<HTMLVideoElement>(null as unknown as HTMLVideoElement);
@@ -96,28 +119,25 @@ function App() {
   const [fps, setFps] = useState<number>(30);
   const [statusMsg, setStatusMsg] = useState<string>('');
   const [statusType, setStatusType] = useState<'ok' | 'err' | ''>('');
-  const [rightTab, setRightTab] = useState<'summary'|'stats'|'dynamics'|'tempo'|'chat'>('summary');
-  const [rightTempoView, setRightTempoView] = useState<'overview'|'rally_tempo'>('overview');
   const [statsData, setStatsData] = useState<StatsData>({});
   const [v3Text, setV3Text] = useState<string>('');
-  const [uiVersion, setUiVersion] = useState<'v1'|'v2'>('v1');
   const [dynData, setDynData] = useState<DynamicsPayload | null>(null);
   const [tempoEvents, setTempoEvents] = useState<TempoEvent[]>([]);
-  const [tempoThresholds, setTempoThresholds] = useState<TempoThresholds | null>(null);
   const [ineffSlowEvents, setIneffSlowEvents] = useState<IneffSlowEvent[]>([]);
   const [zoneBuckets, setZoneBuckets] = useState<ZoneBucketRow[]>([]);
   const [comboSummaryBand, setComboSummaryBand] = useState<ComboSummaryBandRow[]>([]);
   const [comboInstancesBand, setComboInstancesBand] = useState<ComboInstanceBandRow[]>([]);
   const [rallyMetrics, setRallyMetrics] = useState<RallyMetricsRow[]>([]);
   const [rallyTempoData, setRallyTempoData] = useState<RallyTempoPayload | null>(null);
-  const [tempoView, setTempoView] = useState<'overview'|'combos'|'zones'|'rally'|'ineff'|'rally_tempo'|'tempo_effect'>('overview');
+  const [tempoView, setTempoView] = useState<'overview'|'combos'|'zones'|'rally'|'ineff'|'rally_tempo'|'tempo_effect'>('rally_tempo');
   const [activeStatsSection, setActiveStatsSection] = useState<string | null>(null);
   const [timelineInstances, setTimelineInstances] = useState<TimelineInstance[]>([]);
   const [timelineSectionName, setTimelineSectionName] = useState<string>('');
   const [rallyTags, setRallyTags] = useState<Record<string, RallyTags>>({});
-  const [primaryTab, setPrimaryTab] = useState<'stats'|'dynamics'|'tempo'|'chat'|'summary'>('stats');
+  const [primaryTab, setPrimaryTab] = useState<'stats'|'dynamics'|'tempo'|'summary'>('stats');
   const [statsSurface, setStatsSurface] = useState<StatsSurface | null>(null);
   const [playerView, setPlayerView] = useState<'both'|'P0'|'P1'>('both');
+  const [loadingSubmissionId, setLoadingSubmissionId] = useState<string | null>(null);
 
   const anyStatsLoaded = useMemo(() => {
     const d = statsData;
@@ -210,6 +230,36 @@ function App() {
     (showStatus as any)._t = window.setTimeout(() => { setStatusMsg(''); setStatusType(''); }, 2200);
   };
 
+  useEffect(() => {
+    if (forceOpsPanel) return;
+    const sequence = ['o', 'o', 'p', 's'];
+    let idx = 0;
+    const handler = (event: KeyboardEvent) => {
+      const activeTag = (event.target as HTMLElement)?.tagName?.toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea') return;
+      const key = event.key.toLowerCase();
+      if (key === sequence[idx]) {
+        idx += 1;
+        if (idx === sequence.length) {
+          setOpsPanelVisible(prev => {
+            const next = !prev;
+            try {
+              window.localStorage.setItem('opsPanelVisible', next ? 'true' : 'false');
+            } catch {
+              // ignore storage issues
+            }
+            return next;
+          });
+          idx = 0;
+        }
+      } else {
+        idx = key === sequence[0] ? 1 : 0;
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [forceOpsPanel]);
+
   // Match inputs
   // Deprecated per-file loaders (replaced by folder loader)
 
@@ -260,8 +310,7 @@ function App() {
   // Deprecated per-file loaders (replaced by folder loader)
 
   // Folder session loader
-  const onPickFolder: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
-    const files = Array.from(e.target.files || []);
+  const loadSessionFromFiles = async (files: File[]) => {
     if (files.length === 0) return;
     try {
       // 1) Video
@@ -292,11 +341,6 @@ function App() {
           effectiveness: row.effectiveness != null && row.effectiveness !== '' ? Number(row.effectiveness) : null,
         } as any));
         setTempoEvents(mapped);
-      }
-      const fth = find(/_tempo_thresholds\.json$/i);
-      if (fth) {
-        const raw = await parseJson(fth);
-        setTempoThresholds(raw as TempoThresholds);
       }
       const fine = find(/_tempo_ineffective_slow_events\.csv$/i);
       if (fine) {
@@ -558,11 +602,78 @@ function App() {
         } catch { /* ignore */ }
       }
       showStatus('Session folder loaded', 'ok');
+      try {
+        window.localStorage.setItem('submissionPanelCollapsed', 'true');
+      } catch {
+        // ignore
+      }
+      setSubmissionPanelCollapsed(true);
     } catch {
       showStatus('Failed to load session folder', 'err');
-    } finally {
-      e.currentTarget.value = '';
     }
+  };
+
+  const onPickFolder: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+    const files = Array.from(e.target.files || []);
+    await loadSessionFromFiles(files);
+      e.currentTarget.value = '';
+  };
+
+  const loadSubmissionFolder = async (folderPath: string) => {
+    const response = await fetch(`${BACKEND_URL}/reports/folder?path=${encodeURIComponent(folderPath)}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch folder (${response.status})`);
+    }
+    const blob = await response.blob();
+    const zip = await JSZip.loadAsync(blob);
+    const filePromises: Array<Promise<File>> = [];
+    zip.forEach((relativePath, zipEntry) => {
+      if (zipEntry.dir) return;
+      filePromises.push(
+        zipEntry.async('blob').then((content) => {
+          const baseName = relativePath.split('/').pop() || relativePath;
+          const file = new File([content], baseName);
+          try {
+            Object.defineProperty(file, 'webkitRelativePath', {
+              value: relativePath,
+              configurable: false,
+            });
+          } catch {
+            // ignore inability to set path metadata
+          }
+          return file;
+        })
+      );
+    });
+    const extractedFiles = await Promise.all(filePromises);
+    await loadSessionFromFiles(extractedFiles);
+  };
+
+  const handleOpenSubmission = async (submission: Submission) => {
+    if (loadingSubmissionId) return;
+    if (submission.folder) {
+      setLoadingSubmissionId(submission.id);
+      try {
+        await loadSubmissionFolder(submission.folder);
+        try {
+          window.localStorage.setItem('submissionPanelCollapsed', 'true');
+        } catch {
+          // ignore
+        }
+        setSubmissionPanelCollapsed(true);
+      } catch (err) {
+        console.error(err);
+        showStatus('Failed to load submission folder', 'err');
+      } finally {
+        setLoadingSubmissionId(null);
+      }
+      return;
+    }
+    if (submission.report_url) {
+      window.open(submission.report_url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    showStatus('No folder configured for this submission yet.', 'err');
   };
 
   // Tempo: Ineffective + Slow Events CSV
@@ -619,7 +730,7 @@ function App() {
 
   const InputsPanel = () => {
     if (mode === 'match') {
-      return (
+  return (
         <label className="session-loader">
           Load Session Folder
           <input type="file" multiple onChange={onPickFolder} {...({ webkitdirectory: '' } as any)} />
@@ -636,7 +747,7 @@ function App() {
           Tech JSON
           <input type="file" accept="application/json" onChange={onPickTechJson} />
         </label>
-      </div>
+        </div>
     );
   };
 
@@ -898,7 +1009,7 @@ function App() {
 
   const renderSummaryBlock = () => {
     if (v3Text) {
-      return (
+    return (
         <>
           <h2 style={{ margin: 0 }}>Match Summary</h2>
           <div style={{ marginTop: 8, whiteSpace: 'pre-wrap', lineHeight: 1.5, fontSize: 14 }}>{v3Text}</div>
@@ -917,11 +1028,10 @@ function App() {
     return <div style={{ opacity: 0.7 }}>Load a summary file to view insights.</div>;
   };
 
-  const primaryTabsConfig: Array<{ key: 'stats'|'dynamics'|'tempo'|'chat'|'summary'; label: string }> = [
+  const primaryTabsConfig: Array<{ key: 'stats'|'dynamics'|'tempo'|'summary'; label: string }> = [
     { key: 'stats', label: 'Stats' },
     { key: 'dynamics', label: 'Rally Dynamics' },
     { key: 'tempo', label: 'Tempo' },
-    { key: 'chat', label: 'Chat' },
     { key: 'summary', label: 'Summary' },
   ];
 
@@ -938,21 +1048,15 @@ function App() {
   ];
 
   const tempoSegments: Array<{ key: typeof tempoView; label: string; available: boolean }> = [
-    { key: 'overview', label: 'Overview', available: tempoEvents.length > 0 },
-    { key: 'combos', label: 'Combos', available: comboSummaryBand.length > 0 && comboInstancesBand.length > 0 },
-    { key: 'zones', label: 'Zones', available: zoneBuckets.length > 0 },
-    { key: 'rally', label: 'Rally Pace', available: rallyMetrics.length > 0 },
-    { key: 'ineff', label: 'Ineff + Slow', available: ineffSlowEvents.length > 0 },
     { key: 'rally_tempo', label: 'Rally Tempo', available: Boolean(rallyTempoData && rallyTempoData.rallies.length) },
-    { key: 'tempo_effect', label: 'Tempo + Eff', available: Boolean(rallyTempoData && rallyTempoData.rallies.length && dynData) },
   ];
 
   return (
     <div className="container">
       <div className="header-controls">
         <div className="header-controls__left">
-          <button onClick={() => setMode('match')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'match' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Match</button>
-          <button onClick={() => setMode('technical')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'technical' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Technical</button>
+        <button onClick={() => setMode('match')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'match' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Match</button>
+        <button onClick={() => setMode('technical')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: mode === 'technical' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Technical</button>
           <label style={{ display:'flex', alignItems:'center', gap:6, fontSize:13 }}>
             <span>FPS:</span>
             <select value={fps} onChange={(e)=>setFps(Number(e.target.value) || 30)} style={{ background:'#0f0f15', color:'#e5e7eb', border:'1px solid #2c2c34', borderRadius:6, padding:'4px 6px' }}>
@@ -960,10 +1064,6 @@ function App() {
             </select>
           </label>
           <InputsPanel />
-        </div>
-        <div style={{ display:'flex', gap:6 }}>
-          <button onClick={()=>setUiVersion('v1')} title="Classic stats UI" style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: uiVersion==='v1' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>UI v1</button>
-          <button onClick={()=>setUiVersion('v2')} title="Visualized stats UI" style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: uiVersion==='v2' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>UI v2</button>
         </div>
       </div>
       {/* Only show the full inputs panel in header if not collapsed or if user expanded */}
@@ -973,15 +1073,40 @@ function App() {
         </div>
       )}
 
+      {shouldShowOpsPanel && <SubmissionAdminPanel />}
+
       {mode === 'match' ? (
-        uiVersion === 'v2' ? (
+        <>
+          <div className="submission-collapse">
+            <button
+              type="button"
+              onClick={() => {
+                const next = !submissionPanelCollapsed;
+                setSubmissionPanelCollapsed(next);
+                try {
+                  window.localStorage.setItem('submissionPanelCollapsed', next ? 'true' : 'false');
+                } catch {
+                  // ignore
+                }
+              }}
+            >
+              {submissionPanelCollapsed ? 'Show submission panel' : 'Hide submission panel'}
+            </button>
+            {!submissionPanelCollapsed && (
+              <SubmissionPanel
+                mode="match"
+                onOpenSubmission={handleOpenSubmission}
+                loadingSubmissionId={loadingSubmissionId}
+              />
+            )}
+          </div>
           <div className="app-shell-v2">
             <header className="app-bar">
               <div className="app-bar__left">
                 <div className="app-breadcrumb">
                   <span className="app-breadcrumb__chevron">‹</span>
                   <span>Match report</span>
-                </div>
+                  </div>
                 <div className="app-meta">
                   <span>Paradigm Sports</span>
                   <span>·</span>
@@ -1011,22 +1136,22 @@ function App() {
             <div className="content-split">
               <aside className="video-column">
                 <section className="hero-stage hero-stage--side">
-                  <video className="video-el" ref={videoRef} src={videoUrl} controls />
+                <video className="video-el" ref={videoRef} src={videoUrl} controls />
                   <div className="hero-meta">
                     Video: {videoUrl ? 'loaded' : '—'} · Tempo: ev={tempoEvents.length} ine={ineffSlowEvents.length} zone={zoneBuckets.length} combos={comboSummaryBand.length}/{comboInstancesBand.length} rally={rallyMetrics.length}
                   </div>
                   {primaryTab === 'stats' && activeStatsSection && timelineInstances.length > 0 && (
                     <div className="hero-timeline">
-                      <VideoTimelineMarker
-                        instances={timelineInstances}
-                        sectionName={timelineSectionName}
-                        fps={fps}
-                        videoRef={videoRef}
-                        videoDurationSec={videoRef.current?.duration || undefined}
-                        colorByCategory={activeStatsSection === 'winners' || activeStatsSection === 'errors' || activeStatsSection === 'eff'}
-                      />
-                    </div>
-                  )}
+                    <VideoTimelineMarker 
+                      instances={timelineInstances} 
+                      sectionName={timelineSectionName}
+                      fps={fps}
+                      videoRef={videoRef}
+                      videoDurationSec={videoRef.current?.duration || undefined}
+                      colorByCategory={activeStatsSection === 'winners' || activeStatsSection === 'errors' || activeStatsSection === 'eff'}
+                    />
+                  </div>
+                )}
                 </section>
               </aside>
 
@@ -1052,8 +1177,8 @@ function App() {
                           <button onClick={() => setPlayerView('both')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'both' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>Both</button>
                           <button onClick={() => setPlayerView('P0')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'P0' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>P0</button>
                           <button onClick={() => setPlayerView('P1')} style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid #2c2c34', background: playerView === 'P1' ? '#18181f' : '#0f0f15', color: '#e5e7eb', fontSize: 12 }}>P1</button>
-                        </div>
-                      )}
+                  </div>
+                )}
                     </>
                   )}
                   {primaryTab === 'tempo' && (
@@ -1068,15 +1193,15 @@ function App() {
                           {segment.label}
                         </button>
                       ))}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
+              </div>
 
                 <div className="data-scrollable">
                   {primaryTab === 'summary' && (
                     <div className="panel panel--summary">
                       {renderSummaryBlock()}
-                    </div>
+            </div>
                   )}
 
                   {primaryTab === 'stats' && (
@@ -1161,116 +1286,22 @@ function App() {
 
                   {primaryTab === 'tempo' && (
                     <div className="panel panel--visual">
-                      {tempoView === 'overview' && (
-                        tempoEvents.length > 0 ? (
-                          <TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />
-                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_events.csv to see tempo overview.</div>
-                      )}
-                      {tempoView === 'combos' && (
-                        (comboSummaryBand.length > 0 && comboInstancesBand.length > 0) ? (
-                          <ComboExplorer summary={comboSummaryBand} instances={comboInstancesBand} videoRef={videoRef} />
-                        ) : <div style={{ opacity: 0.7 }}>Provide *_tempo_combo_summary_band.csv and *_tempo_combo_instances_band.csv.</div>
-                      )}
-                      {tempoView === 'zones' && (
-                        zoneBuckets.length > 0 ? (
-                          <ZoneBuckets data={zoneBuckets} videoRef={videoRef} />
-                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_zone_buckets.csv to view zone buckets.</div>
-                      )}
-                      {tempoView === 'rally' && (
-                        rallyMetrics.length > 0 ? (
-                          <RallyPace data={rallyMetrics} />
-                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_rally_metrics.csv to unlock this view.</div>
-                      )}
-                      {tempoView === 'ineff' && (
-                        ineffSlowEvents.length > 0 ? (
-                          <IneffectiveSlowEvents events={ineffSlowEvents} fps={fps} videoRef={videoRef} />
-                        ) : <div style={{ opacity: 0.7 }}>Load *_tempo_ineffective_slow_events.csv to view slow rallies.</div>
-                      )}
-                      {tempoView === 'rally_tempo' && (
-                        rallyTempoData && rallyTempoData.rallies.length > 0 ? (
-                          <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} tags={rallyTags} />
-                        ) : <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv to generate rally tempo visualization.</div>
-                      )}
-                      {tempoView === 'tempo_effect' && (
-                        rallyTempoData && rallyTempoData.rallies.length > 0 && dynData ? (
-                          <TempoEffectivenessCorrelation tempoData={rallyTempoData} dynamicsData={dynData} videoRef={videoRef} />
-                        ) : <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv and rally_timeseries.json for the merged view.</div>
+                      {rallyTempoData && rallyTempoData.rallies.length > 0 ? (
+                        <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} tags={rallyTags} />
+                      ) : (
+                        <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv to generate rally tempo visualization.</div>
                       )}
                     </div>
                   )}
 
-                  {primaryTab === 'chat' && (
-                    <div className="panel panel--visual">
-                      <ChatPanelV2 />
-                    </div>
-                  )}
-                </div>
+              </div>
               </main>
             </div>
           </div>
-        ) : (
-          // UI v1: original two-panel layout preserved
-          <div className="layout">
-            <div className="video-area">
-              <div className="panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <video className="video-el" ref={videoRef} src={videoUrl} controls />
-              </div>
-            </div>
-            <aside className="sidebar">
-              <div style={{ display:'flex', gap:8, marginBottom: 8, alignItems:'center' }}>
-                <button onClick={()=>setRightTab('summary')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='summary' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Summary</button>
-                <button onClick={()=>setRightTab('stats')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='stats' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Stats</button>
-                <button onClick={()=>setRightTab('dynamics')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='dynamics' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Rally Dynamics</button>
-                <button onClick={()=>setRightTab('tempo')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTab==='tempo' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Tempo</button>
-              </div>
-              <div className="panel" style={{ height: 'calc(100% - 44px)', overflow:'auto' }}>
-                {rightTab === 'summary' ? (
-                  (v3Text || v2Sections.length > 0 || observations.length > 0 || saSections.length > 0) ? (
-                    <>
-                      {v3Text ? (
-                        <>
-                          <h2 style={{ margin: 0 }}>Match Summary</h2>
-                          <div style={{ marginTop: 8, whiteSpace: 'pre-wrap', lineHeight: 1.5, fontSize: 14 }}>{v3Text}</div>
-                        </>
-                      ) : saSections.length > 0 ? (
-                        <StructuredAnalysis sections={saSections} videoRef={videoRef as any} fps={fps} />
-                      ) : v2Sections.length > 0 ? (
-                        <KeyTakeawaysV2 sections={v2Sections} videoRef={videoRef} fps={fps} />
-                      ) : (
-                        <KeyTakeaways items={observations} videoRef={videoRef} fps={fps} />
-                      )}
-                    </>
-                  ) : null
-                ) : rightTab === 'stats' ? (
-                  (anyStatsLoaded ? (<StatsPanel data={statsData} fps={fps} videoRef={videoRef} uiVersion={uiVersion} />) : null)
-                ) : rightTab === 'dynamics' ? (
-                  dynData ? (<RallyDynamics data={dynData} videoRef={videoRef} fps={fps} rallyTags={rallyTags} />) : (
-                    <div style={{ opacity: 0.7 }}>Load Rally Dynamics JSON to view swings chart.</div>
-                  )
-                ) : rightTab === 'tempo' ? (
-                  <>
-                    <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'center' }}>
-                      <button onClick={() => setRightTempoView('overview')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTempoView === 'overview' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Overview</button>
-                      <button onClick={() => setRightTempoView('rally_tempo')} style={{ padding: '6px 10px', borderRadius: 8, border: '1px solid #2c2c34', background: rightTempoView === 'rally_tempo' ? '#18181f' : '#0f0f15', color: '#e5e7eb' }}>Rally Tempo</button>
-                    </div>
-                    {rightTempoView === 'overview' ? (
-                      tempoEvents.length > 0 ? (<TempoAnalysis events={tempoEvents} thresholds={tempoThresholds} fps={fps} videoRef={videoRef} />) : (
-                        <div style={{ opacity: 0.7 }}>Load Tempo Events CSV (and optional Thresholds JSON) to view tempo chart.</div>
-                      )
-                    ) : rightTempoView === 'rally_tempo' ? (
-                      rallyTempoData && rallyTempoData.rallies.length > 0 ? (
-                        <RallyTempoVisualization data={rallyTempoData} videoRef={videoRef} tags={rallyTags} />
-                      ) : (
-                        <div style={{ opacity: 0.7 }}>Load tempo_analysis_new.csv to generate rally tempo visualization.</div>
-                      )
-                    ) : null}
-                  </>
-                ) : null}
-              </div>
-            </aside>
-          </div>
-        )
+        </>
       ) : (
+        <>
+        <SubmissionPanel mode="technical" />
         <div className="layout">
           <div className="video-area">
             <div className="panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -1317,6 +1348,7 @@ function App() {
             </div>
           </aside>
         </div>
+        </>
       )}
     </div>
   );

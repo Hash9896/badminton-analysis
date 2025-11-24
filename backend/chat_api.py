@@ -4,9 +4,18 @@ import os
 from typing import Any, Dict, List, Optional
 import json
 
-from fastapi import FastAPI, HTTPException
+from datetime import datetime
+from enum import Enum
+from pathlib import Path
+import io
+import threading
+from uuid import uuid4
+import zipfile
+
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel, Field
 from openai import OpenAI  # type: ignore
 
 from .config import settings
@@ -48,6 +57,63 @@ class ChatRequest(BaseModel):
     # Optional: allow client to hint a specific tool call
     tool_hint: Optional[str] = None
     tool_args: Optional[Dict[str, Any]] = None
+
+
+class SubmissionStatus(str, Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    READY = "ready"
+
+
+class SubmissionType(str, Enum):
+    MATCH = "match"
+    TECHNICAL = "technical"
+
+
+class SubmissionCreate(BaseModel):
+    player: str = Field(..., min_length=1)
+    video_url: str = Field(..., min_length=4)
+    type: SubmissionType
+    notes: Optional[str] = None
+
+
+class SubmissionUpdate(BaseModel):
+    status: Optional[SubmissionStatus] = None
+    report_url: Optional[str] = None
+    folder: Optional[str] = None
+    match_label: Optional[str] = None
+
+
+SUBMISSIONS_FILE = Path(settings.data_root_dir) / "player_submissions.json"
+_submission_lock = threading.Lock()
+
+
+def _load_submissions() -> List[Dict[str, Any]]:
+    if not SUBMISSIONS_FILE.exists():
+        return []
+    try:
+        with SUBMISSIONS_FILE.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+def _save_submissions(entries: List[Dict[str, Any]]) -> None:
+    SUBMISSIONS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with SUBMISSIONS_FILE.open("w", encoding="utf-8") as f:
+        json.dump(entries, f, indent=2)
+
+
+def _resolve_data_path(folder: str) -> Path:
+    base = Path(settings.data_root_dir).resolve()
+    target = (base / folder).resolve()
+    if not target.exists():
+        raise HTTPException(status_code=404, detail="Folder not found")
+    if not target.is_dir():
+        raise HTTPException(status_code=400, detail="Specified path is not a folder")
+    if base not in target.parents and target != base:
+        raise HTTPException(status_code=400, detail="Invalid folder path")
+    return target
 
 
 @app.get("/health")
@@ -173,9 +239,90 @@ def chat(req: ChatRequest) -> Dict[str, Any]:
         "tool_result_excerpt": (json.dumps(tool_result)[:5000] if tool_result is not None else None),
     }
 
-# -------------------- Tool Endpoints --------------------
 
-from fastapi import Query
+def _match_filters(entry: Dict[str, Any], player: Optional[str], submission_type: Optional[str], status: Optional[str]) -> bool:
+    if player and entry.get("player", "").lower() != player.lower():
+        return False
+    if submission_type and entry.get("type") != submission_type:
+        return False
+    if status and entry.get("status") != status:
+        return False
+    return True
+
+
+@app.post("/submissions")
+def create_submission(req: SubmissionCreate) -> Dict[str, Any]:
+    created_at = datetime.utcnow().isoformat()
+    new_entry = {
+        "id": str(uuid4()),
+        "player": req.player.strip(),
+        "video_url": req.video_url.strip(),
+        "type": req.type,
+        "notes": (req.notes or "").strip() or None,
+        "status": SubmissionStatus.PENDING,
+        "created_at": created_at,
+        "updated_at": created_at,
+        "report_url": None,
+        "folder": None,
+        "match_label": None,
+    }
+    with _submission_lock:
+        entries = _load_submissions()
+        entries.append(new_entry)
+        _save_submissions(entries)
+    return new_entry
+
+
+@app.get("/submissions")
+def list_submissions(
+    player: Optional[str] = Query(None),
+    submission_type: Optional[SubmissionType] = Query(None, alias="type"),
+    status: Optional[SubmissionStatus] = Query(None),
+) -> List[Dict[str, Any]]:
+    entries = _load_submissions()
+    filtered = [
+        e for e in entries
+        if _match_filters(e, player, submission_type, status)
+    ]
+    filtered.sort(key=lambda e: e.get("created_at", ""), reverse=True)
+    return filtered
+
+
+@app.patch("/submissions/{submission_id}")
+def update_submission(submission_id: str, req: SubmissionUpdate) -> Dict[str, Any]:
+    with _submission_lock:
+        entries = _load_submissions()
+        for entry in entries:
+            if entry.get("id") == submission_id:
+                if req.status:
+                    entry["status"] = req.status
+                if req.report_url is not None:
+                    entry["report_url"] = req.report_url
+                if req.folder is not None:
+                    entry["folder"] = req.folder
+                if req.match_label is not None:
+                    entry["match_label"] = req.match_label
+                entry["updated_at"] = datetime.utcnow().isoformat()
+                _save_submissions(entries)
+                return entry
+    raise HTTPException(status_code=404, detail="Submission not found")
+
+
+@app.get("/reports/folder")
+def download_folder(path: str = Query(..., description="Folder relative to data root")) -> StreamingResponse:
+    folder_path = _resolve_data_path(path)
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipf:
+        for fs_path in folder_path.rglob("*"):
+            if fs_path.is_file():
+                arcname = str(fs_path.relative_to(folder_path))
+                zipf.write(fs_path, arcname=arcname)
+    buffer.seek(0)
+    safe_name = path.strip("/").replace("/", "_") or "report"
+    headers = {"Content-Disposition": f'attachment; filename="{safe_name}.zip"'}
+    return StreamingResponse(buffer, media_type="application/zip", headers=headers)
+
+# -------------------- Tool Endpoints --------------------
 
 
 @app.get("/tools/errors")

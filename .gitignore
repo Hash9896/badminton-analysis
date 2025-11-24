@@ -10,6 +10,7 @@ venv/
 
 # OS/editor
 .DS_Store
+player_submissions.json
 
 # Vercel local link state
 .vercel/
