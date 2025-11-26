@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import JSZip from 'jszip';
 import { KeyTakeaways, type Observation } from './components/KeyTakeaways';
 import { KeyTakeawaysV2, type V2Section } from './components/KeyTakeawaysV2';
 import StructuredAnalysis, { type SASection } from './components/StructuredAnalysis';
