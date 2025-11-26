@@ -30,12 +30,7 @@ app = FastAPI(title="Match Analysis Chat API", version="0.1.0")
 raw_origins = settings.cors_origins or ""
 origins = [o.strip() for o in raw_origins.split(",") if o.strip()]
 if not origins:
-    origins = [
-        "http://localhost:5173",
-        "https://badminton-analysis-eta.vercel.app",
-        "https://badminton-analysis-8v47x2oeg-harshits-projects-7806b792.vercel.app",
-        "https://badminton-analysis-3qczwcer7-harshits-projects-7806b792.vercel.app",
-    ]
+    origins = ["*"]  # Allow all origins for development; restrict in production if needed
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
