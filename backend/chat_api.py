@@ -321,42 +321,38 @@ def update_submission(submission_id: str, req: SubmissionUpdate) -> Dict[str, An
 
 
 @app.get("/reports/folder")
-def download_folder(path: str = Query(..., description="Folder relative to data root")) -> StreamingResponse:
-    """Download folder as zip - tries S3 first, then local filesystem."""
-    # Try S3 first
+def get_folder_urls(path: str = Query(..., description="Folder relative to data root")) -> Dict[str, Any]:
+    """Return S3 URLs for all files in folder - no zipping, memory efficient."""
     if s3_client:
         try:
-            buffer = io.BytesIO()
             prefix = path.strip("/") + "/"
-            with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipf:
-                paginator = s3_client.get_paginator('list_objects_v2')
-                for page in paginator.paginate(Bucket=settings.s3_bucket, Prefix=prefix):
-                    for obj in page.get('Contents', []):
-                        key = obj['Key']
-                        arcname = key[len(prefix):]  # Remove prefix for archive name
-                        if arcname:  # Skip the folder itself
-                            file_obj = s3_client.get_object(Bucket=settings.s3_bucket, Key=key)
-                            zipf.writestr(arcname, file_obj['Body'].read())
-            buffer.seek(0)
-            safe_name = path.strip("/").replace("/", "_") or "report"
-            headers = {"Content-Disposition": f'attachment; filename="{safe_name}.zip"'}
-            return StreamingResponse(buffer, media_type="application/zip", headers=headers)
+            paginator = s3_client.get_paginator('list_objects_v2')
+            files = []
+            for page in paginator.paginate(Bucket=settings.s3_bucket, Prefix=prefix):
+                for obj in page.get('Contents', []):
+                    key = obj['Key']
+                    filename = key[len(prefix):]  # Remove prefix
+                    if filename:  # Skip folder itself
+                        files.append({
+                            "name": filename,
+                            "url": f"https://{settings.s3_bucket}.s3.{settings.s3_region}.amazonaws.com/{key}",
+                            "size": obj['Size']
+                        })
+            return {"folder": path, "files": files, "count": len(files)}
         except ClientError as e:
-            # Fall through to local filesystem
-            pass
+            raise HTTPException(status_code=500, detail=str(e))
     
     # Fallback to local filesystem
     folder_path = _resolve_data_path(path)
-    buffer = io.BytesIO()
-    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipf:
-        for fs_path in folder_path.rglob("*"):
-            if fs_path.is_file():
-                arcname = str(fs_path.relative_to(folder_path))
-                zipf.write(fs_path, arcname=arcname)
-    buffer.seek(0)
-    safe_name = path.strip("/").replace("/", "_") or "report"
-    headers = {"Content-Disposition": f'attachment; filename="{safe_name}.zip"'}
-    return StreamingResponse(buffer, media_type="application/zip", headers=headers)
+    files = []
+    for fs_path in folder_path.rglob("*"):
+        if fs_path.is_file():
+            files.append({
+                "name": str(fs_path.relative_to(folder_path)),
+                "url": None,  # Local files don't have URLs
+                "size": fs_path.stat().st_size
+            })
+    return {"folder": path, "files": files, "count": len(files)}
 
 
 @app.get("/s3/list")

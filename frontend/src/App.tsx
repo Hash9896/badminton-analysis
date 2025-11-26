@@ -624,29 +624,32 @@ function App() {
     if (!response.ok) {
       throw new Error(`Failed to fetch folder (${response.status})`);
     }
-    const blob = await response.blob();
-    const zip = await JSZip.loadAsync(blob);
-    const filePromises: Array<Promise<File>> = [];
-    zip.forEach((relativePath, zipEntry) => {
-      if (zipEntry.dir) return;
-      filePromises.push(
-        zipEntry.async('blob').then((content) => {
-          const baseName = relativePath.split('/').pop() || relativePath;
-          const file = new File([content], baseName);
-          try {
-            Object.defineProperty(file, 'webkitRelativePath', {
-              value: relativePath,
-              configurable: false,
-            });
-          } catch {
-            // ignore inability to set path metadata
-          }
-          return file;
-        })
-      );
+    const data = await response.json();
+    
+    // Fetch each file from S3 URLs
+    const filePromises: Array<Promise<File | null>> = data.files.map(async (fileInfo: { name: string; url: string; size: number }) => {
+      if (!fileInfo.url) return null;
+      try {
+        const fileResponse = await fetch(fileInfo.url);
+        if (!fileResponse.ok) return null;
+        const blob = await fileResponse.blob();
+        const file = new File([blob], fileInfo.name);
+        try {
+          Object.defineProperty(file, 'webkitRelativePath', {
+            value: fileInfo.name,
+            configurable: false,
+          });
+        } catch {
+          // ignore inability to set path metadata
+        }
+        return file;
+      } catch {
+        return null;
+      }
     });
-    const extractedFiles = await Promise.all(filePromises);
-    await loadSessionFromFiles(extractedFiles);
+    
+    const fetchedFiles = (await Promise.all(filePromises)).filter((f): f is File => f !== null);
+    await loadSessionFromFiles(fetchedFiles);
   };
 
   const handleOpenSubmission = async (submission: Submission) => {
