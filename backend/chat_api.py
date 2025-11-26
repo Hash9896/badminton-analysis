@@ -96,24 +96,38 @@ class SubmissionUpdate(BaseModel):
     match_label: Optional[str] = None
 
 
-SUBMISSIONS_FILE = Path(settings.data_root_dir) / "player_submissions.json"
+SUBMISSIONS_S3_KEY = "player_submissions.json"
 _submission_lock = threading.Lock()
 
 
 def _load_submissions() -> List[Dict[str, Any]]:
-    if not SUBMISSIONS_FILE.exists():
+    """Load submissions from S3."""
+    if not s3_client:
         return []
     try:
-        with SUBMISSIONS_FILE.open("r", encoding="utf-8") as f:
-            return json.load(f)
+        response = s3_client.get_object(Bucket=settings.s3_bucket, Key=SUBMISSIONS_S3_KEY)
+        return json.loads(response['Body'].read().decode('utf-8'))
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'NoSuchKey':
+            return []
+        return []
     except Exception:
         return []
 
 
 def _save_submissions(entries: List[Dict[str, Any]]) -> None:
-    SUBMISSIONS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with SUBMISSIONS_FILE.open("w", encoding="utf-8") as f:
-        json.dump(entries, f, indent=2)
+    """Save submissions to S3."""
+    if not s3_client:
+        return
+    try:
+        s3_client.put_object(
+            Bucket=settings.s3_bucket,
+            Key=SUBMISSIONS_S3_KEY,
+            Body=json.dumps(entries, indent=2).encode('utf-8'),
+            ContentType='application/json'
+        )
+    except Exception:
+        pass
 
 
 def _resolve_data_path(folder: str) -> Path:
