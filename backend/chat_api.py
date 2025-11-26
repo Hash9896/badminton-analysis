@@ -26,15 +26,11 @@ from . import tools as domain_tools
 
 app = FastAPI(title="Match Analysis Chat API", version="0.1.0")
 
-# CORS
-raw_origins = settings.cors_origins or ""
-origins = [o.strip() for o in raw_origins.split(",") if o.strip()]
-if not origins:
-    origins = ["*"]  # Allow all origins for development; restrict in production if needed
+# CORS - Allow all origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
