@@ -32,6 +32,7 @@ origins = [o.strip() for o in raw_origins.split(",") if o.strip()]
 if not origins:
     origins = [
         "http://localhost:5173",
+        "https://badminton-analysis-eta.vercel.app",
         "https://badminton-analysis-8v47x2oeg-harshits-projects-7806b792.vercel.app",
         "https://badminton-analysis-3qczwcer7-harshits-projects-7806b792.vercel.app",
     ]
