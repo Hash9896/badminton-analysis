@@ -12,9 +12,11 @@ import threading
 from uuid import uuid4
 import zipfile
 
+import boto3
+from botocore.exceptions import ClientError
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 from pydantic import BaseModel, Field
 from openai import OpenAI  # type: ignore
 
@@ -22,6 +24,17 @@ from .config import settings
 from .indexer import build_match_index
 from .retrieval import Retriever
 from . import tools as domain_tools
+
+
+# Initialize S3 client
+s3_client = None
+if settings.aws_access_key_id and settings.aws_secret_access_key:
+    s3_client = boto3.client(
+        's3',
+        region_name=settings.s3_region,
+        aws_access_key_id=settings.aws_access_key_id,
+        aws_secret_access_key=settings.aws_secret_access_key
+    )
 
 
 app = FastAPI(title="Match Analysis Chat API", version="0.1.0")
@@ -309,6 +322,30 @@ def update_submission(submission_id: str, req: SubmissionUpdate) -> Dict[str, An
 
 @app.get("/reports/folder")
 def download_folder(path: str = Query(..., description="Folder relative to data root")) -> StreamingResponse:
+    """Download folder as zip - tries S3 first, then local filesystem."""
+    # Try S3 first
+    if s3_client:
+        try:
+            buffer = io.BytesIO()
+            prefix = path.strip("/") + "/"
+            with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipf:
+                paginator = s3_client.get_paginator('list_objects_v2')
+                for page in paginator.paginate(Bucket=settings.s3_bucket, Prefix=prefix):
+                    for obj in page.get('Contents', []):
+                        key = obj['Key']
+                        arcname = key[len(prefix):]  # Remove prefix for archive name
+                        if arcname:  # Skip the folder itself
+                            file_obj = s3_client.get_object(Bucket=settings.s3_bucket, Key=key)
+                            zipf.writestr(arcname, file_obj['Body'].read())
+            buffer.seek(0)
+            safe_name = path.strip("/").replace("/", "_") or "report"
+            headers = {"Content-Disposition": f'attachment; filename="{safe_name}.zip"'}
+            return StreamingResponse(buffer, media_type="application/zip", headers=headers)
+        except ClientError as e:
+            # Fall through to local filesystem
+            pass
+    
+    # Fallback to local filesystem
     folder_path = _resolve_data_path(path)
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as zipf:
@@ -320,6 +357,35 @@ def download_folder(path: str = Query(..., description="Folder relative to data 
     safe_name = path.strip("/").replace("/", "_") or "report"
     headers = {"Content-Disposition": f'attachment; filename="{safe_name}.zip"'}
     return StreamingResponse(buffer, media_type="application/zip", headers=headers)
+
+
+@app.get("/s3/list")
+def list_s3_folder(path: str = Query("", description="Folder path in S3")) -> Dict[str, Any]:
+    """List files in an S3 folder."""
+    if not s3_client:
+        raise HTTPException(status_code=500, detail="S3 not configured")
+    
+    try:
+        prefix = path.strip("/") + "/" if path else ""
+        paginator = s3_client.get_paginator('list_objects_v2')
+        files = []
+        for page in paginator.paginate(Bucket=settings.s3_bucket, Prefix=prefix):
+            for obj in page.get('Contents', []):
+                files.append({
+                    "key": obj['Key'],
+                    "size": obj['Size'],
+                    "url": f"https://{settings.s3_bucket}.s3.{settings.s3_region}.amazonaws.com/{obj['Key']}"
+                })
+        return {"files": files, "count": len(files)}
+    except ClientError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/s3/url")
+def get_s3_url(key: str = Query(..., description="S3 object key")) -> Dict[str, str]:
+    """Get public URL for an S3 object."""
+    url = f"https://{settings.s3_bucket}.s3.{settings.s3_region}.amazonaws.com/{key}"
+    return {"url": url}
 
 # -------------------- Tool Endpoints --------------------
 

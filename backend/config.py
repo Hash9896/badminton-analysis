@@ -31,6 +31,12 @@ class Settings:
         # CORS
         self.cors_origins: str = get_env("CORS_ORIGINS", "http://localhost:5173")
 
+        # S3 Configuration
+        self.s3_bucket: str = get_env("S3_BUCKET", "badminton-analysis-data")
+        self.s3_region: str = get_env("S3_REGION", "ap-south-1")
+        self.aws_access_key_id: Optional[str] = get_env("AWS_ACCESS_KEY_ID")
+        self.aws_secret_access_key: Optional[str] = get_env("AWS_SECRET_ACCESS_KEY")
+
 
 settings = Settings()
 
